@@ -37,11 +37,7 @@ The data collector will work the following steps:
 
 - ~~Create ERM for project using [DBDiagram.io][tool_dbdiagram]~~ Done 03.08.2024
 - Initial project
-- Create `data collector`
-  - Determine list of all MP3 files
-  - Foreach MP3 file
-    - Read ID3 tag
-    - Store meta data in database
+- Create [data collector][app_datacollector] - see README.md there
 
 ### ERM diagram
 
@@ -51,5 +47,6 @@ The data collector will work the following steps:
 
 Some code will be picked and transformed from my other project [Weatherstation][project_weatherstation].
 
+[app_datacollector]: ./datacollector/README.md
 [project_weatherstation]: https://github.com/ThirtySomething/Weatherstation
 [tool_dbdiagram]: https://dbdiagram.io/
