@@ -1,0 +1,68 @@
+Project cdstats {
+    database_type: 'MariaDB'
+    Note: 'Statistics about CD collection'
+}
+
+enum cdstats.tag_source {
+    SrcEasyID3
+    SrcMPEGInfo
+}
+
+Table cdstats.albums {
+    id integer [primary key, note: 'To identify album']
+    album varchar(512) [not null, unique, note: 'Unique album title']
+}
+
+Table cdstats.artists {
+    id integer [primary key, note: 'To identify artist']
+    artist varchar(512) [not null, unique, note: 'Unique artist name']
+}
+
+Table cdstats.attributetypes {
+    id integer [primary key, note: 'To identify attribute type']
+    name varchar(64) [not null, unique, note: 'Unique attribute type name']
+    source cdstats.tag_source
+}
+
+Table cdstats.filenames {
+    id integer [primary key, note: 'To identify file']
+    filename varchar(255) [not null, unique, note: 'Unique filename']
+    import timestamp [default: `now()`, note: 'To check for update']
+}
+
+Table cdstats.genres {
+    id integer [primary key, note: 'To identify genre']
+    genre varchar(512) [not null, unique, note: 'Unique genre name']
+}
+
+Table cdstats.titles {
+    id integer [primary key, note: 'To identify title']
+    title varchar(512) [not null, unique, note: 'Unique title name']
+}
+
+Table cdstats.fileattributes {
+    id integer [primary key, note: 'To identify attribute']
+    ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
+    ref_attribute_id integer  [ref: < cdstats.attributetypes.id, note: 'Reference to attribute type']
+}
+
+Table cdstats.cdheader {
+    id integer [primary key, note: 'To identify CD']
+    ref_album_id integer [ref: < cdstats.albums.id, note: 'Reference to album']
+    ref_artist_id integer  [ref: < cdstats.artists.id, note: 'Reference to artist']
+    ref_genre_id integer [ref: < cdstats.genres.id, note: 'Reference to genre']
+    playtime integer [not null, note: 'Complete playing time in seconds']
+    songs integer [not null, note: 'Number of songs']
+    year integer [not null, note: 'Publishing year']
+}
+
+Table cdstats.cdtrack {
+    id integer [primary key, note: 'To identify CD track']
+    ref_album_id integer [ref: < cdstats.albums.id, note: 'Reference to album']
+    ref_artist_id integer  [ref: < cdstats.artists.id, note: 'Reference to artist']
+    ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
+    ref_genre_id integer [ref: < cdstats.genres.id, note: 'Reference to genre']
+    ref_title_id integer [ref: < cdstats.titles.id, note: 'Reference to title']
+    playtime integer [not null, note: 'Complete playing time in seconds']
+    year integer [not null, note: 'Publishing year']
+}
