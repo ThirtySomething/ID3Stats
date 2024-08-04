@@ -6,7 +6,7 @@ namespace net.derpaul.cdstats
     /// <summary>
     /// Entity for artists
     /// </summary>
-    public class MArtist
+    public class Artist
     {
         /// <summary>
         /// ID as primary key
@@ -16,6 +16,6 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Measurement location
         /// </summary>
-        public string artist { get; set; }
+        public string name { get; set; }
     }
 }

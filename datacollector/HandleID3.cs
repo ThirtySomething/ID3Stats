@@ -10,7 +10,7 @@ namespace net.derpaul.cdstats
     internal class HandleID3
     {
         private List<string> filenamesMP3;
-        private MModel DBInstance;
+        private CdStats DBInstance;
 
         public HandleID3(List<string> filenamesMP3)
         {
@@ -21,7 +21,7 @@ namespace net.derpaul.cdstats
         {
             bool ret = true;
 
-            DBInstance = new MModel(new DbContextOptions<MModel>());
+            DBInstance = new CdStats(new DbContextOptions<CdStats>());
             DBInstance.Database.EnsureCreated();
 
             return ret;
@@ -31,15 +31,29 @@ namespace net.derpaul.cdstats
         {
             foreach (string filename in filenamesMP3)
             {
+                // Read ID3 tag
                 var tagID3 = TagLib.File.Create(filename);
-                var artist = tagID3.Tag.FirstArtist;
-                var Oartist = DBInstance.DBArtist.Where(a => a.artist == artist).FirstOrDefault();
+
+                // Handle of album
+                var album = tagID3.Tag.Album;
+                var Oalbum = DBInstance.Album.Where(a => a.name == album).FirstOrDefault();
+                if (Oalbum == null)
+                {
+                    Oalbum = new Album { name = album };
+                    DBInstance.Add(Oalbum);
+                    DBInstance.SaveChanges();
+                }
+
+                // Handle of artist
+                var artist = tagID3.Tag.FirstPerformer;
+                var Oartist = DBInstance.Artist.Where(a => a.name == artist).FirstOrDefault();
                 if (Oartist == null)
                 {
-                    Oartist = new MArtist { artist = artist };
+                    Oartist = new Artist { name = artist };
                     DBInstance.Add(Oartist);
                     DBInstance.SaveChanges();
                 }
+                break;
             }
         }
     }

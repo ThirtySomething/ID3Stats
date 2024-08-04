@@ -8,14 +8,14 @@ enum cdstats.tag_source {
     SrcMPEGInfo
 }
 
-Table cdstats.albums {
+Table cdstats.album {
     id integer [primary key, note: 'To identify album']
-    album varchar(512) [not null, unique, note: 'Unique album title']
+    name varchar(512) [not null, unique, note: 'Unique album title']
 }
 
-Table cdstats.artists {
+Table cdstats.artist {
     id integer [primary key, note: 'To identify artist']
-    artist varchar(512) [not null, unique, note: 'Unique artist name']
+    name varchar(512) [not null, unique, note: 'Unique artist name']
 }
 
 Table cdstats.attributetypes {
@@ -30,14 +30,14 @@ Table cdstats.filenames {
     import timestamp [default: `now()`, note: 'To check for update']
 }
 
-Table cdstats.genres {
+Table cdstats.genre {
     id integer [primary key, note: 'To identify genre']
-    genre varchar(512) [not null, unique, note: 'Unique genre name']
+    name varchar(512) [not null, unique, note: 'Unique genre name']
 }
 
-Table cdstats.titles {
+Table cdstats.title {
     id integer [primary key, note: 'To identify title']
-    title varchar(512) [not null, unique, note: 'Unique title name']
+    name varchar(512) [not null, unique, note: 'Unique title name']
 }
 
 Table cdstats.fileattributes {
@@ -48,9 +48,9 @@ Table cdstats.fileattributes {
 
 Table cdstats.cdheader {
     id integer [primary key, note: 'To identify CD']
-    ref_album_id integer [ref: < cdstats.albums.id, note: 'Reference to album']
-    ref_artist_id integer  [ref: < cdstats.artists.id, note: 'Reference to artist']
-    ref_genre_id integer [ref: < cdstats.genres.id, note: 'Reference to genre']
+    ref_album_id integer [ref: < cdstats.album.id, note: 'Reference to album']
+    ref_artist_id integer  [ref: < cdstats.artist.id, note: 'Reference to artist']
+    ref_genre_id integer [ref: < cdstats.genre.id, note: 'Reference to genre']
     playtime integer [not null, note: 'Complete playing time in seconds']
     songs integer [not null, note: 'Number of songs']
     year integer [not null, note: 'Publishing year']
@@ -58,11 +58,11 @@ Table cdstats.cdheader {
 
 Table cdstats.cdtrack {
     id integer [primary key, note: 'To identify CD track']
-    ref_album_id integer [ref: < cdstats.albums.id, note: 'Reference to album']
-    ref_artist_id integer  [ref: < cdstats.artists.id, note: 'Reference to artist']
+    ref_album_id integer [ref: < cdstats.album.id, note: 'Reference to album']
+    ref_artist_id integer  [ref: < cdstats.artist.id, note: 'Reference to artist']
     ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
-    ref_genre_id integer [ref: < cdstats.genres.id, note: 'Reference to genre']
-    ref_title_id integer [ref: < cdstats.titles.id, note: 'Reference to title']
+    ref_genre_id integer [ref: < cdstats.genre.id, note: 'Reference to genre']
+    ref_title_id integer [ref: < cdstats.title.id, note: 'Reference to title']
     disc integer [not null, note:"Number of disc"]
     playtime integer [not null, note: 'Complete playing time in seconds']
     year integer [not null, note: 'Publishing year']

@@ -9,11 +9,12 @@ using System.Reflection;
 
 namespace net.derpaul.cdstats
 {
-    public class MModel : DbContext
+    public class CdStats : DbContext
     {
-        public DbSet<MArtist> DBArtist { get; set; }
+        public DbSet<Album> Album { get; set; }
+        public DbSet<Artist> Artist { get; set; }
 
-        public MModel(DbContextOptions<MModel> options) : base(options)
+        public CdStats(DbContextOptions<CdStats> options) : base(options)
         {
         }
 
@@ -31,12 +32,20 @@ namespace net.derpaul.cdstats
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Entity for measurement types
-            modelBuilder.Entity<MArtist>().ToTable("artist");
-            modelBuilder.Entity<MArtist>(entity =>
+            // Entity for albums
+            modelBuilder.Entity<Album>().ToTable("album");
+            modelBuilder.Entity<Album>(entity =>
             {
                 entity.HasKey(e => e.id);
-                entity.HasIndex(e => e.artist).IsUnique();
+                entity.HasIndex(e => e.name).IsUnique();
+            });
+
+            // Entity for artists
+            modelBuilder.Entity<Artist>().ToTable("artist");
+            modelBuilder.Entity<Artist>(entity =>
+            {
+                entity.HasKey(e => e.id);
+                entity.HasIndex(e => e.name).IsUnique();
             });
 
             // Create the model

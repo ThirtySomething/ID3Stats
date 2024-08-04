@@ -36,17 +36,23 @@ The data collector will work the following steps:
 ## Tasks
 
 - ~~Create ERM for project using [DBDiagram.io][tool_dbdiagram]~~ Done 03.08.2024
-- Initial project
+- ~~Initial project~~ Done 04.08.2024
 - Create [data collector][app_datacollector] - see README.md there
 
 ### ERM diagram
 
 ![cdstats ERM diagram](./doc/cdstats.png "cdstats ERM diagram")
 
-## Notes
+## Technology
 
-Some code will be picked and transformed from my other project [Weatherstation][project_weatherstation].
+- This program is written in [C#][code_c#]
+- Inspired from my other project [Weatherstation][project_weatherstation]
+  - The configuration file handling
+  - The plugin system
+- Reading the ID3 tags is based on [TagLibSharp][lib_taglibsharp]
 
 [app_datacollector]: ./datacollector/README.md
+[code_c#]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+[lib_taglibsharp]: https://github.com/mono/taglib-sharp
 [project_weatherstation]: https://github.com/ThirtySomething/Weatherstation
 [tool_dbdiagram]: https://dbdiagram.io/
