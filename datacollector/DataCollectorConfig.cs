@@ -13,12 +13,18 @@ namespace net.derpaul.cdstats
         public void SetDefaults()
         {
             MP3Path = "m:\\";
+            MP3Pattern = "*.mp3";
         }
 
         /// <summary>
         /// Root path of MP3 collection
         /// </summary>
         public string MP3Path { get; set; }
+
+        /// <summary>
+        /// Pattern to search for
+        /// </summary>
+        public string MP3Pattern { get;set; }
 
         /// <summary>
         /// Product name of plugin set in AssemblyInfo.cs
