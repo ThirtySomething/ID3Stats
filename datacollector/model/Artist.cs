@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace net.derpaul.cdstats
 {
@@ -14,8 +15,9 @@ namespace net.derpaul.cdstats
         public ulong id { get; set; }
 
         /// <summary>
-        /// Measurement location
+        /// Artist name
         /// </summary>
+        [StringLength(512)]
         public string name { get; set; }
     }
 }

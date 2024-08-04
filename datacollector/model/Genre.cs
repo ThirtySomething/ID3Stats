@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for albums
+    /// Entity for genres
     /// </summary>
-    public class Album
+    public class Genre
     {
         /// <summary>
         /// ID as primary key
@@ -15,7 +15,7 @@ namespace net.derpaul.cdstats
         public ulong id { get; set; }
 
         /// <summary>
-        /// Album name
+        /// Artist name
         /// </summary>
         [StringLength(512)]
         public string name { get; set; }
