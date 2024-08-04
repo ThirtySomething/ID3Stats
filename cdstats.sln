@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "datacollector", "datacollector\datacollector.csproj", "{CF763DA1-7572-44C2-9F1C-C3A311AD8A03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cdstats", "datacollector\datacollector.csproj", "{CF763DA1-7572-44C2-9F1C-C3A311AD8A03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{2EAAC689-A8F0-43FF-A538-AFDEB080FAF4}"
 	ProjectSection(SolutionItems) = preProject

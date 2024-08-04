@@ -29,7 +29,7 @@ namespace net.derpaul.cdstats
         public FinderMP3(string pathStartup, string searchPattern)
         {
             this.pathStartup = pathStartup;
-            this.searchPattern = searchPattern; 
+            this.searchPattern = searchPattern;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace net.derpaul.cdstats
             if (ret)
             {
                 // AND searchpatterns must NOT be empty
-                ret = !String.IsNullOrEmpty (this.searchPattern);
+                ret = !String.IsNullOrEmpty(this.searchPattern);
             }
 
             return ret;

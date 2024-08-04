@@ -42,8 +42,8 @@ Table cdstats.titles {
 
 Table cdstats.fileattributes {
     id integer [primary key, note: 'To identify attribute']
-    ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
     ref_attribute_id integer  [ref: < cdstats.attributetypes.id, note: 'Reference to attribute type']
+    ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
 }
 
 Table cdstats.cdheader {
@@ -63,6 +63,7 @@ Table cdstats.cdtrack {
     ref_filename_id integer [ref: < cdstats.filenames.id, note: 'Reference to filename']
     ref_genre_id integer [ref: < cdstats.genres.id, note: 'Reference to genre']
     ref_title_id integer [ref: < cdstats.titles.id, note: 'Reference to title']
+    disc integer [not null, note:"Number of disc"]
     playtime integer [not null, note: 'Complete playing time in seconds']
     year integer [not null, note: 'Publishing year']
 }
