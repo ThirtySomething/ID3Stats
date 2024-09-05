@@ -1,0 +1,150 @@
+@startuml
+
+'--------------------------------------------------
+' Meta data of diagram
+'--------------------------------------------------
+' Title of diagram
+title CDSTATS
+
+' Header (top right)
+header CDSTATS
+
+' Caption below diagram
+caption Database model of CDSTATS
+
+' Footer centered
+footer %filename()
+
+' Use orthogonal layouting
+skinparam linetype ortho
+
+'--------------------------------------------------
+' Entity definitions
+'--------------------------------------------------
+' Unique filename with extension
+entity mp3file {
+    **id_mp3file**
+    --
+    filename
+}
+
+' Unique pathname
+entity mp3path {
+    **id_mp3path**
+    --
+    pathname
+}
+
+' Unique MP3 file
+entity mp3import {
+    **id_mp3import**
+    --
+    **id_mp3path_ref**
+    **id_mp3file_ref**
+    --
+    date_import
+    filehash
+}
+
+' Unique artist
+entity artist {
+    **id_artist**
+    --
+    artist
+}
+
+' Unique album
+entity album {
+    **id_album**
+    --
+    album
+}
+
+' Unique genre
+entity genre {
+    **id_genre**
+    --
+    genre
+}
+
+' Unique title
+entity title {
+    **id_title**
+    --
+    title
+}
+
+' CD head - common for all tracks
+entity cdhead {
+    **id_cdhead**
+    --
+    **id_artist_ref**
+    **id_album_ref**
+    **id_genre_ref**
+    --
+    disc_number_total
+    play_time_total
+    track_number_total
+    year_published
+}
+
+' CD track
+entity cdtrack {
+    **id_cdtrack**
+    --
+    **id_cdhead**
+    --
+    **id_artist_ref**
+    **id_album_ref**
+    **id_genre_ref**
+    **id_title_ref**
+    **id_mp3import_ref**
+    --
+    disc_number
+    play_time
+    track_number
+    year_published
+}
+
+'--------------------------------------------------
+' Definition of relations between entities
+' With positioning
+' r - right
+' l - left
+' u - up
+' d - down
+'--------------------------------------------------
+mp3import ||--l|{ mp3path
+mp3import ||--r|{ mp3file
+
+cdhead ||--u|{ artist
+cdhead ||--u|{ album
+cdhead ||--r|{ cdtrack
+cdhead ||--u|{ genre
+
+cdtrack ||--u|{ artist
+cdtrack ||--u|{ album
+cdtrack ||--u|{ genre
+cdtrack ||--u|{ title
+cdtrack ||--d|| mp3import
+
+'--------------------------------------------------
+' Additional hidden relationships used for
+' positioning
+'--------------------------------------------------
+artist -[hidden]r-> album
+album -[hidden]r-> genre
+genre -[hidden]r-> title
+
+'--------------------------------------------------
+' Legend with explanation
+'--------------------------------------------------
+legend
+**ERM Relation hints:**
+Zero or one \t --o|
+Exactly one \t --||
+Zero or many \t --o{
+One or many \t --|{
+end legend
+
+@enduml

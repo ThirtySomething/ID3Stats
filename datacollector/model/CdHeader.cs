@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for albums
+    /// Entity for genres
     /// </summary>
-    public class Album
+    public class CdHeader
     {
         /// <summary>
         /// ID as primary key
         /// </summary>
         public ulong id { get; set; }
 
-        /// <summary>
-        /// Album name
-        /// </summary>
-        [StringLength(512)]
-        public string name { get; set; }
-
-        public ICollection<CdHeader> cdheaders { get; set; }
+        public Album album { get; set; }
     }
 }

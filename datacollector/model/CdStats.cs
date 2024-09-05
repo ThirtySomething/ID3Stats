@@ -40,6 +40,11 @@ namespace net.derpaul.cdstats
         public DbSet<Title> Title { get; set; }
 
         /// <summary>
+        /// Entity for CD headers
+        /// </summary>
+        public DbSet<CdHeader> CdHeader { get; set; }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="options"></param>
@@ -75,7 +80,7 @@ namespace net.derpaul.cdstats
             {
                 entity.HasKey(e => e.id);
                 entity.HasIndex(e => e.name).IsUnique();
-            });
+            }); 
 
             // Entity for artists
             modelBuilder.Entity<Artist>().ToTable("artist");
@@ -107,6 +112,13 @@ namespace net.derpaul.cdstats
             {
                 entity.HasKey(e => e.id);
                 entity.HasIndex(e => e.name).IsUnique();
+            });
+
+            // Entity for CD headers
+            modelBuilder.Entity<CdHeader>().ToTable("cdheader");
+            modelBuilder.Entity<CdHeader>(entity =>
+            {
+                entity.HasKey(e => e.id);
             });
 
             // Create the model

@@ -48,7 +48,7 @@ namespace net.derpaul.cdstats
                 // Handle of album
                 var album = tagID3.Tag.Album;
                 var Oalbum = DBInstance.Album.Where(a => a.name == album).FirstOrDefault();
-                if (Oalbum == null)
+                if (null == Oalbum)
                 {
                     Oalbum = new Album { name = album };
                     DBInstance.Add(Oalbum);
@@ -58,7 +58,7 @@ namespace net.derpaul.cdstats
                 // Handle of artist
                 var artist = tagID3.Tag.FirstPerformer;
                 var Oartist = DBInstance.Artist.Where(a => a.name == artist).FirstOrDefault();
-                if (Oartist == null)
+                if (null == Oartist)
                 {
                     Oartist = new Artist { name = artist };
                     DBInstance.Add(Oartist);
@@ -68,7 +68,7 @@ namespace net.derpaul.cdstats
                 // Handle of genres
                 var genre = tagID3.Tag.FirstGenre;
                 var Ogenre = DBInstance.Genre.Where(a => a.name == genre).FirstOrDefault();
-                if (Ogenre == null)
+                if (null == Ogenre)
                 {
                     Ogenre = new Genre { name = genre };
                     DBInstance.Add(Ogenre);
@@ -78,10 +78,20 @@ namespace net.derpaul.cdstats
                 // Handle of titles
                 var title = tagID3.Tag.Title;
                 var Otitle= DBInstance.Title.Where(a => a.name == title).FirstOrDefault();
-                if (Otitle == null)
+                if (null == Otitle)
                 {
                     Otitle = new Title { name = title };
                     DBInstance.Add(Otitle);
+                    DBInstance.SaveChanges();
+                }
+
+                // Handle of CD titles
+                var Ocdheader = DBInstance.CdHeader.Where(a => a.album == Oalbum).FirstOrDefault();
+                if (null == Ocdheader)
+                {
+                    Ocdheader = new CdHeader();
+                    Ocdheader.album = Oalbum;
+                    DBInstance.Add(Ocdheader);
                     DBInstance.SaveChanges();
                 }
             }
