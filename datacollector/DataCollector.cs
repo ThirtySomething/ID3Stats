@@ -26,7 +26,7 @@
                 return;
             }
             // Read ID3 tags and write them to database
-            id3todb.Process();
+            id3todb.Process(DataCollectorConfig.Instance.MP3Path);
         }
     }
 }

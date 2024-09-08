@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for artists
+    /// Artist entity
     /// </summary>
     public class Artist
     {

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for genres
+    /// Genre entity
     /// </summary>
     public class Genre
     {

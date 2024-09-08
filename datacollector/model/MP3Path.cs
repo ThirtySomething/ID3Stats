@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for artists
+    /// MP3Path entity
     /// </summary>
-    public class Filename
+    public class MP3Path
     {
         /// <summary>
         /// ID as primary key
@@ -15,14 +15,15 @@ namespace net.derpaul.cdstats
         public ulong id { get; set; }
 
         /// <summary>
-        /// Filename
+        /// Path name
         /// </summary>
         [StringLength(512)]
         public string name { get; set; }
 
         /// <summary>
-        /// Timestamp of import
+        /// Foreign key constraint - one MP3Path, many MP3Imports
         /// </summary>
-        public DateTime import { get; set; }
+        public ICollection<MP3Import> mp3imports { get; set; }
+
     }
 }

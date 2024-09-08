@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for albums
+    /// Album entity
     /// </summary>
     public class Album
     {
@@ -20,7 +20,5 @@ namespace net.derpaul.cdstats
         /// </summary>
         [StringLength(512)]
         public string name { get; set; }
-
-        public ICollection<CdHeader> cdheaders { get; set; }
     }
 }

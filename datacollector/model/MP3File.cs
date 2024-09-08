@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
 
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Entity for genres
+    /// MP3File entity
     /// </summary>
-    public class CdHeader
+    public class MP3File
     {
         /// <summary>
         /// ID as primary key
         /// </summary>
         public ulong id { get; set; }
 
-        public Album album { get; set; }
+        /// <summary>
+        /// File name
+        /// </summary>
+        [StringLength(512)]
+        public string name { get; set; }
+
+        /// <summary>
+        /// Foreign key constraint - one MP3File, many MP3Imports
+        /// </summary>
+        public ICollection<MP3Import> mp3imports { get; set; }
     }
 }

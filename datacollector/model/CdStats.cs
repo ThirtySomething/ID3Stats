@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Emit;
 
 namespace net.derpaul.cdstats
 {
@@ -25,11 +27,6 @@ namespace net.derpaul.cdstats
         public DbSet<Artist> Artist { get; set; }
 
         /// <summary>
-        /// Entity for filenames
-        /// </summary>
-        public DbSet<Filename> Filename { get; set; }
-
-        /// <summary>
         /// Entity for genres
         /// </summary>
         public DbSet<Genre> Genre { get; set; }
@@ -40,9 +37,29 @@ namespace net.derpaul.cdstats
         public DbSet<Title> Title { get; set; }
 
         /// <summary>
-        /// Entity for CD headers
+        /// Entity for CD heads
         /// </summary>
-        public DbSet<CdHeader> CdHeader { get; set; }
+        public DbSet<CdHead> CdHead { get; set; }
+
+        /// <summary>
+        /// Entity for CD tracks
+        /// </summary>
+        public DbSet<CdTrack> CdTrack { get; set; }
+
+        /// <summary>
+        /// Entity for filenames
+        /// </summary>
+        public DbSet<MP3File> MP3File { get; set; }
+
+        /// <summary>
+        /// Entity for path names
+        /// </summary>
+        public DbSet<MP3Path> MP3Path { get; set; }
+
+        /// <summary>
+        /// Entity for MP3 imports
+        /// </summary>
+        public DbSet<MP3Import> MP3Import { get; set; }
 
         /// <summary>
         /// Default constructor
@@ -80,19 +97,11 @@ namespace net.derpaul.cdstats
             {
                 entity.HasKey(e => e.id);
                 entity.HasIndex(e => e.name).IsUnique();
-            }); 
+            });
 
             // Entity for artists
             modelBuilder.Entity<Artist>().ToTable("artist");
             modelBuilder.Entity<Artist>(entity =>
-            {
-                entity.HasKey(e => e.id);
-                entity.HasIndex(e => e.name).IsUnique();
-            });
-
-            // Entity for filenames
-            modelBuilder.Entity<Filename>().ToTable("filename");
-            modelBuilder.Entity<Filename>(entity =>
             {
                 entity.HasKey(e => e.id);
                 entity.HasIndex(e => e.name).IsUnique();
@@ -114,12 +123,54 @@ namespace net.derpaul.cdstats
                 entity.HasIndex(e => e.name).IsUnique();
             });
 
-            // Entity for CD headers
-            modelBuilder.Entity<CdHeader>().ToTable("cdheader");
-            modelBuilder.Entity<CdHeader>(entity =>
+            // Entity for CD heads
+            modelBuilder.Entity<CdHead>().ToTable("cdhead");
+            modelBuilder.Entity<CdHead>(entity =>
             {
                 entity.HasKey(e => e.id);
             });
+
+            // Entity for CD tracks
+            modelBuilder.Entity<CdTrack>().ToTable("cdtrack");
+            modelBuilder.Entity<CdTrack>(entity =>
+            {
+                entity.HasKey(e => e.id);
+            });
+
+            // Entity for MP3 filenames
+            modelBuilder.Entity<MP3File>().ToTable("mp3file");
+            modelBuilder.Entity<MP3File>(entity =>
+            {
+                entity.HasKey(e => e.id);
+                entity.HasIndex(e => e.name).IsUnique();
+            });
+
+            // Entity for MP3 paths
+            modelBuilder.Entity<MP3Path>().ToTable("mp3path");
+            modelBuilder.Entity<MP3Path>(entity =>
+            {
+                entity.HasKey(e => e.id);
+                entity.HasIndex(e => e.name).IsUnique();
+            });
+
+            // Entity for MP3 import
+            modelBuilder.Entity<MP3Import>().ToTable("mp3import");
+            modelBuilder.Entity<MP3Import>(entity =>
+            {
+                entity.HasKey(e => e.id);
+            });
+
+            // Foreign key from mp3file to mp3import
+            modelBuilder.Entity<MP3Import>()
+                    .HasOne(e => e.mp3file)
+                    .WithMany(c => c.mp3imports)
+                    .HasForeignKey(e => e.id_mp3file_ref);
+
+            // Foreign key from mp3path to mp3import
+            modelBuilder.Entity<MP3Import>()
+                    .HasOne(e => e.mp3path)
+                    .WithMany(c => c.mp3imports)
+                    .HasForeignKey(e => e.id_mp3path_ref);
 
             // Create the model
             base.OnModelCreating(modelBuilder);
