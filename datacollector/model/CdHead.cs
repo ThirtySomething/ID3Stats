@@ -17,6 +17,36 @@ namespace net.derpaul.cdstats
         public ulong id { get; set; }
 
         /// <summary>
+        /// Reference by album id
+        /// </summary>
+        public ulong id_album_ref { get; set; }
+
+        /// <summary>
+        /// Reference of album object
+        /// </summary>
+        public Album album { get; set; }
+
+        /// <summary>
+        /// Reference by artist id
+        /// </summary>
+        public ulong id_artist_ref { get; set; }
+
+        /// <summary>
+        /// Reference of artist object
+        /// </summary>
+        public Artist artist { get; set; }
+
+        /// <summary>
+        /// Reference genre by id
+        /// </summary>
+        public ulong id_genre_ref { get; set; }
+
+        /// <summary>
+        /// Reference genre as object
+        /// </summary>
+        public Genre genre { get; set; }
+
+        /// <summary>
         /// Total number of discs of album
         /// </summary>
         public ushort disc_number_total { get; set; }

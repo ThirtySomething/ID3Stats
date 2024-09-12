@@ -19,5 +19,11 @@ namespace net.derpaul.cdstats
         /// </summary>
         [StringLength(512)]
         public string name { get; set; }
+
+        /// <summary>
+        /// Foreign key constraint - one Album, many CdHeads
+        /// </summary>
+        public ICollection<CdHead> cdheads { get; set; }
+
     }
 }

@@ -47,16 +47,6 @@ namespace net.derpaul.cdstats
         public DbSet<CdTrack> CdTrack { get; set; }
 
         /// <summary>
-        /// Entity for filenames
-        /// </summary>
-        public DbSet<MP3File> MP3File { get; set; }
-
-        /// <summary>
-        /// Entity for path names
-        /// </summary>
-        public DbSet<MP3Path> MP3Path { get; set; }
-
-        /// <summary>
         /// Entity for MP3 imports
         /// </summary>
         public DbSet<MP3Import> MP3Import { get; set; }
@@ -137,40 +127,31 @@ namespace net.derpaul.cdstats
                 entity.HasKey(e => e.id);
             });
 
-            // Entity for MP3 filenames
-            modelBuilder.Entity<MP3File>().ToTable("mp3file");
-            modelBuilder.Entity<MP3File>(entity =>
-            {
-                entity.HasKey(e => e.id);
-                entity.HasIndex(e => e.name).IsUnique();
-            });
-
-            // Entity for MP3 paths
-            modelBuilder.Entity<MP3Path>().ToTable("mp3path");
-            modelBuilder.Entity<MP3Path>(entity =>
-            {
-                entity.HasKey(e => e.id);
-                entity.HasIndex(e => e.name).IsUnique();
-            });
-
             // Entity for MP3 import
             modelBuilder.Entity<MP3Import>().ToTable("mp3import");
             modelBuilder.Entity<MP3Import>(entity =>
             {
                 entity.HasKey(e => e.id);
+                entity.HasIndex(e => e.filename).IsUnique();
             });
 
-            // Foreign key from mp3file to mp3import
-            modelBuilder.Entity<MP3Import>()
-                    .HasOne(e => e.mp3file)
-                    .WithMany(c => c.mp3imports)
-                    .HasForeignKey(e => e.id_mp3file_ref);
+            // Foreign key: cdhead refereneces album
+            modelBuilder.Entity<CdHead>()
+                    .HasOne(e => e.album)
+                    .WithMany(c => c.cdheads)
+                    .HasForeignKey(e => e.id_album_ref);
 
-            // Foreign key from mp3path to mp3import
-            modelBuilder.Entity<MP3Import>()
-                    .HasOne(e => e.mp3path)
-                    .WithMany(c => c.mp3imports)
-                    .HasForeignKey(e => e.id_mp3path_ref);
+            // Foreign key: cdhead refereneces artist
+            modelBuilder.Entity<CdHead>()
+                    .HasOne(e => e.artist)
+                    .WithMany(c => c.cdheads)
+                    .HasForeignKey(e => e.id_artist_ref);
+
+            // Foreign key: cdhead refereneces genre
+            modelBuilder.Entity<CdHead>()
+                    .HasOne(e => e.genre)
+                    .WithMany(c => c.cdheads)
+                    .HasForeignKey(e => e.id_genre_ref);
 
             // Create the model
             base.OnModelCreating(modelBuilder);

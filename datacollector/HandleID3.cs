@@ -29,7 +29,7 @@ namespace net.derpaul.cdstats
             return ret;
         }
 
-         string CalculateMD5(string filename)
+        string CalculateMD5(string filename)
         {
             using (var md5 = MD5.Create())
             {
@@ -45,39 +45,16 @@ namespace net.derpaul.cdstats
         {
             foreach (string filename in filenamesMP3)
             {
-                // Extract filename from path
-                string fname = Path.GetFileName(filename);
-                // Extract path and strip prefix
-                string pname = Path.GetDirectoryName(filename);
-                pname = pname.Replace(pathprefix,"");
-
-                // Handle path of MP3 file
-                var OMP3Path = DBInstance.MP3Path.Where(a => a.name == pname).FirstOrDefault();
-                if (null == OMP3Path) {
-                    OMP3Path = new MP3Path();
-                    OMP3Path.name = pname;
-                    DBInstance.Add(OMP3Path);
-                    DBInstance.SaveChanges();
-                }
-
-                // Handle filename of MP3 file
-                var OMP3File = DBInstance.MP3File.Where(a => a.name == fname).FirstOrDefault();
-                if (null == OMP3File) {
-                    OMP3File = new MP3File();
-                    OMP3File.name = fname;
-                    DBInstance.Add(OMP3File);
-                    DBInstance.SaveChanges();
-                }
+                // Strip prefix
+                string pname = filename;
+                pname = pname.Replace(pathprefix, "");
 
                 // Handle MP3 import
-                var OMP3Import = DBInstance.MP3Import.Where(a => a.mp3path == OMP3Path)
-                    .Where(a => a.mp3file == OMP3File)
-                    .FirstOrDefault();
+                var OMP3Import = DBInstance.MP3Import.Where(a => a.filename == pname).FirstOrDefault();
                 if (null == OMP3Import)
                 {
                     OMP3Import = new MP3Import();
-                    OMP3Import.mp3path = OMP3Path;
-                    OMP3Import.mp3file = OMP3File;
+                    OMP3Import.filename = pname;
                     OMP3Import.file_hash = CalculateMD5(filename);
                     DBInstance.Add(OMP3Import);
                     DBInstance.SaveChanges();

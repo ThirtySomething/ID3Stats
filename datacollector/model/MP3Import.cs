@@ -16,6 +16,12 @@ namespace net.derpaul.cdstats
         public ulong id { get; set; }
 
         /// <summary>
+        /// Filename
+        /// </summary>
+        [StringLength(512)]
+        public string filename { get; set; }
+
+        /// <summary>
         /// Date import
         /// https://stackoverflow.com/questions/21219797/how-to-get-correct-timestamp-in-c-sharp
         /// </summary>
@@ -27,25 +33,5 @@ namespace net.derpaul.cdstats
         /// </summary>
         [StringLength(64)]
         public string file_hash { get; set; }
-
-        /// <summary>
-        /// Reference to MP3 filename by object
-        /// </summary>
-        public MP3File mp3file { get; set; }
-
-        /// <summary>
-        /// Reference to MP3 filename by id
-        /// </summary>
-        public ulong id_mp3file_ref { get; set; }
-
-        /// <summary>
-        /// Reference to MP3 path by object
-        /// </summary>
-        public MP3Path mp3path { get; set; }
-
-        /// <summary>
-        /// Reference to MP3 path by id
-        /// </summary>
-        public ulong id_mp3path_ref { get; set; }
     }
 }

@@ -21,27 +21,11 @@ skinparam linetype ortho
 '--------------------------------------------------
 ' Entity definitions
 '--------------------------------------------------
-' Unique filename with extension
-entity mp3file {
-    **id_mp3file**
-    --
-    name
-}
-
-' Unique pathname
-entity mp3path {
-    **id_mp3path**
-    --
-    name
-}
-
 ' Unique MP3 file
 entity mp3import {
     **id_mp3import**
     --
-    **id_mp3path_ref**
-    **id_mp3file_ref**
-    --
+    filename
     date_import
     filehash
 }
@@ -52,7 +36,6 @@ entity album {
     --
     name
 }
-
 
 ' Unique artist
 entity artist {
@@ -115,9 +98,6 @@ entity cdtrack {
 ' u - up
 ' d - down
 '--------------------------------------------------
-mp3import ||--l|{ mp3path
-mp3import ||--r|{ mp3file
-
 cdhead ||--u|{ album
 cdhead ||--u|{ artist
 cdhead ||--r|{ cdtrack
@@ -127,7 +107,7 @@ cdtrack ||--u|{ album
 cdtrack ||--u|{ artist
 cdtrack ||--u|{ genre
 cdtrack ||--u|{ title
-cdtrack ||--d|| mp3import
+cdtrack ||--r|| mp3import
 
 '--------------------------------------------------
 ' Additional hidden relationships used for
