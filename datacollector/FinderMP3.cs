@@ -54,10 +54,15 @@ namespace net.derpaul.cdstats
         /// Find all MP3 files
         /// </summary>
         /// <returns></returns>
-        public List<string> Process()
+        public List<MP3File> Process()
         {
             string[] filesraw = Directory.GetFiles(this.pathStartup, this.searchPattern, SearchOption.AllDirectories);
-            List<string> files = new List<string>(filesraw);
+            List<MP3File> files = new List<MP3File>();
+            foreach (string currentfile in filesraw)
+            {
+                MP3File importdata = new MP3File(currentfile);
+                files.Add(importdata);
+            }
             return files;
         }
     }

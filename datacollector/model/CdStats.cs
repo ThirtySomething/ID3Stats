@@ -118,6 +118,8 @@ namespace net.derpaul.cdstats
             modelBuilder.Entity<CdHead>(entity =>
             {
                 entity.HasKey(e => e.id);
+                entity.HasIndex(e => new { e.id_album_ref, e.id_artist_ref }).IsUnique();
+
             });
 
             // Entity for CD tracks

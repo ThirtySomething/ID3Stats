@@ -17,7 +17,7 @@
                 return;
             }
             // Retrieve list of MP3 files
-            List<string> fileList = finderMP3.Process();
+            List<MP3File> fileList = finderMP3.Process();
             // Initialize
             HandleID3 id3todb = new HandleID3(fileList);
             if (!id3todb.Init())

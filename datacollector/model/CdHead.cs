@@ -54,7 +54,7 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Total playtime over all discs of album
         /// </summary>
-        public ushort play_time_total { get; set; }
+        public uint play_time_total { get; set; }
 
         /// <summary>
         /// Year published

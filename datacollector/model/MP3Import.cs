@@ -29,6 +29,11 @@ namespace net.derpaul.cdstats
         public DateTime date_import { get; set; }
 
         /// <summary>
+        /// Date of last file modification
+        /// </summary>
+        public DateTime date_file_mod { get; set; }
+
+        /// <summary>
         /// File hash
         /// </summary>
         [StringLength(64)]
