@@ -33,11 +33,25 @@ The data collector will work the following steps:
   - Write ID3 meta data to database
 - Run each `installed` plugin
 
+### Plugin mechanism
+
+Mind collection to plugin system:
+
+- Requires access to the database
+- Output will be a HTML file
+- Each plugin outputs
+  - Headline for statistic
+  - Data of statistic
+  - Appends data to passed HTML file
+
 ## Tasks
 
 - ~~Create ERM for project using [PlantUML][tool_puml]~~ Done 03.08.2024
 - ~~Initial project~~ Done 04.08.2024
 - ~~Create [data collector][app_datacollector] - see README.md there~~ Done 09.12.2024
+- Create plugin system
+  - Load plugins
+  - Run each plugin
 - Create statistical plugins
   - Common overview
     - Number of total tracks
