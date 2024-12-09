@@ -23,99 +23,25 @@ skinparam linetype ortho
 '--------------------------------------------------
 ' Unique MP3 file
 entity mp3import {
-    **id_mp3import**
+    unsigned bigint **id_mp3import**
     --
-    filename
-    date_import
-    filehash
+    varchar(512) filename
+    datetime(6) date_import
+    datetime(6) date_file_mod
+    ---
+    varchar(256) artist
+    varchar(256) album
+    varchar(256) title
+    varchar(256) genre
+    double durationms
+    int(11) tracknumber
+    int(11) tracktotal
+    int(11) year
+    int(11) discnumber
+    int(11) disctotal
+    int(11) bitrate
+    double samplerate
 }
-
-' Unique album
-entity album {
-    **id_album**
-    --
-    name
-}
-
-' Unique artist
-entity artist {
-    **id_artist**
-    --
-    name
-}
-
-' Unique genre
-entity genre {
-    **id_genre**
-    --
-    name
-}
-
-' Unique title
-entity title {
-    **id_title**
-    --
-    name
-}
-
-' CD head - common for all tracks
-entity cdhead {
-    **id_cdhead**
-    --
-    **id_album_ref**
-    **id_artist_ref**
-    **id_genre_ref**
-    --
-    disc_number_total
-    play_time_total
-    track_number_total
-    year_published
-}
-
-' CD track
-entity cdtrack {
-    **id_cdtrack**
-    --
-    **id_cdhead**
-    --
-    **id_album_ref**
-    **id_artist_ref**
-    **id_genre_ref**
-    **id_title_ref**
-    **id_mp3import_ref**
-    --
-    disc_number
-    play_time
-    track_number
-    year_published
-}
-
-'--------------------------------------------------
-' Definition of relations between entities
-' With positioning
-' r - right
-' l - left
-' u - up
-' d - down
-'--------------------------------------------------
-cdhead ||--u|{ album
-cdhead ||--u|{ artist
-cdhead ||--r|{ cdtrack
-cdhead ||--u|{ genre
-
-cdtrack ||--u|{ album
-cdtrack ||--u|{ artist
-cdtrack ||--u|{ genre
-cdtrack ||--u|{ title
-cdtrack ||--r|| mp3import
-
-'--------------------------------------------------
-' Additional hidden relationships used for
-' positioning
-'--------------------------------------------------
-album -[hidden]r-> artist
-artist -[hidden]r-> genre
-genre -[hidden]r-> title
 
 '--------------------------------------------------
 ' Legend with explanation

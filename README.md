@@ -37,13 +37,21 @@ The data collector will work the following steps:
 
 - ~~Create ERM for project using [PlantUML][tool_puml]~~ Done 03.08.2024
 - ~~Initial project~~ Done 04.08.2024
-- Create [data collector][app_datacollector] - see README.md there
+- ~~Create [data collector][app_datacollector] - see README.md there~~ Done 09.12.2024
+- Create statistical plugins
+  - Common overview
+    - Number of total tracks
+    - Number of genres
+    - Number of artists
+    - Total playing time
+    - Longest track
+    - Shortest track
 
 ### ERM diagram
 
 ![cdstats ERM diagram](./images/cdstats.png "cdstats ERM diagram")
 
-The source of the diagram is [here][file_erm].
+The source of the diagram is [here][file_erm]. To get fast results for the plugins a flat table is used. This needs improvement for later state.
 
 ## Technology
 
