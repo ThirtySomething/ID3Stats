@@ -1,4 +1,6 @@
-﻿namespace net.derpaul.cdstats
+﻿using Newtonsoft.Json;
+
+namespace net.derpaul.cdstats
 {
     /// <summary>
     /// Find MP3 files, import ID3 tag to database, run plugins
@@ -9,6 +11,9 @@
         {
             // Show current configuration
             DataCollectorConfig.Instance.ShowConfig();
+
+            DataCollectorConfig.Instance.Save();
+
             // Initalize finder with path and pattern
             var finderMP3 = new FinderMP3(DataCollectorConfig.Instance.MP3Path, DataCollectorConfig.Instance.MP3Pattern);
             if (!finderMP3.Init())
