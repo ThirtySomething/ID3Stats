@@ -21,7 +21,6 @@ namespace net.derpaul.cdstats
             DBUserId = "cdstats";
             MP3Path = "m:\\";
             MP3Pattern = "*.mp3";
-            DataTranslation = "{'artist':{'ac;dc':'ac/dc'}}";
         }
 
         /// <summary>
@@ -58,17 +57,5 @@ namespace net.derpaul.cdstats
         /// Pattern to search for
         /// </summary>
         public string MP3Pattern { get; set; }
-
-        /// <summary>
-        /// JSON String with mappings
-        /// </summary>
-        public string DataTranslation { get; set; }
-
-        /// <summary>
-        /// Product name of plugin set in AssemblyInfo.cs
-        /// This is hardcoded and not configurable!
-        /// </summary>
-        [XmlIgnore]
-        public string PluginProductName { get; } = "net.derpaul.cdstats.plugin";
     }
 }
