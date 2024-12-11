@@ -1,6 +1,9 @@
 ﻿using ATL;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
+using System.Text.Json.Nodes;
 
 namespace net.derpaul.cdstats
 {
@@ -50,6 +53,18 @@ namespace net.derpaul.cdstats
             dbObject.disctotal = metaData.DiscTotal ?? 0;
             dbObject.bitrate = metaData.Bitrate;
             dbObject.samplerate = metaData.SampleRate;
+
+            if (dbObject.filename.StartsWith("ac_dc"))
+            {
+                var dataTranslation = JObject.Parse(DataCollectorConfig.Instance.DataTranslation);
+                foreach (var item in dataTranslation)
+                {
+                    if (dbObject.artist.Equals(item.Key))
+                    {
+                        dbObject.artist = item.Value.ToString();
+                    }
+                }
+            }
         }
 
         public void Process(string pathprefix)

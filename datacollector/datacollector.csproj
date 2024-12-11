@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="z440.atl.core" Version="6.4.0" />
+    <PackageReference Include="z440.atl.core" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
