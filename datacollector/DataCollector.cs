@@ -11,7 +11,6 @@ namespace net.derpaul.cdstats
         {
             // Show current configuration
             DataCollectorConfig.Instance.ShowConfig();
-
             DataCollectorConfig.Instance.Save();
 
             // Initalize finder with path and pattern

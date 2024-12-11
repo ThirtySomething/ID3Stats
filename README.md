@@ -30,8 +30,15 @@ The data collector will work the following steps:
 - Find all MP3 files
 - For each MP3 file
   - Read ID3 tag
-  - Write ID3 meta data to database
-- Run each `installed` plugin
+  - Insert/Update ID3 meta data in database
+
+For details see [readme][app_datacollector] of `datacollector` project.
+
+### CDStats
+
+The CD Stats program will establish a connection to the database. Additional an output stream for a HTML file is created. Then it will load all plugins and pass the db connection as well as the output stream to each plugin. Forces by an `interface` each plugin will run a simple db task, the results are written to the passed output stream.
+
+For details see [readme][app_cdstats] of `cdstats` project.
 
 ### Plugin mechanism
 
@@ -75,6 +82,7 @@ The source of the diagram is [here][file_erm]. To get fast results for the plugi
   - The plugin system
 - Reading the ID3 tags is based on [TagLibSharp][lib_taglibsharp]
 
+[app_cdstats]: ./cdstats/README.md
 [app_datacollector]: ./datacollector/README.md
 [code_c#]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
 [file_erm]: ./cdstats.puml
