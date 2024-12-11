@@ -101,6 +101,7 @@ namespace net.derpaul.cdstats
                     DBInstance.SaveChanges();
 
                     System.Console.WriteLine($"Fresh import of track [{pname}]");
+                    continue;
                 }
 
                 if ((true == record_read)
