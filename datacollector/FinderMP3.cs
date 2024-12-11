@@ -56,6 +56,7 @@ namespace net.derpaul.cdstats
         /// <returns></returns>
         public List<MP3File> Process()
         {
+            System.Console.WriteLine($"Read files in [{this.pathStartup}] with pattern [{this.searchPattern}]");
             string[] filesraw = Directory.GetFiles(this.pathStartup, this.searchPattern, SearchOption.AllDirectories);
             List<MP3File> files = new List<MP3File>();
             foreach (string currentfile in filesraw)

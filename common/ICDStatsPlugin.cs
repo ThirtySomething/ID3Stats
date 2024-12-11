@@ -1,6 +1,6 @@
 ﻿namespace net.derpaul.cdstats
 {
-    public interface IPlugin
+    public interface ICDStatsPlugin
     {
         /// <summary>
         /// Flags successful initialization

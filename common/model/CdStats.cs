@@ -35,7 +35,7 @@ namespace net.derpaul.cdstats
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = $"server={DataCollectorConfig.Instance.DBServer};port={DataCollectorConfig.Instance.DBPort};database={DataCollectorConfig.Instance.DBDatabase};user={DataCollectorConfig.Instance.DBUserId};password={DataCollectorConfig.Instance.DBPassword}";
+            var connectionString = $"server={DBConfig.Instance.DBServer};port={DBConfig.Instance.DBPort};database={DBConfig.Instance.DBDatabase};user={DBConfig.Instance.DBUserId};password={DBConfig.Instance.DBPassword}";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
             optionsBuilder.UseMySql(connectionString, serverVersion, options =>
             {
