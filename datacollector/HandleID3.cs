@@ -78,8 +78,6 @@ namespace net.derpaul.cdstats
                 string pname = ofile.filename;
                 pname = pname.Replace(pathprefix, "");
 
-                // Memorize database read
-                bool record_read = true;
                 //string file_hash = CalculateMD5(ofile);
 
                 // Handle MP3 import
@@ -87,7 +85,6 @@ namespace net.derpaul.cdstats
                 if (null == OMP3Import)
                 {
                     // Record not in database, init with file data data
-                    record_read = false;
                     OMP3Import = new MP3Import();
                     OMP3Import.filename = pname;
                     //OMP3Import.file_hash = file_hash;
@@ -101,11 +98,12 @@ namespace net.derpaul.cdstats
                     DBInstance.SaveChanges();
 
                     System.Console.WriteLine($"Fresh import of track [{pname}]");
+
+                    // Continue with next file
                     continue;
                 }
 
-                if ((true == record_read)
-                    && (OMP3Import.date_file_mod == ofile.date_file_mod)
+                if ((OMP3Import.date_file_mod == ofile.date_file_mod)
                     //&& (OMP3Import.file_hash == file_hash)
                     )
                 {
