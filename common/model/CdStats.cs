@@ -1,13 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Emit;
 
 namespace net.derpaul.cdstats
 {
@@ -30,7 +22,7 @@ namespace net.derpaul.cdstats
         }
 
         /// <summary>
-        /// Initialize connection string and driver version
+        /// Initialize connection string and driver version for use with MariaDB
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

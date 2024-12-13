@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\common\common.csproj" />
+    <ProjectReference Include="..\plugins\duration_collection\duration_collection.csproj" />
   </ItemGroup>
 
 </Project>

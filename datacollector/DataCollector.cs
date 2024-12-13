@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace net.derpaul.cdstats
+﻿namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Find MP3 files, import ID3 tag to database, run plugins
+    /// Find MP3 files, import filename and meta data to database
     /// </summary>
     internal class DataCollector
     {

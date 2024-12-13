@@ -1,11 +1,9 @@
-﻿using Microsoft.VisualBasic;
-using System.Text.Json.Nodes;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Configuration settings of datacollector to read the bricklets
+    /// Configuration settings of CDStats
     /// </summary>
     public class CDStatsConfig : ConfigLoader<CDStatsConfig>, IConfigObject
     {
@@ -19,7 +17,7 @@ namespace net.derpaul.cdstats
         }
 
         /// <summary>
-        /// Path to statistic plugins
+        /// Path for statistic plugins
         /// </summary>
         public string PathPlugin { get; set; }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace net.derpaul.cdstats
+﻿namespace net.derpaul.cdstats
 {
     /// <summary>
     /// Recursive find all MP3 files for given path

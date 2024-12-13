@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace net.derpaul.cdstats
@@ -61,7 +59,7 @@ namespace net.derpaul.cdstats
         /// Track genre
         /// </summary>
         [StringLength(256)]
-        public string genre{ get; set; }
+        public string genre { get; set; }
 
         /// <summary>
         /// Track duration in ms

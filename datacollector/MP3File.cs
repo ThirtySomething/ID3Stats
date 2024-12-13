@@ -3,14 +3,19 @@ using System.Security.Cryptography;
 namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Find MP3 files, import ID3 tag to database, run plugins
+    /// Meta data of physical MP3 file
     /// </summary>
     internal class MP3File
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="filename"></param>
         public MP3File(string filename)
         {
             this.filename = filename;
             this.date_file_mod = File.GetLastWriteTime(this.filename);
+            // this.filehash = this.CalculateMD5(filename);
         }
 
         /// <summary>
@@ -22,5 +27,27 @@ namespace net.derpaul.cdstats
         /// Last modification date of file
         /// </summary>
         public DateTime date_file_mod { get; }
+
+        /// <summary>
+        /// MD5 hash of MP3 file
+        /// </summary>
+        // public string filehash { get; }
+
+        /// <summary>
+        /// Calculation of MD5 checksum as fingerprint
+        /// </summary>
+        /// <param name="ofile"></param>
+        /// <returns></returns>
+        private string CalculateMD5(string filename)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    var hash = md5.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
+                }
+            }
+        }
     }
 }

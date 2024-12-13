@@ -1,22 +1,38 @@
 ﻿using ATL;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Security.Cryptography;
-using System.Text.Json.Nodes;
 
 namespace net.derpaul.cdstats
 {
+    /// <summary>
+    /// Extract meta data of MP3 file
+    /// </summary>
     internal class HandleID3
     {
+        /// <summary>
+        /// List of MP3 files
+        /// </summary>
         private List<MP3File> filenamesMP3;
+
+        /// <summary>
+        /// Connection to database (Entity Framework)
+        /// </summary>
         private CdStats DBInstance;
 
+        /// <summary>
+        /// Pass list of MP3 filenames to handler in constructor
+        /// </summary>
+        /// <param name="filenamesMP3"></param>
         public HandleID3(List<MP3File> filenamesMP3)
         {
             this.filenamesMP3 = filenamesMP3;
         }
 
+        /// <summary>
+        /// Init of database
+        /// </summary>
+        /// <returns>true on success</returns>
+        /// <returns>false on failure</returns>
         public bool Init()
         {
             bool ret = true;
@@ -27,18 +43,11 @@ namespace net.derpaul.cdstats
             return ret;
         }
 
-        public string CalculateMD5(MP3File ofile)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(ofile.filename))
-                {
-                    var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Update ERM object with ID3 data
+        /// </summary>
+        /// <param name="dbObject"></param>
+        /// <param name="metaData"></param>
         private void setMetaData(MP3Import dbObject, Track metaData)
         {
             dbObject.artist = metaData.Artist;
@@ -67,6 +76,10 @@ namespace net.derpaul.cdstats
             }
         }
 
+        /// <summary>
+        /// Major process of import
+        /// </summary>
+        /// <param name="pathprefix"></param>
         public void Process(string pathprefix)
         {
             foreach (MP3File ofile in filenamesMP3)
@@ -78,8 +91,6 @@ namespace net.derpaul.cdstats
                 string pname = ofile.filename;
                 pname = pname.Replace(pathprefix, "");
 
-                //string file_hash = CalculateMD5(ofile);
-
                 // Handle MP3 import
                 var OMP3Import = DBInstance.MP3Import.Where(a => a.filename == pname).FirstOrDefault();
                 if (null == OMP3Import)
@@ -87,7 +98,7 @@ namespace net.derpaul.cdstats
                     // Record not in database, init with file data data
                     OMP3Import = new MP3Import();
                     OMP3Import.filename = pname;
-                    //OMP3Import.file_hash = file_hash;
+                    // OMP3Import.file_hash = ofile.filehash;
                     OMP3Import.date_file_mod = ofile.date_file_mod;
                     DBInstance.Add(OMP3Import);
 
@@ -115,7 +126,7 @@ namespace net.derpaul.cdstats
 
                 // Update file meta data
                 OMP3Import.date_file_mod = ofile.date_file_mod;
-                //OMP3Import.file_hash = file_hash;
+                // OMP3Import.file_hash = ofile.filehash;
 
                 // Update ID3 meta data in record
                 setMetaData(OMP3Import, tagID3);

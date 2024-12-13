@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace net.derpaul.cdstats
+﻿namespace net.derpaul.cdstats
 {
     /// <summary>
-    /// Abstract base class for all data sinks implementing the IDataSink interface
+    /// Abstract base class for all CDStats plugins
     /// </summary>
     public abstract class PluginBase : ICDStatsPlugin
     {
@@ -13,13 +11,10 @@ namespace net.derpaul.cdstats
         private Object Locker = new Object();
 
         /// <summary>
-        /// Init method of data sink
+        /// Init method of CDStats plugin
         /// </summary>
         /// <returns>signal success with true</returns>
-        public virtual bool Init()
-        {
-            return true;
-        }
+        public abstract bool Init();
 
         /// <summary>
         /// Flags successful initialization
@@ -27,13 +22,13 @@ namespace net.derpaul.cdstats
         public bool IsInitialized { get; set; } = false;
 
         /// <summary>
-        /// Write sensor value to data sink
+        /// Dummy method, needs to be implemented in plugin
         /// </summary>
-        /// <param name="dbConnection">Tinkerforge Sensor plugin value</param>
-        public abstract void HandleValue(CdStats dbConnection);
+        /// <param name="dbConnection"></param>
+        public abstract void CollectStatistic(CdStats dbConnection);
 
         /// <summary>
-        /// Get the name of data sink class
+        /// Get the name of plugin class
         /// </summary>
         public string Name
         {
@@ -44,14 +39,7 @@ namespace net.derpaul.cdstats
         }
 
         /// <summary>
-        /// Shutdown of data sink
-        /// </summary>
-        public virtual void Shutdown()
-        {
-        }
-
-        /// <summary>
-        /// Lock object for preventing concurrent access to same data sink
+        /// Lock object for preventing concurrent access to same plugin
         /// </summary>
         protected object WriteLock { get { return Locker; } }
     }
