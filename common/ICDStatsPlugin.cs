@@ -15,7 +15,8 @@
         /// Major entry point
         /// </summary>
         /// <param name="dbConnection">Valid DB connection object</param>
-        void CollectStatistic(CdStats dbConnection);
+        /// <param name="outputPath">Path to write own statistics file</param>
+        void CollectStatistic(CdStats dbConnection, string outputPath);
 
         /// <summary>
         /// Flags successful initialization
@@ -23,7 +24,12 @@
         bool IsInitialized { get; set; }
 
         /// <summary>
-        /// Name of plugin
+        /// InternalName of plugin
+        /// </summary>
+        string InternalName { get; }
+
+        /// <summary>
+        /// Name of statistic
         /// </summary>
         string Name { get; }
 

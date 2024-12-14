@@ -1,4 +1,6 @@
-﻿namespace net.derpaul.cdstats
+﻿using System.IO;
+
+namespace net.derpaul.cdstats
 {
     /// <summary>
     /// Class to deal with collections of plugins of type ICDStatsPlugin
@@ -51,11 +53,11 @@
                     plugin.IsInitialized = plugin.Init();
                     if (plugin.IsInitialized)
                     {
-                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Initialized [{plugin.Name}] plugin.");
+                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Initialized [{plugin.InternalName}] plugin.");
                     }
                     else
                     {
-                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Failed to initialize [{plugin.Name}] plugin.");
+                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Failed to initialize [{plugin.InternalName}] plugin.");
                     }
                 }
                 catch (Exception e)
@@ -85,16 +87,27 @@
         /// </summary>
         internal void Process()
         {
-            foreach (var plugin in StatisticPlugins)
+            var name_dir = Path.GetFullPath(CDStatsConfig.Instance.PathOutput);
+            if (!System.IO.File.Exists(name_dir))
             {
-                if (!(plugin is ICDStatsPlugin))
+                Directory.CreateDirectory(name_dir);
+            }
+            var name_file = Path.Combine(name_dir, CDStatsConfig.Instance.StatisticsMainFile);
+            using (StreamWriter statistic_file = new StreamWriter(name_file))
+            {
+                statistic_file.WriteLine("<H1>CDStats</H1>");
+                foreach (var plugin in StatisticPlugins)
                 {
-                    // Skip invalid plugins
-                    continue;
-                }
+                    if (!(plugin is ICDStatsPlugin))
+                    {
+                        // Skip invalid plugins
+                        continue;
+                    }
 
-                // Call main method
-                plugin.CollectStatistic(DBConnection);
+                    // Call main method
+                    plugin.CollectStatistic(DBConnection, name_dir);
+                    statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a>");
+                }
             }
         }
     }

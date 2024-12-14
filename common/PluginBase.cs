@@ -6,11 +6,6 @@
     public abstract class PluginBase : ICDStatsPlugin
     {
         /// <summary>
-        /// Object to lock on when writing
-        /// </summary>
-        private Object Locker = new Object();
-
-        /// <summary>
         /// Init method of CDStats plugin
         /// </summary>
         /// <returns>signal success with true</returns>
@@ -25,12 +20,13 @@
         /// Dummy method, needs to be implemented in plugin
         /// </summary>
         /// <param name="dbConnection"></param>
-        public abstract void CollectStatistic(CdStats dbConnection);
+        /// <param name="outputPath">Path to write own statistics file</param>
+        public abstract void CollectStatistic(CdStats dbConnection, string outputPath);
 
         /// <summary>
         /// Get the name of plugin class
         /// </summary>
-        public string Name
+        public string InternalName
         {
             get
             {
@@ -39,8 +35,8 @@
         }
 
         /// <summary>
-        /// Lock object for preventing concurrent access to same plugin
+        /// Name of statistic
         /// </summary>
-        protected object WriteLock { get { return Locker; } }
+        public abstract string Name { get; }
     }
 }
