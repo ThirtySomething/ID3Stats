@@ -1,7 +1,12 @@
-/.vs
-/.vscode
+*/*/bin
+*/*/build
+*/*/obj
 */bin
+*/build
 */obj
 ./out/*
-*/*/bin
-*/*/obj
+/.vs
+/.vscode
+/bin
+/build
+/out
