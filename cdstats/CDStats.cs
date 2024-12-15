@@ -19,8 +19,7 @@ namespace net.derpaul.cdstats
             DBInstance.Database.EnsureCreated();
 
             // Bring plugin handler to live
-            // var pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, CDStatsConfig.Instance.PathPlugin);
-            var pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "");
+            var pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, CDStatsConfig.Instance.PathPlugin);
             var pluginHandler = new PluginHandler(pluginPath, DBInstance);
 
             // Abort on init failure

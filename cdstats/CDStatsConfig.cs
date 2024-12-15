@@ -13,7 +13,7 @@ namespace net.derpaul.cdstats
         public void SetDefaults()
         {
             StatisticsMainFile = "CDStats.html";
-            PathPlugin = "./plugins/";
+            PathPlugin = "";
             PathOutput = "./cdstats/";
         }
 

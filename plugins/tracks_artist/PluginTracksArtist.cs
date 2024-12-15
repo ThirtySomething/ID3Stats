@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using net.derpaul.cdstats.model;
-using System;
-using System.Data.Common;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using net.derpaul.cdstats.model;
 
 namespace net.derpaul.cdstats.plugin
 {
