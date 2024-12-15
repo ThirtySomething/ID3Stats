@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.cdstats.model
 {
     /// <summary>
     /// ERM model for CD statistics

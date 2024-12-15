@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using net.derpaul.cdstats.model;
+using System.IO;
 
 namespace net.derpaul.cdstats
 {

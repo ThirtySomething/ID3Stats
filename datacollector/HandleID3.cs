@@ -1,5 +1,6 @@
 ﻿using ATL;
 using Microsoft.EntityFrameworkCore;
+using net.derpaul.cdstats.model;
 using Newtonsoft.Json.Linq;
 
 namespace net.derpaul.cdstats

@@ -1,4 +1,6 @@
-﻿namespace net.derpaul.cdstats
+﻿using net.derpaul.cdstats.model;
+
+namespace net.derpaul.cdstats
 {
     /// <summary>
     /// Abstract base class for all CDStats plugins

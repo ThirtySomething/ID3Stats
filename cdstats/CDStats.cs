@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using net.derpaul.cdstats.model;
 
 namespace net.derpaul.cdstats
 {

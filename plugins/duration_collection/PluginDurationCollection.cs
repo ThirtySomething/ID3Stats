@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using net.derpaul.cdstats.model;
 using System;
 using System.Data.Common;
 
@@ -29,6 +30,7 @@ namespace net.derpaul.cdstats.plugin
             var dur_avg = (from myimport in dbConnection.MP3Import select myimport).Average(myimport => myimport.durationms);
             var dur_max = (from myimport in dbConnection.MP3Import select myimport).Max(myimport => myimport.durationms);
             var dur_tot = (from myimport in dbConnection.MP3Import select myimport).Sum(myimport => myimport.durationms);
+            var trk_tot = (from myimport in dbConnection.MP3Import select myimport).Count();
 
             var track_short = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_min).FirstOrDefault();
             var track_long = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_max).FirstOrDefault();
@@ -42,7 +44,7 @@ namespace net.derpaul.cdstats.plugin
                 DateTime startdate = new DateTime() + time;
 
                 statistic_file.WriteLine("<b>Shortest track length:</b> " + GetStringFromMs(dur_min) + " - " + track_short.title + " (" + track_short.artist + ")<p>");
-                statistic_file.WriteLine("<b>Average track length:</b> " + GetStringFromMs(dur_avg) + "<p>");
+                statistic_file.WriteLine("<b>Average track length:</b> " + GetStringFromMs(dur_avg) + " - " + trk_tot + " tracks<p>");
                 statistic_file.WriteLine("<b>Longest track length:</b> " + GetStringFromMs(dur_max) + " - " + track_long.title + " (" + track_long.artist + ")<p>");
                 statistic_file.WriteLine("<b>Playtime overall:</b> " + GetStringFromMs(dur_tot) + "<p>");
             }
