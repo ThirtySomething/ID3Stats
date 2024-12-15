@@ -1,6 +1,6 @@
 # Tracks artist
 
-Number of tracks for each artist:
+Number of total tracks for each artist:
 
 ```sql
 SELECT
@@ -14,3 +14,5 @@ ORDER BY
     tracks DESC,
     artist;
 ```
+
+**NOTE:** For unique tracks each artist there is another query required!

@@ -43,10 +43,10 @@ namespace net.derpaul.cdstats.plugin
                 TimeSpan time = TimeSpan.FromMilliseconds(dur_min);
                 DateTime startdate = new DateTime() + time;
 
-                statistic_file.WriteLine("<b>Shortest track length:</b> " + GetStringFromMs(dur_min) + " - " + track_short.title + " (" + track_short.artist + ")<p>");
-                statistic_file.WriteLine("<b>Average track length:</b> " + GetStringFromMs(dur_avg) + " - " + trk_tot + " tracks<p>");
-                statistic_file.WriteLine("<b>Longest track length:</b> " + GetStringFromMs(dur_max) + " - " + track_long.title + " (" + track_long.artist + ")<p>");
-                statistic_file.WriteLine("<b>Playtime overall:</b> " + GetStringFromMs(dur_tot) + "<p>");
+                statistic_file.WriteLine("<b>Shortest track length:</b> " + GetStringFromMs(dur_min) + " - " + track_short.title + " (" + track_short.artist + ")<br>");
+                statistic_file.WriteLine("<b>Average track length:</b> " + GetStringFromMs(dur_avg) + " - " + trk_tot + " tracks<br>");
+                statistic_file.WriteLine("<b>Longest track length:</b> " + GetStringFromMs(dur_max) + " - " + track_long.title + " (" + track_long.artist + ")<br>");
+                statistic_file.WriteLine("<b>Playtime overall:</b> " + GetStringFromMs(dur_tot) + "<br>");
             }
         }
 

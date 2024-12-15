@@ -9,12 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datacollector", "datacollec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cdstats", "cdstats\cdstats.csproj", "{BD3BDCFA-C88A-48B1-A67E-6DF7381FF492}"
 	ProjectSection(ProjectDependencies) = postProject
+		{D9E4D719-3C88-4BA8-9792-9C058FE04234} = {D9E4D719-3C88-4BA8-9792-9C058FE04234}
 		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B} = {DDC5A869-53E7-4308-BCEB-4892B41A8B4B}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "duration_collection", "plugins\duration_collection\duration_collection.csproj", "{DDC5A869-53E7-4308-BCEB-4892B41A8B4B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{64613A99-62D0-4A10-BB23-296344B52986} = {64613A99-62D0-4A10-BB23-296344B52986}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tracks_artist", "plugins\tracks_artist\tracks_artist.csproj", "{D9E4D719-3C88-4BA8-9792-9C058FE04234}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64613A99-62D0-4A10-BB23-296344B52986} = {64613A99-62D0-4A10-BB23-296344B52986}
+		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B} = {DDC5A869-53E7-4308-BCEB-4892B41A8B4B}
 	EndProjectSection
 EndProject
 Global
@@ -39,6 +46,10 @@ Global
 		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9E4D719-3C88-4BA8-9792-9C058FE04234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E4D719-3C88-4BA8-9792-9C058FE04234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E4D719-3C88-4BA8-9792-9C058FE04234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E4D719-3C88-4BA8-9792-9C058FE04234}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

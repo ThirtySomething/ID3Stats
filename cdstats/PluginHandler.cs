@@ -107,7 +107,7 @@ namespace net.derpaul.cdstats
 
                     // Call main method
                     plugin.CollectStatistic(DBConnection, name_dir);
-                    statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a>");
+                    statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a><br>");
                 }
             }
         }

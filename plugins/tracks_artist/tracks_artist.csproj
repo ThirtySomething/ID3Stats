@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <BaseIntermediateOutputPath>..\..\build\$(Platform)\$(Configuration)\obj</BaseIntermediateOutputPath>
+        <BaseOutputPath>..\..\bin\$(Platform)\$(Configuration)</BaseOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>net.derpaul.cdstats.plugin</RootNamespace>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\common\common.csproj" />
+    </ItemGroup>
+
+</Project>
