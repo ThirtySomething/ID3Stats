@@ -11,7 +11,7 @@ namespace net.derpaul.cdstats.plugin
         /// <summary>
         /// Get statistic name
         /// </summary>
-        public override string Name { get; } = "Totoal tracks per Artists";
+        public override string Name { get; } = "Total tracks per Artists";
 
         /// <summary>
         /// Collect statistics, main method of plugin
