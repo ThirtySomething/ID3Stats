@@ -43,7 +43,7 @@ namespace net.derpaul.cdstats
             StatisticPlugins = PluginLoader<ICDStatsPlugin>.PluginsLoad(PluginPath, CDStatsConfig.Instance.PluginProductName);
             if (StatisticPlugins.Count == 0)
             {
-                System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: No sensor plugins found in [{PluginPath}].");
+                System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: No statistic plugins found in [{PluginPath}].");
                 return false;
             }
 
