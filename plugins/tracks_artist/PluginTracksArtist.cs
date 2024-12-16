@@ -7,14 +7,11 @@ namespace net.derpaul.cdstats.plugin
     /// </summary>
     public class PluginTracksArtist : PluginBase
     {
+
         /// <summary>
-        ///  Required implementation
+        /// Get statistic name
         /// </summary>
-        /// <returns></returns>
-        public override bool Init()
-        {
-            return true;
-        }
+        public override string Name { get; } = "Totoal tracks per Artists";
 
         /// <summary>
         /// Collect statistics, main method of plugin
@@ -23,7 +20,7 @@ namespace net.derpaul.cdstats.plugin
         /// <param name="outputPath">Path to write own statistics file</param>
         public override void CollectStatistic(CdStats dbConnection, string outputPath)
         {
-            var name_file = Path.Combine(outputPath, Name + ".html");
+            var name_file = GetFilename(outputPath);
             var artists_total = dbConnection.MP3Import.Select(a => a.artist).Distinct().Count();
             var trk_tot = (from myimport in dbConnection.MP3Import select myimport).Count();
 
@@ -37,7 +34,7 @@ namespace net.derpaul.cdstats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                statistic_file.WriteLine("<H1>" + Name + "</H1>");
+                WriteHeader(statistic_file);
 
                 statistic_file.WriteLine("<b>Artists:</b> " + artists_total + " - <b>Tracks:</b> " + trk_tot);
 
@@ -57,10 +54,5 @@ namespace net.derpaul.cdstats.plugin
                 }
             }
         }
-
-        /// <summary>
-        /// Get statistic name
-        /// </summary>
-        public override string Name { get; } = "Totoal tracks per Artists";
     }
 }

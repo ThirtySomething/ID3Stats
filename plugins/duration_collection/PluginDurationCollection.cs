@@ -7,14 +7,11 @@ namespace net.derpaul.cdstats.plugin
     /// </summary>
     public class PluginDurationCollection : PluginBase
     {
+
         /// <summary>
-        ///  Required implementation
+        /// Get statistic name
         /// </summary>
-        /// <returns></returns>
-        public override bool Init()
-        {
-            return true;
-        }
+        public override string Name { get; } = "Collection Durations";
 
         /// <summary>
         /// Collect statistics, main method of plugin
@@ -32,10 +29,10 @@ namespace net.derpaul.cdstats.plugin
             var track_short = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_min).FirstOrDefault();
             var track_long = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_max).FirstOrDefault();
 
-            var name_file = Path.Combine(outputPath, Name + ".html");
+            var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                statistic_file.WriteLine("<H1>" + Name + "</H1>");
+                WriteHeader(statistic_file);
 
                 TimeSpan time = TimeSpan.FromMilliseconds(dur_min);
                 DateTime startdate = new DateTime() + time;
@@ -46,28 +43,5 @@ namespace net.derpaul.cdstats.plugin
                 statistic_file.WriteLine("<b>Playtime overall:</b> " + GetStringFromMs(dur_tot) + "<br>");
             }
         }
-
-        /// <summary>
-        /// Get statistic name
-        /// </summary>
-        public override string Name { get; } = "Collection Durations";
-
-        /// <summary>
-        /// Convert milliseconds into human readable format
-        /// </summary>
-        /// <param name="ms"></param>
-        /// <returns></returns>
-        private string GetStringFromMs(double ms)
-        {
-            TimeSpan t = TimeSpan.FromMilliseconds(ms);
-            string hrfms = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}:{4:D3}",
-                                    t.Days,
-                                    t.Hours,
-                                    t.Minutes,
-                                    t.Seconds,
-                                    t.Milliseconds);
-            return hrfms;
-        }
-
     }
 }
