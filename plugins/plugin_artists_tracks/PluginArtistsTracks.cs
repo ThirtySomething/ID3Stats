@@ -5,7 +5,7 @@ namespace net.derpaul.cdstats.plugin
     /// <summary>
     /// Plugin to determine various duration statistics
     /// </summary>
-    public class PluginTracksArtist : PluginBase
+    public class PluginArtistsTracks : PluginBase
     {
 
         /// <summary>
