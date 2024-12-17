@@ -17,7 +17,9 @@
 
     <ItemGroup>
         <ProjectReference Include="..\common\common.csproj" />
-        <ProjectReference Include="..\plugins\duration_collection\duration_collection.csproj" />
+        <ProjectReference Include="..\plugins\plugin_artists_tracks\plugin_artists_tracks.csproj" />
+        <ProjectReference Include="..\plugins\plugin_duration_collection\plugin_duration_collection.csproj" />
+        <ProjectReference Include="..\plugins\plugin_tracks_artist\plugin_tracks_artist.csproj" />
     </ItemGroup>
 
 </Project>
