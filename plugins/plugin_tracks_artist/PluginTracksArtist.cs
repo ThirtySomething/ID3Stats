@@ -14,11 +14,12 @@ namespace net.derpaul.cdstats.plugin
         public override string Name { get; } = "Total tracks per Artists";
 
         /// <summary>
-        /// Collect statistics, main method of plugin
+        /// Major entry point of plugin
         /// </summary>
-        /// <param name="dbConnection"></param>
+        /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
-        public override void CollectStatistic(CdStats dbConnection, string outputPath)
+        /// <param name="logger">Passed logger to write infomration</param>
+        public override void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger)
         {
             var name_file = GetFilename(outputPath);
             var artists_total = dbConnection.MP3Import.Select(a => a.artist).Distinct().Count();

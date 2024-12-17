@@ -14,11 +14,12 @@ namespace net.derpaul.cdstats.plugin
         public override string Name { get; } = "Collection Durations";
 
         /// <summary>
-        /// Collect statistics, main method of plugin
+        /// Major entry point of plugin
         /// </summary>
-        /// <param name="dbConnection"></param>
+        /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
-        public override void CollectStatistic(CdStats dbConnection, string outputPath)
+        /// <param name="logger">Passed logger to write infomration</param>
+        public override void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger)
         {
             var dur_min = (from myimport in dbConnection.MP3Import select myimport).Min(myimport => myimport.durationms);
             var dur_avg = (from myimport in dbConnection.MP3Import select myimport).Average(myimport => myimport.durationms);

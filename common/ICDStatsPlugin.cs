@@ -14,11 +14,24 @@ namespace net.derpaul.cdstats
         bool Init();
 
         /// <summary>
-        /// Major entry point
+        /// Actions before collection of statistics
+        /// </summary>
+        /// <param name="logger">Passed logger to write infomration</param>
+        void PreCollect(NLog.Logger logger);
+
+        /// <summary>
+        /// Major entry point of plugin
         /// </summary>
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
-        void CollectStatistic(CdStats dbConnection, string outputPath);
+        /// <param name="logger">Passed logger to write infomration</param>
+        void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger);
+
+        /// <summary>
+        /// Actions after collections of statistics
+        /// </summary>
+        /// <param name="logger">Passed logger to write infomration</param>
+        void PostCollect(NLog.Logger logger);
 
         /// <summary>
         /// Flags successful initialization

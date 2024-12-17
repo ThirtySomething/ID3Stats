@@ -1,4 +1,5 @@
 ﻿using net.derpaul.cdstats.model;
+using System.Diagnostics;
 
 namespace net.derpaul.cdstats
 {
@@ -7,6 +8,11 @@ namespace net.derpaul.cdstats
     /// </summary>
     public abstract class PluginBase : ICDStatsPlugin
     {
+        /// <summary>
+        /// Internal timer for time measurement
+        /// </summary>
+        Stopwatch watch;
+
         /// <summary>
         /// Init method of CDStats plugin
         /// </summary>
@@ -21,11 +27,32 @@ namespace net.derpaul.cdstats
         public bool IsInitialized { get; set; } = false;
 
         /// <summary>
+        /// Actions before collection of statistics
+        /// </summary>
+        /// <param name="logger">Passed logger to write infomration</param>
+        public void PreCollect(NLog.Logger logger)
+        {
+            watch = System.Diagnostics.Stopwatch.StartNew();
+        }
+
+        /// <summary>
         /// Dummy method, needs to be implemented in plugin
         /// </summary>
-        /// <param name="dbConnection"></param>
+        /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
-        public abstract void CollectStatistic(CdStats dbConnection, string outputPath);
+        /// <param name="logger">Passed logger to write infomration</param>
+        public abstract void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger);
+
+        /// <summary>
+        /// Actions after collections of statistics
+        /// </summary>
+        /// <param name="logger">Passed logger to write infomration</param>
+        public void PostCollect(NLog.Logger logger)
+        {
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            logger.Info("Running plugin '{0}' tooks {1} s", Name, GetStringFromMs(elapsedMs));
+        }
 
         /// <summary>
         /// Get the name of plugin class

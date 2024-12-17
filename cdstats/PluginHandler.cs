@@ -1,5 +1,4 @@
 ﻿using net.derpaul.cdstats.model;
-using System.IO;
 
 namespace net.derpaul.cdstats
 {
@@ -27,6 +26,7 @@ namespace net.derpaul.cdstats
         /// Constructor of plugin handler
         /// </summary>
         /// <param name="pluginPath">Path to plugins</param>
+        /// <param name="dbConnection">Connection to DB</param>
         internal PluginHandler(string pluginPath, CdStats dbConnection)
         {
             PluginPath = pluginPath;
@@ -86,7 +86,8 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Run CDStats plugins
         /// </summary>
-        internal void Process()
+        /// <param name="logger">Logger instance</param>
+        internal void Process(NLog.Logger logger)
         {
             var name_dir = Path.GetFullPath(CDStatsConfig.Instance.PathOutput);
             if (!System.IO.File.Exists(name_dir))
@@ -105,9 +106,19 @@ namespace net.derpaul.cdstats
                         continue;
                     }
 
-                    // Call main method
-                    plugin.CollectStatistic(DBConnection, name_dir);
-                    statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a><br>");
+                    try
+                    {
+                        // Call main method
+                        plugin.PreCollect(logger);
+                        plugin.CollectStatistic(DBConnection, name_dir, logger);
+                        plugin.PostCollect(logger);
+                        statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a><br>");
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Fatal("Exception in plugin '{0}':", plugin.Name);
+                        logger.Fatal(ex);
+                    }
                 }
             }
         }
