@@ -30,7 +30,9 @@ namespace net.derpaul.cdstats.plugin
                 foreach (var artist in artists_total)
                 {
                     var artists_tracks = dbConnection.MP3Import.Where(a => a.artist == artist).Count();
-                    statistic_file.WriteLine("<b>Artists:</b> " + artist + " - " + artists_tracks + "<br>");
+                    var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == artist).Sum(a => a.durationms);
+
+                    statistic_file.WriteLine("<b>Artists:</b> " + artist + " - " + artists_tracks + " (" + GetStringFromMs(artists_duration_total) + ")<br>");
 
                     var tracks_total = dbConnection.MP3Import.Where(a => a.artist == artist).OrderBy(a => a.title).ThenBy(a => a.album).ThenBy(a => a.durationms).ToList();
                     foreach (var track in tracks_total)
