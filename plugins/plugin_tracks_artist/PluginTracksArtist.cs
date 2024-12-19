@@ -24,34 +24,29 @@ namespace net.derpaul.cdstats.plugin
             var name_file = GetFilename(outputPath);
             var artists_total = dbConnection.MP3Import.Select(a => a.artist).Distinct().Count();
             var trk_tot = (from myimport in dbConnection.MP3Import select myimport).Count();
-
-            var query = (from y in (
-                            from x in (
-                                from myimport in dbConnection.MP3Import
-                                group myimport by myimport.artist)
-                            select new { Name = x.Key, Total = x.Count() })
-                         orderby y.Total descending, y.Name
-                         select new { Name = y.Name, Total = y.Total });
+            var tracks_artists = dbConnection.MP3Import.GroupBy(a => a.artist).Select(a => new { artist = a.Key, tracks = a.Count() }).OrderByDescending(a => a.tracks).ThenBy(a => a.artist).ToList();
+            var dur_tot = (from myimport in dbConnection.MP3Import select myimport).Sum(myimport => myimport.durationms);
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
                 WriteHeader(statistic_file);
 
-                statistic_file.WriteLine("<b>Artists:</b> " + artists_total + " - <b>Tracks:</b> " + trk_tot);
-
+                statistic_file.WriteLine("<b>Tracks:</b> " + trk_tot + " - <b>Artists:</b> " + artists_total + " (" + GetStringFromMs(dur_tot) + ")");
                 var tracks_mem = trk_tot;
-                foreach (var record in query)
+                foreach (var record in tracks_artists)
                 {
-                    if (tracks_mem != record.Total)
+                    if (tracks_mem != record.tracks)
                     {
                         statistic_file.WriteLine("<p>");
-                        tracks_mem = record.Total;
+                        tracks_mem = record.tracks;
                     }
                     else
                     {
                         statistic_file.WriteLine("<br>");
                     }
-                    statistic_file.WriteLine("<b>Artists:</b> " + record.Name + " - <b>Tracks:</b> " + record.Total);
+                    var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
+
+                    statistic_file.WriteLine("<b>Tracks:</b> " + record.tracks + " - <b>Artist:</b> " + record.artist + " (" + GetStringFromMs(artists_duration_total) + ")");
                 }
             }
         }

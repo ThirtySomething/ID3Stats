@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csproj", "{64613A99-62D0-4A10-BB23-296344B52986}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cdstats_core", "cdstats_core\cdstats_core.csproj", "{64613A99-62D0-4A10-BB23-296344B52986}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datacollector", "datacollector\datacollector.csproj", "{047EB426-AA15-467E-82C4-6DA01192FF1A}"
 EndProject

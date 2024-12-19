@@ -108,7 +108,8 @@ namespace net.derpaul.cdstats
 
                     try
                     {
-                        // Call main method
+                        // Call plugin statistics
+                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Running plugin [{plugin.InternalName}].");
                         plugin.PreCollect(logger);
                         plugin.CollectStatistic(DBConnection, name_dir, logger);
                         plugin.PostCollect(logger);
