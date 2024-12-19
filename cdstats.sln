@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datacollector", "datacollec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cdstats", "cdstats\cdstats.csproj", "{BD3BDCFA-C88A-48B1-A67E-6DF7381FF492}"
 	ProjectSection(ProjectDependencies) = postProject
+		{A081BB3F-5706-471E-88A2-B2EC6010D179} = {A081BB3F-5706-471E-88A2-B2EC6010D179}
 		{D9E4D719-3C88-4BA8-9792-9C058FE04234} = {D9E4D719-3C88-4BA8-9792-9C058FE04234}
 		{DDC5A869-53E7-4308-BCEB-4892B41A8B4B} = {DDC5A869-53E7-4308-BCEB-4892B41A8B4B}
 		{F57B44A1-91F5-4339-AE4D-393FD7EE23C2} = {F57B44A1-91F5-4339-AE4D-393FD7EE23C2}
@@ -25,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plugin_tracks_artist", "plu
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plugin_artists_tracks", "plugins\plugin_artists_tracks\plugin_artists_tracks.csproj", "{F57B44A1-91F5-4339-AE4D-393FD7EE23C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plugin_artists_albums", "plugins\plugin_artists_albums\plugin_artists_albums.csproj", "{A081BB3F-5706-471E-88A2-B2EC6010D179}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +59,10 @@ Global
 		{F57B44A1-91F5-4339-AE4D-393FD7EE23C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F57B44A1-91F5-4339-AE4D-393FD7EE23C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F57B44A1-91F5-4339-AE4D-393FD7EE23C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A081BB3F-5706-471E-88A2-B2EC6010D179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A081BB3F-5706-471E-88A2-B2EC6010D179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A081BB3F-5706-471E-88A2-B2EC6010D179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A081BB3F-5706-471E-88A2-B2EC6010D179}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

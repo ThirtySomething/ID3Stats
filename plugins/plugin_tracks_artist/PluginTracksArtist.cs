@@ -11,7 +11,7 @@ namespace net.derpaul.cdstats.plugin
         /// <summary>
         /// Get statistic name
         /// </summary>
-        public override string Name { get; } = "Total tracks per Artists";
+        public override string Name { get; } = "Total tracks per artist";
 
         /// <summary>
         /// Major entry point of plugin
@@ -31,7 +31,11 @@ namespace net.derpaul.cdstats.plugin
             {
                 WriteHeader(statistic_file);
 
-                statistic_file.WriteLine("<b>Tracks:</b> " + trk_tot + " - <b>Artists:</b> " + artists_total + " (" + GetStringFromMs(dur_tot) + ")");
+                statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})",
+                    trk_tot,
+                    artists_total,
+                    GetStringFromMs(dur_tot)
+                );
                 var tracks_mem = trk_tot;
                 foreach (var record in tracks_artists)
                 {
@@ -46,7 +50,11 @@ namespace net.derpaul.cdstats.plugin
                     }
                     var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
 
-                    statistic_file.WriteLine("<b>Tracks:</b> " + record.tracks + " - <b>Artist:</b> " + record.artist + " (" + GetStringFromMs(artists_duration_total) + ")");
+                    statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artist:</b> {1} ({2})",
+                        record.tracks,
+                        record.artist,
+                        GetStringFromMs(artists_duration_total)
+                    );
                 }
             }
         }

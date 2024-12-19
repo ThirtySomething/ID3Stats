@@ -43,7 +43,7 @@ namespace net.derpaul.cdstats
             StatisticPlugins = PluginLoader<ICDStatsPlugin>.PluginsLoad(PluginPath, CDStatsConfig.Instance.PluginProductName);
             if (StatisticPlugins.Count == 0)
             {
-                System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: No statistic plugins found in [{PluginPath}].");
+                System.Console.WriteLine("InitCDStatsPlugins: No statistic plugins found in [{0}].", PluginPath);
                 return false;
             }
 
@@ -54,20 +54,19 @@ namespace net.derpaul.cdstats
                     plugin.IsInitialized = plugin.Init();
                     if (plugin.IsInitialized)
                     {
-                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Initialized [{plugin.InternalName}] plugin.");
+                        System.Console.WriteLine("InitCDStatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
                     }
                     else
                     {
-                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Failed to initialize [{plugin.InternalName}] plugin.");
+                        System.Console.WriteLine("InitCDStatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
                     }
                 }
                 catch (Exception e)
                 {
-                    System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Cannot init plugin [{plugin.GetType()}] => [{e.Message}]");
-                    System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Inner exception => [{e.InnerException}]");
+                    System.Console.WriteLine("InitCDStatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
+                    System.Console.WriteLine("InitCDStatsPlugins: Inner exception => [{0}]", e.InnerException);
                     continue;
                 }
-                System.Console.WriteLine();
             }
 
             return true;
@@ -109,11 +108,11 @@ namespace net.derpaul.cdstats
                     try
                     {
                         // Call plugin statistics
-                        System.Console.WriteLine($"{nameof(InitCDStatsPlugins)}: Running plugin [{plugin.InternalName}].");
+                        System.Console.WriteLine("Process: Running plugin [{0}].", plugin.InternalName);
                         plugin.PreCollect(logger);
                         plugin.CollectStatistic(DBConnection, name_dir, logger);
                         plugin.PostCollect(logger);
-                        statistic_file.WriteLine("<a href='" + plugin.Name + ".html'>" + plugin.Name + "</a><br>");
+                        statistic_file.WriteLine("<a href='{0}.html'>{1}</a><br>", plugin.Name, plugin.Name);
                     }
                     catch (Exception ex)
                     {

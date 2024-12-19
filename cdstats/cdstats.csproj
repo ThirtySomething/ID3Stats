@@ -13,6 +13,8 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>net.derpaul.cdstats</RootNamespace>
         <TargetFramework>net8.0</TargetFramework>
+        <StartupObject>net.derpaul.cdstats.CDStats</StartupObject>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

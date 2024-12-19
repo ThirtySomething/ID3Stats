@@ -109,7 +109,7 @@ namespace net.derpaul.cdstats
                     // Save to database
                     DBInstance.SaveChanges();
 
-                    System.Console.WriteLine($"Fresh import of track [{pname}]");
+                    System.Console.WriteLine("Fresh import of track [{0}]", pname);
 
                     // Continue with next file
                     continue;
@@ -119,7 +119,7 @@ namespace net.derpaul.cdstats
                     //&& (OMP3Import.file_hash == file_hash)
                     )
                 {
-                    System.Console.WriteLine($"Skip unchanged track [{pname}]");
+                    System.Console.WriteLine("Skip unchanged track [{0}]", pname);
 
                     // No changes since last import, data already present
                     continue;
@@ -135,7 +135,7 @@ namespace net.derpaul.cdstats
                 // Save to database
                 DBInstance.SaveChanges();
 
-                System.Console.WriteLine($"Update of track [{pname}]");
+                System.Console.WriteLine("Update of track [{0}]", pname);
             }
         }
     }

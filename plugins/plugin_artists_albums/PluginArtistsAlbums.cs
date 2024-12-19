@@ -5,13 +5,13 @@ namespace net.derpaul.cdstats.plugin
     /// <summary>
     /// Plugin to determine various duration statistics
     /// </summary>
-    public class PluginArtistsTracks : PluginBase
+    public class PluginArtistsAlbums : PluginBase
     {
 
         /// <summary>
         /// Get statistic name
         /// </summary>
-        public override string Name { get; } = "All tracks per artist";
+        public override string Name { get; } = "All albums per artist";
 
         /// <summary>
         /// Major entry point of plugin
@@ -30,25 +30,18 @@ namespace net.derpaul.cdstats.plugin
 
                 foreach (var artist in artists_total)
                 {
-                    var artists_tracks = dbConnection.MP3Import.Where(a => a.artist == artist).Count();
-                    var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == artist).Sum(a => a.durationms);
+                    var artist_albums = dbConnection.MP3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album } ).Select(a => new {a.Key.artist, a.Key.album} ).ToList();
 
-                    statistic_file.WriteLine("<b>Artists:</b> {0} - {1} ({2})<br>",
-                        artist,
-                        artists_tracks,
-                        GetStringFromMs(artists_duration_total)
-                    );
-
-                    var tracks_total = dbConnection.MP3Import.Where(a => a.artist == artist).OrderBy(a => a.title).ThenBy(a => a.album).ThenBy(a => a.durationms).ToList();
-                    foreach (var track in tracks_total)
+                    foreach (var album in artist_albums)
                     {
-                        statistic_file.WriteLine("<b>Track:</b> {0} - {1} ({2})<br>",
-                            track.title,
-                            track.album,
-                            GetStringFromMs(track.durationms)
-                        );
+                        var artists_tracks = dbConnection.MP3Import.Where(a => a.artist == artist && a.album == album.album).Count();
+                        var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == artist && a.album == album.album).Sum(a => a.durationms);
+                        statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} - <b>Tracks:</b> {2} ({3})<br>", 
+                            album.artist,
+                            album.album,
+                            artists_tracks,
+                            GetStringFromMs(artists_duration_total));
                     }
-
                     statistic_file.WriteLine("<p>");
                 }
             }

@@ -11,7 +11,7 @@ namespace net.derpaul.cdstats.plugin
         /// <summary>
         /// Get statistic name
         /// </summary>
-        public override string Name { get; } = "Collection Durations";
+        public override string Name { get; } = "Collection durations";
 
         /// <summary>
         /// Major entry point of plugin
@@ -38,10 +38,24 @@ namespace net.derpaul.cdstats.plugin
                 TimeSpan time = TimeSpan.FromMilliseconds(dur_min);
                 DateTime startdate = new DateTime() + time;
 
-                statistic_file.WriteLine("<b>Shortest track length:</b> " + GetStringFromMs(dur_min) + " - " + track_short.title + " (" + track_short.artist + ")<br>");
-                statistic_file.WriteLine("<b>Average track length:</b> " + GetStringFromMs(dur_avg) + " - " + trk_tot + " tracks<br>");
-                statistic_file.WriteLine("<b>Longest track length:</b> " + GetStringFromMs(dur_max) + " - " + track_long.title + " (" + track_long.artist + ")<br>");
-                statistic_file.WriteLine("<b>Playtime overall:</b> " + GetStringFromMs(dur_tot) + "<br>");
+                statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
+                    GetStringFromMs(dur_min),
+                    track_short.title ?? "",
+                    track_short.artist ?? ""
+                );
+                statistic_file.WriteLine("<b>Average track length:</b> {0} - {1} tracks<br>",
+                    GetStringFromMs(dur_avg),
+                    trk_tot
+                );
+                statistic_file.WriteLine("<b>Longest track length:</b> {0} - {1} ({2})<br>",
+                    GetStringFromMs(dur_max),
+                    track_long.title ?? "",
+                    track_long.artist ?? ""
+                );
+                statistic_file.WriteLine("<b>Playtime overall:</b> {0} - {1} tracks<br>",
+                    GetStringFromMs(dur_tot),
+                    trk_tot
+                );
             }
         }
     }
