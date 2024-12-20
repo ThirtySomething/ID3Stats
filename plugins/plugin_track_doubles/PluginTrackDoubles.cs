@@ -1,6 +1,6 @@
-﻿using net.derpaul.cdstats.model;
+﻿using net.derpaul.mp3stats.model;
 
-namespace net.derpaul.cdstats.plugin
+namespace net.derpaul.mp3stats.plugin
 {
     /// <summary>
     /// Plugin to determine various duration statistics
@@ -19,7 +19,7 @@ namespace net.derpaul.cdstats.plugin
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public override void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger)
+        public override void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger)
         {
             var name_file = GetFilename(outputPath);
             var tracks_double_raw = dbConnection.MP3Import.GroupBy(a => new { a.title })
@@ -47,7 +47,8 @@ namespace net.derpaul.cdstats.plugin
                         .ThenBy(a => a.durationms)
                         .ToList();
 
-                    foreach (var rec in tracks_double) {
+                    foreach (var rec in tracks_double)
+                    {
                         statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} ({2})<br>",
                             rec.artist,
                             rec.album,

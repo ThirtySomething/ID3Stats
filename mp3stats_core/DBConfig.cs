@@ -1,7 +1,7 @@
-﻿namespace net.derpaul.cdstats
+﻿namespace net.derpaul.mp3stats
 {
     /// <summary>
-    /// Configuration settings of CDStats database access
+    /// Configuration settings of MP3Stats database access
     /// </summary>
     public class DBConfig : ConfigLoader<DBConfig>, IConfigObject
     {
@@ -10,11 +10,11 @@
         /// </summary>
         public void SetDefaults()
         {
-            DBDatabase = "cdstats";
+            DBDatabase = "mp3stats";
             DBPassword = "CJ-SF5EvZ/uH*BaU";
             DBPort = 3306;
             DBServer = "192.168.71.15";
-            DBUserId = "cdstats";
+            DBUserId = "mp3stats";
         }
 
         /// <summary>

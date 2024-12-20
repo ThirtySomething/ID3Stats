@@ -1,4 +1,4 @@
-# cdstats
+# MP3STATS
 
 Various statistics based on ID3 tags of MP3 files.
 
@@ -34,11 +34,11 @@ The data collector will work the following steps:
 
 For details see [readme][app_datacollector] of `datacollector` project.
 
-### CDStats
+### MP3STATS
 
 The CD Stats program will establish a connection to the database. Additional an output stream for a HTML file is created. Then it will load all plugins and pass the db connection as well as the output stream to each plugin. Forces by an `interface` each plugin will run a simple db task, the results are written to the passed output stream.
 
-For details see [readme][app_cdstats] of `cdstats` project.
+For details see [readme][app_mp3stats] of `mp3stats` project.
 
 ### Plugin mechanism
 
@@ -70,7 +70,7 @@ Mind collection to plugin system:
 
 ### ERM diagram
 
-![cdstats ERM diagram](./images/cdstats.png "cdstats ERM diagram")
+![mp3stats ERM diagram](./images/mp3stats.png "mp3stats ERM diagram")
 
 The source of the diagram is [here][file_erm]. To get fast results for the plugins a flat table is used. This needs improvement for later state.
 
@@ -82,10 +82,10 @@ The source of the diagram is [here][file_erm]. To get fast results for the plugi
   - The plugin system
 - Reading the ID3 tags is based on [TagLibSharp][lib_taglibsharp]
 
-[app_cdstats]: ./cdstats/README.md
+[app_mp3stats]: ./mp3stats/README.md
 [app_datacollector]: ./datacollector/README.md
 [code_c#]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
-[file_erm]: ./cdstats.puml
+[file_erm]: ./mp3stats.puml
 [lib_taglibsharp]: https://github.com/mono/taglib-sharp
 [project_weatherstation]: https://github.com/ThirtySomething/Weatherstation
 [tool_puml]: https://plantuml.com/

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace net.derpaul.cdstats.model
+namespace net.derpaul.mp3stats.model
 {
     /// <summary>
     /// MP3Import entity

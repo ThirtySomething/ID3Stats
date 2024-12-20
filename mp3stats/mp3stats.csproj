@@ -11,14 +11,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputType>Exe</OutputType>
-        <RootNamespace>net.derpaul.cdstats</RootNamespace>
+        <RootNamespace>net.derpaul.mp3stats</RootNamespace>
         <TargetFramework>net8.0</TargetFramework>
-        <StartupObject>net.derpaul.cdstats.CDStats</StartupObject>
+        <StartupObject>net.derpaul.mp3stats.MP3Stats</StartupObject>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\cdstats_core\cdstats_core.csproj" />
+        <ProjectReference Include="..\mp3stats_core\mp3stats_core.csproj" />
         <ProjectReference Include="..\plugins\plugin_artists_albums\plugin_artists_albums.csproj" />
         <ProjectReference Include="..\plugins\plugin_artists_tracks\plugin_artists_tracks.csproj" />
         <ProjectReference Include="..\plugins\plugin_duration_collection\plugin_duration_collection.csproj" />

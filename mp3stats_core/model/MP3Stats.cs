@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace net.derpaul.cdstats.model
+namespace net.derpaul.mp3stats.model
 {
     /// <summary>
     /// ERM model for CD statistics
     /// </summary>
-    public class CdStats : DbContext
+    public class MP3Stats : DbContext
     {
         /// <summary>
         /// Entity for MP3 imports
@@ -17,7 +17,7 @@ namespace net.derpaul.cdstats.model
         /// Default constructor
         /// </summary>
         /// <param name="options"></param>
-        public CdStats(DbContextOptions<CdStats> options) : base(options)
+        public MP3Stats(DbContextOptions<MP3Stats> options) : base(options)
         {
         }
 

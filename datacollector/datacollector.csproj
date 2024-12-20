@@ -11,13 +11,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputType>Exe</OutputType>
-        <RootNamespace>net.derpaul.cdstats</RootNamespace>
-        <StartupObject>net.derpaul.cdstats.DataCollector</StartupObject>
+        <RootNamespace>net.derpaul.mp3stats</RootNamespace>
+        <StartupObject>net.derpaul.mp3stats.DataCollector</StartupObject>
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\cdstats_core\cdstats_core.csproj" />
+        <ProjectReference Include="..\mp3stats_core\mp3stats_core.csproj" />
     </ItemGroup>
 
 </Project>

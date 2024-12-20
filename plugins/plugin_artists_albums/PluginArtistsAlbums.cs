@@ -1,6 +1,6 @@
-﻿using net.derpaul.cdstats.model;
+﻿using net.derpaul.mp3stats.model;
 
-namespace net.derpaul.cdstats.plugin
+namespace net.derpaul.mp3stats.plugin
 {
     /// <summary>
     /// Plugin to determine various duration statistics
@@ -19,7 +19,7 @@ namespace net.derpaul.cdstats.plugin
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public override void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger)
+        public override void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger)
         {
             var name_file = GetFilename(outputPath);
             var artists_total = dbConnection.MP3Import.Select(a => a.artist).Distinct().OrderBy(a => a).ToList();
@@ -30,13 +30,13 @@ namespace net.derpaul.cdstats.plugin
 
                 foreach (var artist in artists_total)
                 {
-                    var artist_albums = dbConnection.MP3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album } ).Select(a => new {a.Key.artist, a.Key.album} ).ToList();
+                    var artist_albums = dbConnection.MP3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.artist, a.Key.album }).ToList();
 
                     foreach (var album in artist_albums)
                     {
                         var artists_tracks = dbConnection.MP3Import.Where(a => a.artist == artist && a.album == album.album).Count();
                         var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == artist && a.album == album.album).Sum(a => a.durationms);
-                        statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} - <b>Tracks:</b> {2} ({3})<br>", 
+                        statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} - <b>Tracks:</b> {2} ({3})<br>",
                             album.artist,
                             album.album,
                             artists_tracks,

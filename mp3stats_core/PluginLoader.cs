@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
     /// Generic plugin loader for plugins of given type

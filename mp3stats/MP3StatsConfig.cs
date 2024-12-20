@@ -1,20 +1,20 @@
 ﻿using System.Xml.Serialization;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
-    /// Configuration settings of CDStats
+    /// Configuration settings of MP3Stats
     /// </summary>
-    public class CDStatsConfig : ConfigLoader<CDStatsConfig>, IConfigObject
+    public class MP3StatsConfig : ConfigLoader<MP3StatsConfig>, IConfigObject
     {
         /// <summary>
         /// To set default values
         /// </summary>
         public void SetDefaults()
         {
-            StatisticsMainFile = "CDStats.html";
+            StatisticsMainFile = "MP3Stats.html";
             PathPlugin = "";
-            PathOutput = "./cdstats/";
+            PathOutput = "./mp3stats/";
         }
 
         /// <summary>
@@ -37,6 +37,6 @@ namespace net.derpaul.cdstats
         /// This is hardcoded and not configurable!
         /// </summary>
         [XmlIgnore]
-        public string PluginProductName { get; } = "net.derpaul.cdstats.plugin";
+        public string PluginProductName { get; } = "net.derpaul.mp3stats.plugin";
     }
 }

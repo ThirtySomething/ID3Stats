@@ -1,12 +1,12 @@
-﻿using net.derpaul.cdstats.model;
+﻿using net.derpaul.mp3stats.model;
 using System.Diagnostics;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
-    /// Abstract base class for all CDStats plugins
+    /// Abstract base class for all MP3Stats plugins
     /// </summary>
-    public abstract class PluginBase : ICDStatsPlugin
+    public abstract class PluginBase : IMP3StatsPlugin
     {
         /// <summary>
         /// Internal timer for time measurement
@@ -14,10 +14,11 @@ namespace net.derpaul.cdstats
         Stopwatch watch;
 
         /// <summary>
-        /// Init method of CDStats plugin
+        /// Init method of MP3Stats plugin
         /// </summary>
         /// <returns>signal success with true</returns>
-        public bool Init() {
+        public bool Init()
+        {
             return true;
         }
 
@@ -41,7 +42,7 @@ namespace net.derpaul.cdstats
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public abstract void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger);
+        public abstract void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger);
 
         /// <summary>
         /// Actions after collections of statistics

@@ -1,11 +1,11 @@
-﻿using net.derpaul.cdstats.model;
+﻿using net.derpaul.mp3stats.model;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
     /// Interface for all used plugins
     /// </summary>
-    public interface ICDStatsPlugin
+    public interface IMP3StatsPlugin
     {
         /// <summary>
         /// Common initialization method
@@ -25,7 +25,7 @@ namespace net.derpaul.cdstats
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger);
+        void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger);
 
         /// <summary>
         /// Actions after collections of statistics

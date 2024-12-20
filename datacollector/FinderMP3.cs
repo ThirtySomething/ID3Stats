@@ -1,4 +1,4 @@
-﻿namespace net.derpaul.cdstats
+﻿namespace net.derpaul.mp3stats
 {
     /// <summary>
     /// Recursive find all MP3 files for given path

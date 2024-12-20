@@ -1,9 +1,9 @@
 ﻿using ATL;
 using Microsoft.EntityFrameworkCore;
-using net.derpaul.cdstats.model;
+using net.derpaul.mp3stats.model;
 using Newtonsoft.Json.Linq;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
     /// Extract meta data of MP3 file
@@ -18,7 +18,7 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Connection to database (Entity Framework)
         /// </summary>
-        private CdStats DBInstance;
+        private MP3Stats DBInstance;
 
         /// <summary>
         /// Pass list of MP3 filenames to handler in constructor
@@ -41,7 +41,7 @@ namespace net.derpaul.cdstats
 
             try
             {
-                DBInstance = new CdStats(new DbContextOptions<CdStats>());
+                DBInstance = new MP3Stats(new DbContextOptions<MP3Stats>());
                 DBInstance.Database.EnsureCreated();
                 ret = true;
             }

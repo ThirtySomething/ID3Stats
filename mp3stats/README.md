@@ -4,7 +4,7 @@ This part of the software will establish a connection to the database. Also an o
 
 ## Tasks
 
-- ~~Create Config object for cdstats~~ Done 11.12.2024
+- ~~Create Config object for mp3stats~~ Done 11.12.2024
 - Load plugins
 - Establish DB connection
 - Open output stream

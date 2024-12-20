@@ -10,12 +10,12 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>net.derpaul.cdstats.plugin</RootNamespace>
+        <RootNamespace>net.derpaul.mp3stats.plugin</RootNamespace>
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\cdstats_core\cdstats_core.csproj" />
+        <ProjectReference Include="..\..\mp3stats_core\mp3stats_core.csproj" />
     </ItemGroup>
 
 </Project>

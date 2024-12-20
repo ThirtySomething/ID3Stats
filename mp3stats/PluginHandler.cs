@@ -1,9 +1,9 @@
-﻿using net.derpaul.cdstats.model;
+﻿using net.derpaul.mp3stats.model;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
-    /// Class to deal with collections of plugins of type ICDStatsPlugin
+    /// Class to deal with collections of plugins of type IMP3StatsPlugin
     /// </summary>
     internal class PluginHandler
     {
@@ -15,23 +15,23 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// DB Connection object
         /// </summary>
-        private CdStats DBConnection { get; set; }
+        private model.MP3Stats DBConnection { get; set; }
 
         /// <summary>
         /// List of statistic plugins
         /// </summary>
-        private List<ICDStatsPlugin> StatisticPlugins { get; set; }
+        private List<IMP3StatsPlugin> StatisticPlugins { get; set; }
 
         /// <summary>
         /// Constructor of plugin handler
         /// </summary>
         /// <param name="pluginPath">Path to plugins</param>
         /// <param name="dbConnection">Connection to DB</param>
-        internal PluginHandler(string pluginPath, CdStats dbConnection)
+        internal PluginHandler(string pluginPath, model.MP3Stats dbConnection)
         {
             PluginPath = pluginPath;
             DBConnection = dbConnection;
-            StatisticPlugins = new List<ICDStatsPlugin>();
+            StatisticPlugins = new List<IMP3StatsPlugin>();
         }
 
         /// <summary>
@@ -39,12 +39,12 @@ namespace net.derpaul.cdstats
         /// </summary>
         /// <param name="logger">Logger instance</param>
         /// <returns>true on success, otherwise false</returns>
-        private bool InitCDStatsPlugins(NLog.Logger logger)
+        private bool InitMP3StatsPlugins(NLog.Logger logger)
         {
-            StatisticPlugins = PluginLoader<ICDStatsPlugin>.PluginsLoad(PluginPath, CDStatsConfig.Instance.PluginProductName);
+            StatisticPlugins = PluginLoader<IMP3StatsPlugin>.PluginsLoad(PluginPath, MP3StatsConfig.Instance.PluginProductName);
             if (StatisticPlugins.Count == 0)
             {
-                logger.Error("InitCDStatsPlugins: No statistic plugins found in [{0}].", PluginPath);
+                logger.Error("InitMP3StatsPlugins: No statistic plugins found in [{0}].", PluginPath);
                 return false;
             }
 
@@ -55,17 +55,17 @@ namespace net.derpaul.cdstats
                     plugin.IsInitialized = plugin.Init();
                     if (plugin.IsInitialized)
                     {
-                        logger.Info("InitCDStatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
+                        logger.Info("InitMP3StatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
                     }
                     else
                     {
-                        logger.Error("InitCDStatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
+                        logger.Error("InitMP3StatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
                     }
                 }
                 catch (Exception e)
                 {
-                    logger.Fatal("InitCDStatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
-                    logger.Fatal("InitCDStatsPlugins: Inner exception => [{0}]", e.InnerException);
+                    logger.Fatal("InitMP3StatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
+                    logger.Fatal("InitMP3StatsPlugins: Inner exception => [{0}]", e.InnerException);
                     continue;
                 }
             }
@@ -80,28 +80,28 @@ namespace net.derpaul.cdstats
         /// <returns>true on success, otherwise false</returns>
         internal bool Init(NLog.Logger logger)
         {
-            bool InitDone = InitCDStatsPlugins(logger);
+            bool InitDone = InitMP3StatsPlugins(logger);
             return InitDone;
         }
 
         /// <summary>
-        /// Run CDStats plugins
+        /// Run MP3Stats plugins
         /// </summary>
         /// <param name="logger">Logger instance</param>
         internal void Process(NLog.Logger logger)
         {
-            var name_dir = Path.GetFullPath(CDStatsConfig.Instance.PathOutput);
+            var name_dir = Path.GetFullPath(MP3StatsConfig.Instance.PathOutput);
             if (!System.IO.File.Exists(name_dir))
             {
                 Directory.CreateDirectory(name_dir);
             }
-            var name_file = Path.Combine(name_dir, CDStatsConfig.Instance.StatisticsMainFile);
+            var name_file = Path.Combine(name_dir, MP3StatsConfig.Instance.StatisticsMainFile);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                statistic_file.WriteLine("<H1>CDStats</H1>");
+                statistic_file.WriteLine("<H1>MP3Stats</H1>");
                 foreach (var plugin in StatisticPlugins)
                 {
-                    if (!(plugin is ICDStatsPlugin))
+                    if (!(plugin is IMP3StatsPlugin))
                     {
                         // Skip invalid plugins
                         continue;

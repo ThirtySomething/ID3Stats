@@ -4,13 +4,13 @@
 ' Meta data of diagram
 '--------------------------------------------------
 ' Title of diagram
-title CDSTATS
+title MP3STATS
 
 ' Header (top right)
-header CDSTATS
+header MP3STATS
 
 ' Caption below diagram
-caption Database model of CDSTATS
+caption Database model of MP3STATS
 
 ' Footer centered
 footer %filename()

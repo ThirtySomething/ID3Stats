@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using net.derpaul.cdstats.model;
+using net.derpaul.mp3stats.model;
 using NLog;
 using System.Diagnostics;
 
-namespace net.derpaul.cdstats
+namespace net.derpaul.mp3stats
 {
     /// <summary>
     /// Class to call several statistics implemented in plugins
     /// </summary>
-    internal class CDStats
+    internal class MP3Stats
     {
         /// <summary>
         /// Logger for writing log files
@@ -23,32 +23,32 @@ namespace net.derpaul.cdstats
         {
             // Setup of logger
             var configuration = new NLog.Config.LoggingConfiguration();
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "cdstats.log" };
+            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "mp3stats.log" };
             configuration.AddRule(NLog.LogLevel.Trace, NLog.LogLevel.Fatal, logfile);
             NLog.LogManager.Configuration = configuration;
 
             // Ensure configuration
-            CDStatsConfig.Instance.ShowConfig(logger);
-            CDStatsConfig.Instance.Save();
+            MP3StatsConfig.Instance.ShowConfig(logger);
+            MP3StatsConfig.Instance.Save();
 
             try
             {
                 Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
 
-                logger.Info("Startup of CDStats at {now}", DateTime.Now);
+                logger.Info("Startup of MP3Stats at {now}", DateTime.Now);
 
                 // Create DB instance for usage in plugins
-                CdStats DBInstance = new CdStats(new DbContextOptions<CdStats>());
+                model.MP3Stats DBInstance = new model.MP3Stats(new DbContextOptions<model.MP3Stats>());
                 DBInstance.Database.EnsureCreated();
 
                 // Bring plugin handler to live
-                var pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, CDStatsConfig.Instance.PathPlugin);
+                var pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, MP3StatsConfig.Instance.PathPlugin);
                 var pluginHandler = new PluginHandler(pluginPath, DBInstance);
 
                 // Abort on init failure
                 if (!pluginHandler.Init(logger))
                 {
-                    logger.Error("Init of CDStats failed!");
+                    logger.Error("Init of MP3Stats failed!");
                     return;
                 }
 
@@ -62,7 +62,7 @@ namespace net.derpaul.cdstats
             }
             catch (Exception ex)
             {
-                logger.Fatal("Exception in CDStats");
+                logger.Fatal("Exception in MP3Stats");
                 logger.Fatal(ex);
             }
         }
