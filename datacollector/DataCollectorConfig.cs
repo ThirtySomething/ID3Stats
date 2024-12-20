@@ -13,6 +13,7 @@ namespace net.derpaul.mp3stats
             MP3Path = "m:\\";
             MP3Pattern = "*.mp3";
             DataTranslation = "{'ac;dc':'ac/dc'}";
+            UseHash = false;
         }
 
         /// <summary>
@@ -29,5 +30,10 @@ namespace net.derpaul.mp3stats
         /// JSON String with mappings
         /// </summary>
         public string DataTranslation { get; set; }
+
+        /// <summary>
+        /// Use file MD5 hash on import
+        /// </summary>
+        public bool UseHash { get; set; }
     }
 }

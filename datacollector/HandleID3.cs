@@ -104,6 +104,12 @@ namespace net.derpaul.mp3stats
                 string pname = ofile.filename;
                 pname = pname.Replace(pathprefix, "");
 
+                // Hash handling
+                if (true == DataCollectorConfig.Instance.UseHash)
+                {
+                    ofile.filehash = ofile.CalculateMD5(ofile.filename);
+                }
+
                 // Handle MP3 import
                 var OMP3Import = DBInstance.MP3Import.Where(a => a.filename == pname).FirstOrDefault();
                 if (null == OMP3Import)

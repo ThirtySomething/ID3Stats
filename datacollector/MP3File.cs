@@ -15,7 +15,6 @@ namespace net.derpaul.mp3stats
         {
             this.filename = filename;
             this.date_file_mod = File.GetLastWriteTime(this.filename);
-            this.filehash = this.CalculateMD5(filename);
         }
 
         /// <summary>
@@ -31,14 +30,14 @@ namespace net.derpaul.mp3stats
         /// <summary>
         /// MD5 hash of MP3 file
         /// </summary>
-        public string filehash { get; }
+        public string filehash { get; set; } = "";
 
         /// <summary>
         /// Calculation of MD5 checksum as fingerprint
         /// </summary>
         /// <param name="ofile"></param>
         /// <returns></returns>
-        private string CalculateMD5(string filename)
+        public string CalculateMD5(string filename)
         {
             using (var md5 = MD5.Create())
             {

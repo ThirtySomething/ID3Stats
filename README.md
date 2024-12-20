@@ -22,7 +22,9 @@ The `DataCollector` will work the following steps:
   - Read ID3 tag
   - Insert/Update ID3 meta data in database
 
-For details see [readme][app_datacollector] of `datacollector` project. Currently there is no logic for check move of MP3 files inside the collection. But to detect this a filehash (MD5) is generated during import and written to the DB. This may slow down the process.
+For details see [readme][app_datacollector] of `datacollector` project.
+
+Currently there is no logic for check move of MP3 files inside the collection. But to detect this a filehash (MD5) is generated during import and written to the DB. This may slow down the process. This is configurable, the default is `do not calculate the hash`. For details see [DataCollectorConfig.UseHash][code_datacollectorconfig].
 
 ### MP3STATS
 
@@ -53,7 +55,7 @@ The diagram is made with [PlantUML][tool_puml].
 ## Tasks
 
 - ~~Switch from MariaDB to SQLite~~ Done 20.12.2024
-- Make usage of file hash optional
+- ~~Make usage of file hash optional~~ Done 20.12.2024
 
 ## Libraries
 
@@ -66,6 +68,7 @@ All used libraries are sticked to `mp3stats_core` to have no redundancy of vario
 - [z440.atl.core][lib_taglibsharp], also known as [TagLib#][lib_taglibsharp] - [MIT licence]
 
 [app_datacollector]: ./datacollector/README.md
+[code_datacollectorconfig]: ./datacollector/DataCollectorConfig.cs
 [app_mp3stats]: ./mp3stats/README.md
 [code_c#]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
 [file_erm]: ./mp3stats.puml
