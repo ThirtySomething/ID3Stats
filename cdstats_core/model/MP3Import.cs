@@ -34,8 +34,8 @@ namespace net.derpaul.cdstats.model
         ///// <summary>
         ///// File hash
         ///// </summary>
-        //[StringLength(64)]
-        //public string file_hash { get; set; }
+        [StringLength(64)]
+        public string filehash { get; set; }
 
         /// <summary>
         /// Track artist

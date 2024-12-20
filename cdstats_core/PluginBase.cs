@@ -51,7 +51,7 @@ namespace net.derpaul.cdstats
         {
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-            logger.Info("Running plugin '{0}' tooks {1} s", Name, GetStringFromMs(elapsedMs));
+            logger.Info("Running plugin '{0}' tooks {1}", Name, GetStringFromMs(elapsedMs));
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace net.derpaul.cdstats
         /// </summary>
         /// <param name="ms"></param>
         /// <returns></returns>
-        protected string GetStringFromMs(double ms)
+        public static string GetStringFromMs(double ms)
         {
             TimeSpan t = TimeSpan.FromMilliseconds(ms);
             string hrfms = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}:{4:D3}",

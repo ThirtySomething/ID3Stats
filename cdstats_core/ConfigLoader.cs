@@ -120,10 +120,11 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// To show the current configuration settings
         /// </summary>
-        public void ShowConfig()
+        /// <param name="logger">Logger instance</param>
+        public void ShowConfig(NLog.Logger logger)
         {
             var configData = JsonConvert.SerializeObject(Instance);
-            System.Console.WriteLine($"{this.GetType().Name}: ConfigData [{configData}]");
+            logger.Info("{0}: ConfigData [{1}]", this.GetType().Name, configData);
         }
     }
 }

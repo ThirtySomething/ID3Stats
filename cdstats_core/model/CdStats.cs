@@ -51,6 +51,30 @@ namespace net.derpaul.cdstats.model
                 entity.HasIndex(e => e.filename).IsUnique();
             });
 
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.album })
+                .HasDatabaseName("ix_album");
+
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.artist })
+                .HasDatabaseName("ix_artist");
+
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.genre })
+                .HasDatabaseName("ix_genre");
+
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.filehash })
+                .HasDatabaseName("ix_filehash");
+
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.filename })
+                .HasDatabaseName("ix_filename");
+
+            modelBuilder.Entity<MP3Import>()
+                .HasIndex(e => new { e.title })
+                .HasDatabaseName("ix_title");
+
             // Create the model
             base.OnModelCreating(modelBuilder);
         }

@@ -37,13 +37,14 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Initialize statistic plugins
         /// </summary>
+        /// <param name="logger">Logger instance</param>
         /// <returns>true on success, otherwise false</returns>
-        private bool InitCDStatsPlugins()
+        private bool InitCDStatsPlugins(NLog.Logger logger)
         {
             StatisticPlugins = PluginLoader<ICDStatsPlugin>.PluginsLoad(PluginPath, CDStatsConfig.Instance.PluginProductName);
             if (StatisticPlugins.Count == 0)
             {
-                System.Console.WriteLine("InitCDStatsPlugins: No statistic plugins found in [{0}].", PluginPath);
+                logger.Error("InitCDStatsPlugins: No statistic plugins found in [{0}].", PluginPath);
                 return false;
             }
 
@@ -54,17 +55,17 @@ namespace net.derpaul.cdstats
                     plugin.IsInitialized = plugin.Init();
                     if (plugin.IsInitialized)
                     {
-                        System.Console.WriteLine("InitCDStatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
+                        logger.Info("InitCDStatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
                     }
                     else
                     {
-                        System.Console.WriteLine("InitCDStatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
+                        logger.Error("InitCDStatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
                     }
                 }
                 catch (Exception e)
                 {
-                    System.Console.WriteLine("InitCDStatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
-                    System.Console.WriteLine("InitCDStatsPlugins: Inner exception => [{0}]", e.InnerException);
+                    logger.Fatal("InitCDStatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
+                    logger.Fatal("InitCDStatsPlugins: Inner exception => [{0}]", e.InnerException);
                     continue;
                 }
             }
@@ -75,10 +76,11 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Initialize all plugins
         /// </summary>
+        /// <param name="logger">Logger instance</param>
         /// <returns>true on success, otherwise false</returns>
-        internal bool Init()
+        internal bool Init(NLog.Logger logger)
         {
-            bool InitDone = InitCDStatsPlugins();
+            bool InitDone = InitCDStatsPlugins(logger);
             return InitDone;
         }
 
@@ -108,7 +110,7 @@ namespace net.derpaul.cdstats
                     try
                     {
                         // Call plugin statistics
-                        System.Console.WriteLine("Process: Running plugin [{0}].", plugin.InternalName);
+                        logger.Info("Process: Running plugin [{0}].", plugin.InternalName);
                         plugin.PreCollect(logger);
                         plugin.CollectStatistic(DBConnection, name_dir, logger);
                         plugin.PostCollect(logger);

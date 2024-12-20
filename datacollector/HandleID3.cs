@@ -32,14 +32,25 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Init of database
         /// </summary>
+        /// <param name="logger">Logger instance</param>
         /// <returns>true on success</returns>
         /// <returns>false on failure</returns>
-        public bool Init()
+        public bool Init(NLog.Logger logger)
         {
-            bool ret = true;
+            bool ret;
 
-            DBInstance = new CdStats(new DbContextOptions<CdStats>());
-            DBInstance.Database.EnsureCreated();
+            try
+            {
+                DBInstance = new CdStats(new DbContextOptions<CdStats>());
+                DBInstance.Database.EnsureCreated();
+                ret = true;
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal("Cannot init DB connection");
+                logger.Fatal("{0}", ex);
+                ret = false;
+            }
 
             return ret;
         }
@@ -80,8 +91,9 @@ namespace net.derpaul.cdstats
         /// <summary>
         /// Major process of import
         /// </summary>
+        /// <param name="logger">Logger instance</param>
         /// <param name="pathprefix"></param>
-        public void Process(string pathprefix)
+        public void Process(string pathprefix, NLog.Logger logger)
         {
             foreach (MP3File ofile in filenamesMP3)
             {
@@ -99,7 +111,7 @@ namespace net.derpaul.cdstats
                     // Record not in database, init with file data data
                     OMP3Import = new MP3Import();
                     OMP3Import.filename = pname;
-                    // OMP3Import.file_hash = ofile.filehash;
+                    OMP3Import.filehash = ofile.filehash;
                     OMP3Import.date_file_mod = ofile.date_file_mod;
                     DBInstance.Add(OMP3Import);
 
@@ -109,17 +121,17 @@ namespace net.derpaul.cdstats
                     // Save to database
                     DBInstance.SaveChanges();
 
-                    System.Console.WriteLine("Fresh import of track [{0}]", pname);
+                    logger.Info("Fresh import of track [{0}]", pname);
 
                     // Continue with next file
                     continue;
                 }
 
                 if ((OMP3Import.date_file_mod == ofile.date_file_mod)
-                    //&& (OMP3Import.file_hash == file_hash)
+                    && (OMP3Import.filehash == ofile.filehash)
                     )
                 {
-                    System.Console.WriteLine("Skip unchanged track [{0}]", pname);
+                    logger.Info("Skip unchanged track [{0}]", pname);
 
                     // No changes since last import, data already present
                     continue;
@@ -127,7 +139,7 @@ namespace net.derpaul.cdstats
 
                 // Update file meta data
                 OMP3Import.date_file_mod = ofile.date_file_mod;
-                // OMP3Import.file_hash = ofile.filehash;
+                OMP3Import.filehash = ofile.filehash;
 
                 // Update ID3 meta data in record
                 setMetaData(OMP3Import, tagID3);
@@ -135,7 +147,7 @@ namespace net.derpaul.cdstats
                 // Save to database
                 DBInstance.SaveChanges();
 
-                System.Console.WriteLine("Update of track [{0}]", pname);
+                logger.Info("Updated [{0}]", pname);
             }
         }
     }
