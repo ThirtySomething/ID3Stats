@@ -48,7 +48,7 @@ The diagram is made with [PlantUML][tool_puml].
 - Inspired from my other project [Weatherstation][project_weatherstation]
   - The configuration file handling
   - The plugin system
-- Reading the ID3 tags is based on [TagLibSharp][lib_taglibsharp]
+- Reading the ID3 tags is based on [TagLibSharp][lib_taglib#]
 
 ## Tasks
 
