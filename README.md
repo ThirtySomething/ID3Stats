@@ -62,7 +62,7 @@ All used libraries are sticked to `mp3stats_core` to have no redundancy of vario
 - [NLog][lib_nlog] - [BSD3 clause licence][licence_bsd3]
 - [Newtonsoft.Json][lib_newton_json] - [MIT licence][licence_mit]
 - [Pomelo.EntityFrameworkCore.MySql][lib_pomelo] - [MIT licence][licence_mit]
-- [z440.atl.core][lib_taglibsharp], also known as [TagLibSharp][lib_taglibsharp] - [MIT licence]
+- [z440.atl.core][lib_taglibsharp], also known as [TagLib#][lib_taglibsharp] - [MIT licence]
 
 [app_datacollector]: ./datacollector/README.md
 [app_mp3stats]: ./mp3stats/README.md
