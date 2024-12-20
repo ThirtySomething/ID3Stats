@@ -112,6 +112,7 @@ namespace net.derpaul.mp3stats
                     OMP3Import = new MP3Import();
                     OMP3Import.filename = pname;
                     OMP3Import.filehash = ofile.filehash;
+                    OMP3Import.date_import = DateTime.Now;
                     OMP3Import.date_file_mod = ofile.date_file_mod;
                     DBInstance.Add(OMP3Import);
 

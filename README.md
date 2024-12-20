@@ -52,7 +52,8 @@ The diagram is made with [PlantUML][tool_puml].
 
 ## Tasks
 
-- Switch from MariaDB to SQLite
+- ~~Switch from MariaDB to SQLite~~ Done 20.12.2024
+- Make usage of file hash optional
 
 ## Libraries
 

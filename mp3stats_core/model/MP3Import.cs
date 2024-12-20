@@ -21,9 +21,7 @@ namespace net.derpaul.mp3stats.model
 
         /// <summary>
         /// Date import
-        /// https://stackoverflow.com/questions/21219797/how-to-get-correct-timestamp-in-c-sharp
         /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime date_import { get; set; }
 
         /// <summary>
