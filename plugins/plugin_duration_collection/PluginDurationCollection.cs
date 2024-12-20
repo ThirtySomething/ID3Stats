@@ -21,14 +21,14 @@ namespace net.derpaul.cdstats.plugin
         /// <param name="logger">Passed logger to write infomration</param>
         public override void CollectStatistic(CdStats dbConnection, string outputPath, NLog.Logger logger)
         {
-            var dur_min = (from myimport in dbConnection.MP3Import select myimport).Min(myimport => myimport.durationms);
-            var dur_avg = (from myimport in dbConnection.MP3Import select myimport).Average(myimport => myimport.durationms);
-            var dur_max = (from myimport in dbConnection.MP3Import select myimport).Max(myimport => myimport.durationms);
-            var dur_tot = (from myimport in dbConnection.MP3Import select myimport).Sum(myimport => myimport.durationms);
-            var trk_tot = (from myimport in dbConnection.MP3Import select myimport).Count();
+            var dur_min = dbConnection.MP3Import.Min(a => a.durationms);
+            var dur_avg = dbConnection.MP3Import.Average(a => a.durationms);
+            var dur_max = dbConnection.MP3Import.Max(myimport => myimport.durationms);
+            var dur_tot = dbConnection.MP3Import.Sum(myimport => myimport.durationms);
+            var trk_tot = dbConnection.MP3Import.Count();
 
-            var track_short = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_min).FirstOrDefault();
-            var track_long = (from myimport in dbConnection.MP3Import select myimport).Where(track => track.durationms == dur_max).FirstOrDefault();
+            var track_short = dbConnection.MP3Import.Where(track => track.durationms == dur_min).FirstOrDefault();
+            var track_long = dbConnection.MP3Import.Where(track => track.durationms == dur_max).FirstOrDefault();
 
             var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))

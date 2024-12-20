@@ -23,9 +23,9 @@ namespace net.derpaul.cdstats.plugin
         {
             var name_file = GetFilename(outputPath);
             var artists_total = dbConnection.MP3Import.Select(a => a.artist).Distinct().Count();
-            var trk_tot = (from myimport in dbConnection.MP3Import select myimport).Count();
+            var trk_tot = dbConnection.MP3Import.Count();
             var tracks_artists = dbConnection.MP3Import.GroupBy(a => a.artist).Select(a => new { artist = a.Key, tracks = a.Count() }).OrderByDescending(a => a.tracks).ThenBy(a => a.artist).ToList();
-            var dur_tot = (from myimport in dbConnection.MP3Import select myimport).Sum(myimport => myimport.durationms);
+            var dur_tot = dbConnection.MP3Import.Sum(myimport => myimport.durationms);
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {

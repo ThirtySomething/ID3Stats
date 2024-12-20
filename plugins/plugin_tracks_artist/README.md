@@ -11,7 +11,7 @@ FROM
 GROUP BY
     artist
 ORDER BY
-    tracks DESC,
+    tracks_total DESC,
     artist;
 ```
 
