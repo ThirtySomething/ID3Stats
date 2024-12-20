@@ -2,9 +2,9 @@
 
 Statistics about the duration over the complete collection:
 
-- Shortest track duration as well as track and interpret
-- Average track duration as well as the total amount of tracks
-- Longest track duration as well as track and interpret
+- Shortest track duration
+- Average track duration
+- Longest track duration
 - Duration over all tracks
 
 ```sql

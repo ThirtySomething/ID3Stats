@@ -1,6 +1,6 @@
 # Track doubles
 
-List same tracks with multiple artists
+List all tracks occuring more than once.
 
 ```sql
 SELECT
@@ -18,7 +18,7 @@ WHERE
         title,
         artist
     HAVING
-        COUNT(title) > 2
+        COUNT(title) > 1
     ORDER BY
         title,
         artist

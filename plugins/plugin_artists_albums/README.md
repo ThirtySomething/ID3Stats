@@ -1,6 +1,6 @@
 # Artist albums
 
-This plugin will list all albums of an artist. First retrieve all artists in alphabetical order.
+This plugin will list all albums of an artist.
 
 ```sql
 SELECT DISTINCT

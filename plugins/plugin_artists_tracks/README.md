@@ -1,6 +1,6 @@
 # Artists tracks
 
-This plugin will list all tracks each artist. First retrieve all artists in alphabetical order.
+This plugin will list all tracks each artist.
 
 ```sql
 SELECT

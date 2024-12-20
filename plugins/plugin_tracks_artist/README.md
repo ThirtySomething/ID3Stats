@@ -14,5 +14,3 @@ ORDER BY
     tracks_total DESC,
     artist;
 ```
-
-**NOTE:** For unique tracks each artist there is another query required!
