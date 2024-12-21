@@ -13,3 +13,9 @@ ORDER BY
     title,
     id;
 ```
+
+## Sample output
+
+An example of the output can be viewed [here][app_statistic].
+
+[app_statistic]: ./../../sample/All%20tracks%20per%20artist.html

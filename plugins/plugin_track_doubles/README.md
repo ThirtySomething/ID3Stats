@@ -27,3 +27,9 @@ ORDER BY
     title,
     artist;
 ```
+
+## Sample output
+
+An example of the output can be viewed [here][app_statistic].
+
+[app_statistic]: ./../../sample/Titles%20with%20multiple%20artists.html

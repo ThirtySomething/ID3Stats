@@ -14,3 +14,9 @@ ORDER BY
     tracks_total DESC,
     artist;
 ```
+
+## Sample output
+
+An example of the output can be viewed [here][app_statistic].
+
+[app_statistic]: ./../../sample/Total%20tracks%20per%20artist.html

@@ -110,6 +110,10 @@ This config is used to influence the `mp3stats`. The settings are
 </MP3StatsConfig>
 ```
 
+## Sample output
+
+An example of a statistic can be viewed [here][app_statistic].
+
 ## Libraries
 
 All used libraries are sticked to `mp3stats_core` to have no redundancy of various versions of the NuGet packages.
@@ -121,9 +125,10 @@ All used libraries are sticked to `mp3stats_core` to have no redundancy of vario
 - [z440.atl.core][lib_taglibsharp], also known as [TagLib#][lib_taglibsharp] - [MIT licence][licence_mit]
 
 [app_datacollector]: ./datacollector/README.md
-[code_datacollectorconfig]: ./datacollector/DataCollectorConfig.cs
 [app_mp3stats]: ./mp3stats/README.md
+[app_statistic]: ./sample/MP3Stats.html
 [code_c#]: https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/
+[code_datacollectorconfig]: ./datacollector/DataCollectorConfig.cs
 [file_erm]: ./mp3stats.puml
 [lib_efc]: https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/
 [lib_newton_json]: https://www.nuget.org/packages/Newtonsoft.Json/

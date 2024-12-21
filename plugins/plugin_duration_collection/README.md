@@ -38,3 +38,9 @@ SELECT
 FROM
     mp3import;
 ```
+
+## Sample output
+
+An example of the output can be viewed [here][app_statistic].
+
+[app_statistic]: ./../../sample/Collection%20durations.html

@@ -15,3 +15,9 @@ ORDER BY
     artist,
     album;
 ```
+
+## Sample output
+
+An example of the output can be viewed [here][app_statistic].
+
+[app_statistic]: ./../../sample/All%20albums%20per%20artist.html
