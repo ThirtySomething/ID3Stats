@@ -52,10 +52,63 @@ The diagram is made with [PlantUML][tool_puml].
   - The plugin system
 - Reading the ID3 tags is based on [TagLibSharp][lib_taglib#]
 
-## Tasks
+## Usage
 
-- ~~Switch from MariaDB to SQLite~~ Done 20.12.2024
-- ~~Make usage of file hash optional~~ Done 20.12.2024
+After compilation somewhere at the `bin` path you can find two executables.
+
+- `datacollector.exe` - The part to get the data into the database.
+- `mp3stats.exe` - The part to generate the statistics.
+
+### Configs
+
+There are a bunch of config files where the program can be adjusted to the needs.
+
+#### DBConfig.config
+
+This config file defines the name of the SQLite database.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<DBConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DBFilename>mp3stats.db</DBFilename>
+</DBConfig>
+```
+
+#### DataCollectorConfig.config
+
+This config is used to influence the `datacollector`. The settings are
+
+- `MP3Path` => Root path of the MP3 collection
+- `MP3Pattern` => Obviously the file extension of the MP3 files
+- `DataTranslation` => This is a workarround to fix the behaviour of [TagLib#][lib_taglibsharp]. There the single artist `AC/DC` will become to two artists `AC` and `DC`. The translation data is case sensitive!
+- `UseHash` => If this is set to `true`, a MD5 hash is created of the MP3 file when it is added to the internal list. This setting has heavy influence on the speed.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<DataCollectorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MP3Path>m:\</MP3Path>
+  <MP3Pattern>*.mp3</MP3Pattern>
+  <DataTranslation>{'ac;dc':'ac/dc'}</DataTranslation>
+  <UseHash>false</UseHash>
+</DataCollectorConfig>
+```
+
+#### MP3StatsConfig.config
+
+This config is used to influence the `mp3stats`. The settings are
+
+- `StatisticsMainFile` => The name of the main statistics file - `index.html` is so annoying
+- `PathPlugin` => In case the plugins reside in a subdirectory
+- `PathOutput` => Outpout path of the statistics
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<MP3StatsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StatisticsMainFile>MP3Stats.html</StatisticsMainFile>
+  <PathPlugin />
+  <PathOutput>./mp3stats/</PathOutput>
+</MP3StatsConfig>
+```
 
 ## Libraries
 
@@ -65,7 +118,7 @@ All used libraries are sticked to `mp3stats_core` to have no redundancy of vario
 - [NLog][lib_nlog] - [BSD3 clause licence][licence_bsd3]
 - [Newtonsoft.Json][lib_newton_json] - [MIT licence][licence_mit]
 - [Pomelo.EntityFrameworkCore.MySql][lib_pomelo] - [MIT licence][licence_mit]
-- [z440.atl.core][lib_taglibsharp], also known as [TagLib#][lib_taglibsharp] - [MIT licence]
+- [z440.atl.core][lib_taglibsharp], also known as [TagLib#][lib_taglibsharp] - [MIT licence][licence_mit]
 
 [app_datacollector]: ./datacollector/README.md
 [code_datacollectorconfig]: ./datacollector/DataCollectorConfig.cs
