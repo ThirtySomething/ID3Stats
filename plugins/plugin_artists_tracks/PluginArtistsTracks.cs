@@ -26,7 +26,7 @@ namespace net.derpaul.mp3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                WriteHeader(statistic_file);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name);
 
                 foreach (var artist in artists_total)
                 {
@@ -36,7 +36,7 @@ namespace net.derpaul.mp3stats.plugin
                     statistic_file.WriteLine("<b>Artists:</b> {0} - {1} ({2})<br>",
                         artist,
                         artists_tracks,
-                        GetStringFromMs(artists_duration_total)
+                        MP3StatsUtil.GetStringFromMs(artists_duration_total)
                     );
 
                     var tracks_total = dbConnection.MP3Import.Where(a => a.artist == artist).OrderBy(a => a.title).ThenBy(a => a.album).ThenBy(a => a.durationms).ToList();
@@ -45,7 +45,7 @@ namespace net.derpaul.mp3stats.plugin
                         statistic_file.WriteLine("<b>Track:</b> {0} - {1} ({2})<br>",
                             track.title,
                             track.album,
-                            GetStringFromMs(track.durationms)
+                            MP3StatsUtil.GetStringFromMs(track.durationms)
                         );
                     }
 

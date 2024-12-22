@@ -29,12 +29,12 @@ namespace net.derpaul.mp3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                WriteHeader(statistic_file);
+                MP3StatsUtil. WriteHeader(statistic_file, this.Name);
 
                 statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})",
                     trk_tot,
                     artists_total,
-                    GetStringFromMs(dur_tot)
+                    MP3StatsUtil.GetStringFromMs(dur_tot)
                 );
                 var tracks_mem = trk_tot;
                 foreach (var record in tracks_artists)
@@ -53,7 +53,7 @@ namespace net.derpaul.mp3stats.plugin
                     statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artist:</b> {1} ({2})",
                         record.tracks,
                         record.artist,
-                        GetStringFromMs(artists_duration_total)
+                        MP3StatsUtil.GetStringFromMs(artists_duration_total)
                     );
                 }
             }

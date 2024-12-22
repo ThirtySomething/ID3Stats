@@ -31,7 +31,7 @@ namespace net.derpaul.mp3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                WriteHeader(statistic_file);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name);
 
                 foreach (var record in tracks_double_raw)
                 {
@@ -52,7 +52,7 @@ namespace net.derpaul.mp3stats.plugin
                         statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} ({2})<br>",
                             rec.artist,
                             rec.album,
-                            GetStringFromMs(rec.durationms)
+                            MP3StatsUtil.GetStringFromMs(rec.durationms)
                         );
                     }
                     statistic_file.WriteLine("<p>");

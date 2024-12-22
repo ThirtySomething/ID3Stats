@@ -33,27 +33,27 @@ namespace net.derpaul.mp3stats.plugin
             var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                WriteHeader(statistic_file);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name);
 
                 TimeSpan time = TimeSpan.FromMilliseconds(dur_min);
                 DateTime startdate = new DateTime() + time;
 
                 statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
-                    GetStringFromMs(dur_min),
+                    MP3StatsUtil.GetStringFromMs(dur_min),
                     track_short.title ?? "",
                     track_short.artist ?? ""
                 );
                 statistic_file.WriteLine("<b>Average track length:</b> {0} - {1} tracks<br>",
-                    GetStringFromMs(dur_avg),
+                    MP3StatsUtil.GetStringFromMs(dur_avg),
                     trk_tot
                 );
                 statistic_file.WriteLine("<b>Longest track length:</b> {0} - {1} ({2})<br>",
-                    GetStringFromMs(dur_max),
+                    MP3StatsUtil.GetStringFromMs(dur_max),
                     track_long.title ?? "",
                     track_long.artist ?? ""
                 );
                 statistic_file.WriteLine("<b>Playtime overall:</b> {0} - {1} tracks<br>",
-                    GetStringFromMs(dur_tot),
+                    MP3StatsUtil.GetStringFromMs(dur_tot),
                     trk_tot
                 );
             }

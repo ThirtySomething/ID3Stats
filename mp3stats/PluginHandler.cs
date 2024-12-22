@@ -98,7 +98,8 @@ namespace net.derpaul.mp3stats
             var name_file = Path.Combine(name_dir, MP3StatsConfig.Instance.StatisticsMainFile);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                statistic_file.WriteLine("<H1>MP3Stats</H1>");
+                MP3StatsUtil.WriteHeader(statistic_file, "MP3Stats");
+
                 foreach (var plugin in StatisticPlugins)
                 {
                     if (!(plugin is IMP3StatsPlugin))

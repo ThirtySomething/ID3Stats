@@ -58,7 +58,7 @@ namespace net.derpaul.mp3stats
                 // End message
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
-                logger.Info("Generation of statistics tooks {0}", PluginBase.GetStringFromMs(elapsedMs));
+                logger.Info("Generation of statistics tooks {0}", MP3StatsUtil.GetStringFromMs(elapsedMs));
             }
             catch (Exception ex)
             {

@@ -52,7 +52,7 @@ namespace net.derpaul.mp3stats
         {
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-            logger.Info("Running plugin '{0}' tooks {1}", Name, GetStringFromMs(elapsedMs));
+            logger.Info("Running plugin '{0}' tooks {1}", Name, MP3StatsUtil.GetStringFromMs(elapsedMs));
         }
 
         /// <summary>
@@ -80,32 +80,6 @@ namespace net.derpaul.mp3stats
         {
             var name_file = Path.Combine(outputPath, Name + ".html");
             return name_file;
-        }
-
-        /// <summary>
-        /// Common function to write header of statistics
-        /// </summary>
-        /// <param name="statistic_file"></param>
-        public void WriteHeader(StreamWriter statistic_file)
-        {
-            statistic_file.WriteLine("<H1>" + Name + "</H1>");
-        }
-
-        /// <summary>
-        /// Convert milliseconds into human readable format
-        /// </summary>
-        /// <param name="ms"></param>
-        /// <returns></returns>
-        public static string GetStringFromMs(double ms)
-        {
-            TimeSpan t = TimeSpan.FromMilliseconds(ms);
-            string hrfms = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}:{4:D3}",
-                                    t.Days,
-                                    t.Hours,
-                                    t.Minutes,
-                                    t.Seconds,
-                                    t.Milliseconds);
-            return hrfms;
         }
     }
 }
