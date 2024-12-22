@@ -32,6 +32,7 @@ namespace net.derpaul.mp3stats.plugin
                 {
                     var artist_albums = dbConnection.MP3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.artist, a.Key.album }).ToList();
 
+                    statistic_file.WriteLine("<p>");
                     foreach (var album in artist_albums)
                     {
                         var artists_tracks = dbConnection.MP3Import.Where(a => a.artist == artist && a.album == album.album).Count();
@@ -42,7 +43,7 @@ namespace net.derpaul.mp3stats.plugin
                             artists_tracks,
                             MP3StatsUtil.GetStringFromMs(artists_duration_total));
                     }
-                    statistic_file.WriteLine("<p>");
+                    statistic_file.WriteLine("</p>");
                 }
             }
         }

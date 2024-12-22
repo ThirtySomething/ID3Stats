@@ -35,6 +35,7 @@ namespace net.derpaul.mp3stats.plugin
 
                 foreach (var record in tracks_double_raw)
                 {
+                    statistic_file.WriteLine("<p>");
                     statistic_file.WriteLine("<b>Track:</b> {0} - <b>Count:</b> {1}<br>",
                         record.title,
                         record.Count
@@ -55,7 +56,7 @@ namespace net.derpaul.mp3stats.plugin
                             MP3StatsUtil.GetStringFromMs(rec.durationms)
                         );
                     }
-                    statistic_file.WriteLine("<p>");
+                    statistic_file.WriteLine("</p>");
                 }
             }
         }

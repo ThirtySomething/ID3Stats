@@ -31,31 +31,30 @@ namespace net.derpaul.mp3stats.plugin
             {
                 MP3StatsUtil. WriteHeader(statistic_file, this.Name);
 
-                statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})",
+                statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})<br>",
                     trk_tot,
                     artists_total,
                     MP3StatsUtil.GetStringFromMs(dur_tot)
                 );
+                statistic_file.WriteLine("<p>");
                 var tracks_mem = trk_tot;
                 foreach (var record in tracks_artists)
                 {
                     if (tracks_mem != record.tracks)
                     {
+                        statistic_file.WriteLine("</p>");
                         statistic_file.WriteLine("<p>");
                         tracks_mem = record.tracks;
                     }
-                    else
-                    {
-                        statistic_file.WriteLine("<br>");
-                    }
                     var artists_duration_total = dbConnection.MP3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
 
-                    statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artist:</b> {1} ({2})",
+                    statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artist:</b> {1} ({2})<br>",
                         record.tracks,
                         record.artist,
                         MP3StatsUtil.GetStringFromMs(artists_duration_total)
                     );
                 }
+                statistic_file.WriteLine("</p>");
             }
         }
     }
