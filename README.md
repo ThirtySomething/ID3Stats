@@ -42,7 +42,7 @@ The plugin mechanism is based on my other project, `weatherstation` [here][proje
 
 ### ERM diagram
 
-![mp3stats ERM diagram](./images/mp3stats.png "mp3stats ERM diagram")
+![MP3Stats ERM diagram](./images/mp3stats.png "MP3Stats ERM diagram")
 
 The source of the diagram is [here][file_erm]. To get fast results for the plugins a flat table is used. This will also simplify the queries in the plugins.
 
@@ -99,7 +99,7 @@ This config is used to influence the `DataCollector`. The settings are
 
 #### MP3StatsConfig.config
 
-This config is used to influence the `mp3stats`. The settings are
+This config is used to influence the `MP3Stats`. The settings are
 
 - `StatisticsMainFile` => The name of the main statistics file - `index.html` is so annoying
 - `PathPlugin` => In case the plugins reside in a subdirectory
