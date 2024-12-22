@@ -12,11 +12,11 @@ I'm ripping all my CDs to MP3 files. With a number of > 800 CDs I've got a large
 
 ## Details
 
-The program is splitted up into two parts. The `data collector` will collect the information from the MP3 files and will store the data into a database.
+The program is splitted up into two parts. The `DataCollector` will collect the information from the MP3 files and will store the data into a database.
 
 The second part `MP3Stats` will run several plugins. Each plugin will determine a statistic.
 
-### Data collector
+### DataCollector
 
 The `DataCollector` will work the following steps:
 
@@ -26,7 +26,7 @@ The `DataCollector` will work the following steps:
   - Read ID3 tag
   - Insert/Update ID3 meta data in database
 
-For details see [readme][app_datacollector] of `datacollector` project.
+For details see [readme][app_datacollector] of `DataCollector` project.
 
 Currently there is no logic for check move of MP3 files inside the collection. But to detect this a filehash (MD5) is generated during import and written to the DB. This may slow down the process. This is configurable, the default is `do not calculate the hash`. For details see [DataCollectorConfig.UseHash][code_datacollectorconfig].
 
@@ -80,7 +80,7 @@ This config file defines the name of the SQLite database.
 
 #### DataCollectorConfig.config
 
-This config is used to influence the `datacollector`. The settings are
+This config is used to influence the `DataCollector`. The settings are
 
 - `MP3Path` => Root path of the MP3 collection
 - `MP3Pattern` => Obviously the file extension of the MP3 files
