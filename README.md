@@ -4,7 +4,7 @@ Various statistics based on ID3 tags of MP3 files.
 
 ## Licence
 
-This project uses the [MIT licence][licence_mit]. The licences of the used packages is listed at the bottom.
+This project uses the [MIT licence][licence_mit]. The licences of the used packages are listed at the bottom.
 
 ## Motivation
 
@@ -117,15 +117,6 @@ This config is used to influence the `mp3stats`. The settings are
 ## Sample output
 
 An example of a statistic can be viewed [here][app_statistic].
-
-## Unsolved problems
-
-The program is not able to resolve different namings. For example, in the collection there is a song with the same name but from differnt artists. But the title is written in a different way.
-
-- `argent` - `god gave rock 'n' roll to you`
-- `kiss` - `god gave rock & roll to you`
-
-So this song will not listed using the `plugin_track_doubles` statistic.
 
 ## Libraries
 
