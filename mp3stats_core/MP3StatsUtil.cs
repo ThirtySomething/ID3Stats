@@ -25,12 +25,12 @@ namespace net.derpaul.mp3stats
         /// Common function to write header of statistics
         /// </summary>
         /// <param name="statistic_file"></param>
-        public static void WriteHeader(StreamWriter statistic_file, string headline)
+        public static void WriteHeader(StreamWriter statistic_file, string headline, string classname)
         {
             DateTime thisDate = DateTime.Now;
 
             statistic_file.WriteLine("<H1>{0}</H1>", headline);
-            statistic_file.WriteLine("<p><small>Generated {0}.</small></p>", thisDate.ToString("dd.MM.yyyy HH:mm:ss"));
+            statistic_file.WriteLine("<p><small>Generated {0} by {1}</small></p>", thisDate.ToString("dd.MM.yyyy HH:mm:ss"), classname);
         }
 
     }

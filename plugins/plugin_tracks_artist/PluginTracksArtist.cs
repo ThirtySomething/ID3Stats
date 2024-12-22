@@ -29,7 +29,7 @@ namespace net.derpaul.mp3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil. WriteHeader(statistic_file, this.Name);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})<br>",
                     trk_tot,

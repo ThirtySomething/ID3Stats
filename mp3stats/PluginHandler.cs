@@ -23,6 +23,11 @@ namespace net.derpaul.mp3stats
         private List<IMP3StatsPlugin> StatisticPlugins { get; set; }
 
         /// <summary>
+        /// Get statistic name
+        /// </summary>
+        public string Name { get; } = "MP3Stats";
+
+        /// <summary>
         /// Constructor of plugin handler
         /// </summary>
         /// <param name="pluginPath">Path to plugins</param>
@@ -98,7 +103,7 @@ namespace net.derpaul.mp3stats
             var name_file = Path.Combine(name_dir, MP3StatsConfig.Instance.StatisticsMainFile);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, "MP3Stats");
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var plugin in StatisticPlugins)
                 {

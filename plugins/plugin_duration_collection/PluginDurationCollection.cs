@@ -33,7 +33,7 @@ namespace net.derpaul.mp3stats.plugin
             var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, this.Name);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 TimeSpan time = TimeSpan.FromMilliseconds(dur_min);
                 DateTime startdate = new DateTime() + time;

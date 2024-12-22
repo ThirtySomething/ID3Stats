@@ -31,7 +31,7 @@ namespace net.derpaul.mp3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, this.Name);
+                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var record in tracks_double_raw)
                 {
