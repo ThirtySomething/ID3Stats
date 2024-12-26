@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using net.derpaul.mp3stats.model;
 using NLog;
 using System.Diagnostics;
 

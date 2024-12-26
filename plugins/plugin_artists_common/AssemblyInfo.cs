@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Plugin: Common durations")]
+[assembly: AssemblyTitle("Plugin: Artists common stats")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("DDC5A869-53E7-4308-BCEB-4892B41A8B4B")]
+[assembly: Guid("13DAFEE0-0BFD-40D1-BAB9-0507153E5DCF")]
 
 // Version information for an assembly consists of the following four values:
 //
