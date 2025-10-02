@@ -10,9 +10,11 @@ namespace net.derpaul.mp3stats
         /// </summary>
         public void SetDefaults()
         {
-            MP3Path = "m:\\";
-            MP3Pattern = "*.mp3";
-            DataTranslation = "{'ac;dc':'ac/dc'}";
+            // MP3Path = "m:\\";
+            MP3Path = "R:\\tagged";
+            // MP3Pattern = "*.mp3";
+            MP3Pattern = "*.flac";
+            DataTranslation = "{'AC;DC':'AC/DC'}";
             UseHash = false;
         }
 
