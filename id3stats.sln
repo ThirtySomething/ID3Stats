@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mp3stats_core", "mp3stats_core\mp3stats_core.csproj", "{64613A99-62D0-4A10-BB23-296344B52986}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "id3stats_core", "id3stats_core\id3stats_core.csproj", "{64613A99-62D0-4A10-BB23-296344B52986}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "datacollector", "datacollector\datacollector.csproj", "{047EB426-AA15-467E-82C4-6DA01192FF1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mp3stats", "mp3stats\mp3stats.csproj", "{BD3BDCFA-C88A-48B1-A67E-6DF7381FF492}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "id3stats", "id3stats\id3stats.csproj", "{BD3BDCFA-C88A-48B1-A67E-6DF7381FF492}"
 	ProjectSection(ProjectDependencies) = postProject
 		{25FB12FB-50A8-4719-9410-6DB309B7AFD6} = {25FB12FB-50A8-4719-9410-6DB309B7AFD6}
 		{758F02B2-EA39-4211-B5EA-2FD71C21FE03} = {758F02B2-EA39-4211-B5EA-2FD71C21FE03}

@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\mp3stats_core\mp3stats_core.csproj" />
+        <ProjectReference Include="..\id3stats_core\id3stats_core.csproj" />
     </ItemGroup>
 
 </Project>
