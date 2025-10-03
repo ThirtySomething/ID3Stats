@@ -7,7 +7,7 @@ SELECT DISTINCT
     artist,
     album
 FROM
-    mp3import
+    id3import
 GROUP BY
     artist,
     album

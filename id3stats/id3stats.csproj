@@ -13,7 +13,7 @@
         <OutputType>Exe</OutputType>
         <RootNamespace>net.derpaul.id3stats</RootNamespace>
         <TargetFramework>net8.0</TargetFramework>
-        <StartupObject>net.derpaul.id3stats.MP3Stats</StartupObject>
+        <StartupObject>net.derpaul.id3stats.ID3Stats</StartupObject>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
     </PropertyGroup>
 

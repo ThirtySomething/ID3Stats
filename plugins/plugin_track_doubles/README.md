@@ -6,14 +6,14 @@ List all tracks occuring more than once.
 SELECT
     *
 FROM
-    mp3import
+    id3import
 WHERE
     (title, artist) IN(
     SELECT
         title,
         artist
     FROM
-        mp3import
+        id3import
     GROUP BY
         title,
         artist

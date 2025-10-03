@@ -1,9 +1,9 @@
 ﻿namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Recursive find all MP3 files for given path
+    /// Recursive find all tagged files for given path
     /// </summary>
-    internal class FinderMP3
+    internal class FinderID3
     {
         /// <summary>
         /// Start path where to search for
@@ -11,7 +11,7 @@
         private string pathStartup;
 
         /// <summary>
-        /// Search pattern, e. g. *.mp3
+        /// Search pattern, e. g. *.mp3 or *.flac
         /// </summary>
         private string searchPattern;
 
@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="pathStartup">Where to start search</param>
         /// <param name="searchPattern">What to search for</param>
-        public FinderMP3(string pathStartup, string searchPattern)
+        public FinderID3(string pathStartup, string searchPattern)
         {
             this.pathStartup = pathStartup;
             this.searchPattern = searchPattern;
@@ -55,18 +55,18 @@
         }
 
         /// <summary>
-        /// Find all MP3 files
+        /// Find all tagged files
         /// </summary>
         /// <param name="logger">Logger instance</param>
-        /// <returns>list of MP3File objects</returns>
-        public List<MP3File> Process(NLog.Logger logger)
+        /// <returns>list of ID3File objects</returns>
+        public List<ID3File> Process(NLog.Logger logger)
         {
             logger.Info("Read files in [{0}] with pattern [{1}]", this.pathStartup, this.searchPattern);
             string[] filesraw = Directory.GetFiles(this.pathStartup, this.searchPattern, SearchOption.AllDirectories);
-            List<MP3File> files = new List<MP3File>();
+            List<ID3File> files = new List<ID3File>();
             foreach (string currentfile in filesraw)
             {
-                MP3File importdata = new MP3File(currentfile);
+                ID3File importdata = new ID3File(currentfile);
                 files.Add(importdata);
             }
             return files;

@@ -10,23 +10,23 @@ namespace net.derpaul.id3stats
         /// </summary>
         public void SetDefaults()
         {
-            // MP3Path = "m:\\";
-            MP3Path = "R:\\tagged";
-            // MP3Pattern = "*.mp3";
-            MP3Pattern = "*.flac";
+            // ID3Path = "m:\\";
+            ID3Path = "R:\\tagged";
+            // ID3Pattern = "*.mp3";
+            ID3Pattern = "*.flac";
             DataTranslation = "{'AC;DC':'AC/DC'}";
             UseHash = false;
         }
 
         /// <summary>
-        /// Root path of MP3 collection
+        /// Root path of tagged files collection
         /// </summary>
-        public string MP3Path { get; set; }
+        public string ID3Path { get; set; }
 
         /// <summary>
         /// Pattern to search for
         /// </summary>
-        public string MP3Pattern { get; set; }
+        public string ID3Pattern { get; set; }
 
         /// <summary>
         /// JSON String with mappings

@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Find MP3 files, import filename and meta data to database
+    /// Find tagged files, import filename and meta data to database
     /// </summary>
     internal class DataCollector
     {
@@ -32,16 +32,16 @@ namespace net.derpaul.id3stats
                 logger.Info("Startup of DataCollector at {now}", DateTime.Now);
 
                 // Initalize finder with path and pattern
-                var finderMP3 = new FinderMP3(DataCollectorConfig.Instance.MP3Path, DataCollectorConfig.Instance.MP3Pattern);
-                if (!finderMP3.Init(logger))
+                var finderID3 = new FinderID3(DataCollectorConfig.Instance.ID3Path, DataCollectorConfig.Instance.ID3Pattern);
+                if (!finderID3.Init(logger))
                 {
                     // Either path does not exist or filepattern not set
                     logger.Error("Init of DataCollector failed!");
                     return;
                 }
 
-                // Retrieve list of MP3 files
-                List<MP3File> fileList = finderMP3.Process(logger);
+                // Retrieve list of tagged files
+                List<ID3File> fileList = finderID3.Process(logger);
 
                 // Initialize
                 HandleID3 id3todb = new HandleID3(fileList);
@@ -53,12 +53,12 @@ namespace net.derpaul.id3stats
                 }
 
                 // Read ID3 tags and write them to database
-                id3todb.Process(DataCollectorConfig.Instance.MP3Path, logger);
+                id3todb.Process(DataCollectorConfig.Instance.ID3Path, logger);
 
                 // End message
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;
-                logger.Info("Import of data tooks {0}", MP3StatsUtil.GetStringFromMs(elapsedMs));
+                logger.Info("Import of data tooks {0}", ID3StatsUtil.GetStringFromMs(elapsedMs));
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ SELECT
     artist,
     title
 FROM
-    mp3import
+    id3import
 ORDER BY
     artist,
     title,

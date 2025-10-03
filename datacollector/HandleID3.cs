@@ -6,27 +6,27 @@ using Newtonsoft.Json.Linq;
 namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Extract meta data of MP3 file
+    /// Extract meta data of tagged file
     /// </summary>
     internal class HandleID3
     {
         /// <summary>
-        /// List of MP3 files
+        /// List of tagged files
         /// </summary>
-        private List<MP3File> filenamesMP3;
+        private List<ID3File> filenamesID3;
 
         /// <summary>
         /// Connection to database (Entity Framework)
         /// </summary>
-        private MP3Stats DBInstance;
+        private ID3Stats DBInstance;
 
         /// <summary>
-        /// Pass list of MP3 filenames to handler in constructor
+        /// Pass list of tagged files to handler in constructor
         /// </summary>
-        /// <param name="filenamesMP3"></param>
-        public HandleID3(List<MP3File> filenamesMP3)
+        /// <param name="filenamesID3"></param>
+        public HandleID3(List<ID3File> filenamesID3)
         {
-            this.filenamesMP3 = filenamesMP3;
+            this.filenamesID3 = filenamesID3;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace net.derpaul.id3stats
 
             try
             {
-                DBInstance = new MP3Stats(new DbContextOptions<MP3Stats>());
+                DBInstance = new ID3Stats(new DbContextOptions<ID3Stats>());
                 DBInstance.Database.EnsureCreated();
                 ret = true;
             }
@@ -60,7 +60,7 @@ namespace net.derpaul.id3stats
         /// </summary>
         /// <param name="dbObject"></param>
         /// <param name="metaData"></param>
-        private void setMetaData(MP3Import dbObject, Track metaData)
+        private void setMetaData(ID3Import dbObject, Track metaData)
         {
             dbObject.artist = metaData.Artist;
             dbObject.album = metaData.Album;
@@ -95,7 +95,7 @@ namespace net.derpaul.id3stats
         /// <param name="pathprefix"></param>
         public void Process(string pathprefix, NLog.Logger logger)
         {
-            foreach (MP3File ofile in filenamesMP3)
+            foreach (ID3File ofile in filenamesID3)
             {
                 // Read ID3 tag
                 var tagID3 = new Track(ofile.filename);
@@ -110,20 +110,20 @@ namespace net.derpaul.id3stats
                     ofile.filehash = ofile.CalculateMD5(ofile.filename);
                 }
 
-                // Handle MP3 import
-                var OMP3Import = DBInstance.MP3Import.Where(a => a.filename == pname).FirstOrDefault();
-                if (null == OMP3Import)
+                // Handle ID3 import
+                var OID3Import = DBInstance.ID3Import.Where(a => a.filename == pname).FirstOrDefault();
+                if (null == OID3Import)
                 {
                     // Record not in database, init with file data data
-                    OMP3Import = new MP3Import();
-                    OMP3Import.filename = pname;
-                    OMP3Import.filehash = ofile.filehash;
-                    OMP3Import.date_import = DateTime.Now;
-                    OMP3Import.date_file_mod = ofile.date_file_mod;
-                    DBInstance.Add(OMP3Import);
+                    OID3Import = new ID3Import();
+                    OID3Import.filename = pname;
+                    OID3Import.filehash = ofile.filehash;
+                    OID3Import.date_import = DateTime.Now;
+                    OID3Import.date_file_mod = ofile.date_file_mod;
+                    DBInstance.Add(OID3Import);
 
                     // Enlarge record with ID3 meta data
-                    setMetaData(OMP3Import, tagID3);
+                    setMetaData(OID3Import, tagID3);
 
                     // Save to database
                     DBInstance.SaveChanges();
@@ -134,8 +134,8 @@ namespace net.derpaul.id3stats
                     continue;
                 }
 
-                if ((OMP3Import.date_file_mod == ofile.date_file_mod)
-                    && (OMP3Import.filehash == ofile.filehash)
+                if ((OID3Import.date_file_mod == ofile.date_file_mod)
+                    && (OID3Import.filehash == ofile.filehash)
                     )
                 {
                     logger.Info("Skip unchanged track [{0}]", pname);
@@ -145,11 +145,11 @@ namespace net.derpaul.id3stats
                 }
 
                 // Update file meta data
-                OMP3Import.date_file_mod = ofile.date_file_mod;
-                OMP3Import.filehash = ofile.filehash;
+                OID3Import.date_file_mod = ofile.date_file_mod;
+                OID3Import.filehash = ofile.filehash;
 
                 // Update ID3 meta data in record
-                setMetaData(OMP3Import, tagID3);
+                setMetaData(OID3Import, tagID3);
 
                 // Save to database
                 DBInstance.SaveChanges();

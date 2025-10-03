@@ -3,18 +3,18 @@
 namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Configuration settings of MP3Stats
+    /// Configuration settings of ID3Stats
     /// </summary>
-    public class MP3StatsConfig : ConfigLoader<MP3StatsConfig>, IConfigObject
+    public class ID3StatsConfig : ConfigLoader<ID3StatsConfig>, IConfigObject
     {
         /// <summary>
         /// To set default values
         /// </summary>
         public void SetDefaults()
         {
-            StatisticsMainFile = "MP3Stats.html";
+            StatisticsMainFile = "ID3Stats.html";
             PathPlugin = "";
-            PathOutput = "./mp3stats/";
+            PathOutput = "./id3stats/";
         }
 
         /// <summary>

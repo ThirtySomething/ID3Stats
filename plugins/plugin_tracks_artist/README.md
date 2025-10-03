@@ -7,7 +7,7 @@ SELECT
     artist,
     COUNT(artist) AS tracks_total
 FROM
-    mp3import
+    id3import
 GROUP BY
     artist
 ORDER BY

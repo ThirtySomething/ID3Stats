@@ -19,38 +19,38 @@ namespace net.derpaul.id3stats.plugin
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public override void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger)
+        public override void CollectStatistic(ID3Stats dbConnection, string outputPath, NLog.Logger logger)
         {
-            var dur_min = dbConnection.MP3Import.Min(a => a.durationms);
-            var dur_avg = dbConnection.MP3Import.Average(a => a.durationms);
-            var dur_max = dbConnection.MP3Import.Max(myimport => myimport.durationms);
-            var dur_tot = dbConnection.MP3Import.Sum(myimport => myimport.durationms);
-            var trk_tot = dbConnection.MP3Import.Count();
+            var dur_min = dbConnection.ID3Import.Min(a => a.durationms);
+            var dur_avg = dbConnection.ID3Import.Average(a => a.durationms);
+            var dur_max = dbConnection.ID3Import.Max(myimport => myimport.durationms);
+            var dur_tot = dbConnection.ID3Import.Sum(myimport => myimport.durationms);
+            var trk_tot = dbConnection.ID3Import.Count();
 
-            var track_short = dbConnection.MP3Import.Where(track => track.durationms == dur_min).FirstOrDefault();
-            var track_long = dbConnection.MP3Import.Where(track => track.durationms == dur_max).FirstOrDefault();
+            var track_short = dbConnection.ID3Import.Where(track => track.durationms == dur_min).FirstOrDefault();
+            var track_long = dbConnection.ID3Import.Where(track => track.durationms == dur_max).FirstOrDefault();
 
             var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
+                ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
-                    MP3StatsUtil.GetStringFromMs(dur_min),
+                    ID3StatsUtil.GetStringFromMs(dur_min),
                     track_short.title ?? "",
                     track_short.artist ?? ""
                 );
                 statistic_file.WriteLine("<b>Average track length:</b> {0} - {1} tracks<br>",
-                    MP3StatsUtil.GetStringFromMs(dur_avg),
+                    ID3StatsUtil.GetStringFromMs(dur_avg),
                     trk_tot
                 );
                 statistic_file.WriteLine("<b>Longest track length:</b> {0} - {1} ({2})<br>",
-                    MP3StatsUtil.GetStringFromMs(dur_max),
+                    ID3StatsUtil.GetStringFromMs(dur_max),
                     track_long.title ?? "",
                     track_long.artist ?? ""
                 );
                 statistic_file.WriteLine("<b>Playtime overall:</b> {0} - {1} tracks<br>",
-                    MP3StatsUtil.GetStringFromMs(dur_tot),
+                    ID3StatsUtil.GetStringFromMs(dur_tot),
                     trk_tot
                 );
             }

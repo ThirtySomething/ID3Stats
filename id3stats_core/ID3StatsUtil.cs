@@ -2,7 +2,7 @@
 
 namespace net.derpaul.id3stats
 {
-    public static class MP3StatsUtil
+    public static class ID3StatsUtil
     {
         /// <summary>
         /// Convert milliseconds into human readable format

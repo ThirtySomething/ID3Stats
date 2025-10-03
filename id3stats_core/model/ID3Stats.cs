@@ -9,18 +9,18 @@ namespace net.derpaul.id3stats.model
     /// <summary>
     /// ERM model for CD statistics
     /// </summary>
-    public class MP3Stats : DbContext
+    public class ID3Stats : DbContext
     {
         /// <summary>
-        /// Entity for MP3 imports
+        /// Entity for tagged file imports
         /// </summary>
-        public DbSet<MP3Import> MP3Import { get; set; }
+        public DbSet<ID3Import> ID3Import { get; set; }
 
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="options"></param>
-        public MP3Stats(DbContextOptions<MP3Stats> options) : base(options)
+        public ID3Stats(DbContextOptions<ID3Stats> options) : base(options)
         {
         }
 
@@ -44,35 +44,35 @@ namespace net.derpaul.id3stats.model
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Entity for MP3 import
-            modelBuilder.Entity<MP3Import>().ToTable("mp3import");
-            modelBuilder.Entity<MP3Import>(entity =>
+            // Entity for tagged file import
+            modelBuilder.Entity<ID3Import>().ToTable("id3import");
+            modelBuilder.Entity<ID3Import>(entity =>
             {
                 entity.HasKey(e => e.id);
                 entity.HasIndex(e => e.filename).IsUnique();
             });
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.album })
                 .HasDatabaseName("ix_album");
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.artist })
                 .HasDatabaseName("ix_artist");
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.genre })
                 .HasDatabaseName("ix_genre");
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.filehash })
                 .HasDatabaseName("ix_filehash");
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.filename })
                 .HasDatabaseName("ix_filename");
 
-            modelBuilder.Entity<MP3Import>()
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.title })
                 .HasDatabaseName("ix_title");
 

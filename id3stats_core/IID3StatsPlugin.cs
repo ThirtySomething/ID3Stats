@@ -5,7 +5,7 @@ namespace net.derpaul.id3stats
     /// <summary>
     /// Interface for all used plugins
     /// </summary>
-    public interface IMP3StatsPlugin
+    public interface IID3StatsPlugin
     {
         /// <summary>
         /// Common initialization method
@@ -25,7 +25,7 @@ namespace net.derpaul.id3stats
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger);
+        void CollectStatistic(ID3Stats dbConnection, string outputPath, NLog.Logger logger);
 
         /// <summary>
         /// Actions after collections of statistics

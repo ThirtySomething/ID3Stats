@@ -1,7 +1,7 @@
 ﻿namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Configuration settings of MP3Stats database access
+    /// Configuration settings of ID3Stats database access
     /// </summary>
     public class DBConfig : ConfigLoader<DBConfig>, IConfigObject
     {
@@ -10,7 +10,7 @@
         /// </summary>
         public void SetDefaults()
         {
-            DBFilename = "mp3stats.db";
+            DBFilename = "id3stats.db";
         }
 
         /// <summary>

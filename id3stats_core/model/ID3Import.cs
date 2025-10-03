@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace net.derpaul.id3stats.model
 {
     /// <summary>
-    /// MP3Import entity
+    /// ID3Import entity
     /// </summary>
-    public class MP3Import
+    public class ID3Import
     {
         /// <summary>
         /// ID as primary key

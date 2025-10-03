@@ -3,7 +3,7 @@
 namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Class to deal with collections of plugins of type IMP3StatsPlugin
+    /// Class to deal with collections of plugins of type IID3StatsPlugin
     /// </summary>
     internal class PluginHandler
     {
@@ -15,28 +15,28 @@ namespace net.derpaul.id3stats
         /// <summary>
         /// DB Connection object
         /// </summary>
-        private model.MP3Stats DBConnection { get; set; }
+        private model.ID3Stats DBConnection { get; set; }
 
         /// <summary>
         /// List of statistic plugins
         /// </summary>
-        private List<IMP3StatsPlugin> StatisticPlugins { get; set; }
+        private List<IID3StatsPlugin> StatisticPlugins { get; set; }
 
         /// <summary>
         /// Get statistic name
         /// </summary>
-        public string Name { get; } = "MP3Stats";
+        public string Name { get; } = "ID3Stats";
 
         /// <summary>
         /// Constructor of plugin handler
         /// </summary>
         /// <param name="pluginPath">Path to plugins</param>
         /// <param name="dbConnection">Connection to DB</param>
-        internal PluginHandler(string pluginPath, model.MP3Stats dbConnection)
+        internal PluginHandler(string pluginPath, model.ID3Stats dbConnection)
         {
             PluginPath = pluginPath;
             DBConnection = dbConnection;
-            StatisticPlugins = new List<IMP3StatsPlugin>();
+            StatisticPlugins = new List<IID3StatsPlugin>();
         }
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace net.derpaul.id3stats
         /// </summary>
         /// <param name="logger">Logger instance</param>
         /// <returns>true on success, otherwise false</returns>
-        private bool InitMP3StatsPlugins(NLog.Logger logger)
+        private bool InitID3StatsPlugins(NLog.Logger logger)
         {
-            StatisticPlugins = PluginLoader<IMP3StatsPlugin>.PluginsLoad(PluginPath, MP3StatsConfig.Instance.PluginProductName);
+            StatisticPlugins = PluginLoader<IID3StatsPlugin>.PluginsLoad(PluginPath, ID3StatsConfig.Instance.PluginProductName);
             if (StatisticPlugins.Count == 0)
             {
-                logger.Error("InitMP3StatsPlugins: No statistic plugins found in [{0}].", PluginPath);
+                logger.Error("InitID3StatsPlugins: No statistic plugins found in [{0}].", PluginPath);
                 return false;
             }
 
@@ -60,17 +60,17 @@ namespace net.derpaul.id3stats
                     plugin.IsInitialized = plugin.Init();
                     if (plugin.IsInitialized)
                     {
-                        logger.Info("InitMP3StatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
+                        logger.Info("InitID3StatsPlugins: Initialized [{0}] plugin.", plugin.InternalName);
                     }
                     else
                     {
-                        logger.Error("InitMP3StatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
+                        logger.Error("InitID3StatsPlugins: Failed to initialize [{0}] plugin.", plugin.InternalName);
                     }
                 }
                 catch (Exception e)
                 {
-                    logger.Fatal("InitMP3StatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
-                    logger.Fatal("InitMP3StatsPlugins: Inner exception => [{0}]", e.InnerException);
+                    logger.Fatal("InitID3StatsPlugins: Cannot init plugin [{0}] => [{1}]", plugin.GetType(), e.Message);
+                    logger.Fatal("InitID3StatsPlugins: Inner exception => [{0}]", e.InnerException);
                     continue;
                 }
             }
@@ -85,29 +85,29 @@ namespace net.derpaul.id3stats
         /// <returns>true on success, otherwise false</returns>
         internal bool Init(NLog.Logger logger)
         {
-            bool InitDone = InitMP3StatsPlugins(logger);
+            bool InitDone = InitID3StatsPlugins(logger);
             return InitDone;
         }
 
         /// <summary>
-        /// Run MP3Stats plugins
+        /// Run ID3Stats plugins
         /// </summary>
         /// <param name="logger">Logger instance</param>
         internal void Process(NLog.Logger logger)
         {
-            var name_dir = Path.GetFullPath(MP3StatsConfig.Instance.PathOutput);
+            var name_dir = Path.GetFullPath(ID3StatsConfig.Instance.PathOutput);
             if (!System.IO.File.Exists(name_dir))
             {
                 Directory.CreateDirectory(name_dir);
             }
-            var name_file = Path.Combine(name_dir, MP3StatsConfig.Instance.StatisticsMainFile);
+            var name_file = Path.Combine(name_dir, ID3StatsConfig.Instance.StatisticsMainFile);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
+                ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var plugin in StatisticPlugins)
                 {
-                    if (!(plugin is IMP3StatsPlugin))
+                    if (!(plugin is IID3StatsPlugin))
                     {
                         // Skip invalid plugins
                         continue;

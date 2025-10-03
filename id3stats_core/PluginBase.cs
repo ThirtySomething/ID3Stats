@@ -4,9 +4,9 @@ using System.Diagnostics;
 namespace net.derpaul.id3stats
 {
     /// <summary>
-    /// Abstract base class for all MP3Stats plugins
+    /// Abstract base class for all ID3Stats plugins
     /// </summary>
-    public abstract class PluginBase : IMP3StatsPlugin
+    public abstract class PluginBase : IID3StatsPlugin
     {
         /// <summary>
         /// Internal timer for time measurement
@@ -14,7 +14,7 @@ namespace net.derpaul.id3stats
         Stopwatch watch;
 
         /// <summary>
-        /// Init method of MP3Stats plugin
+        /// Init method of ID3Stats plugin
         /// </summary>
         /// <returns>signal success with true</returns>
         public bool Init()
@@ -42,7 +42,7 @@ namespace net.derpaul.id3stats
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public abstract void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger);
+        public abstract void CollectStatistic(ID3Stats dbConnection, string outputPath, NLog.Logger logger);
 
         /// <summary>
         /// Actions after collections of statistics
@@ -52,7 +52,7 @@ namespace net.derpaul.id3stats
         {
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-            logger.Info("Running plugin '{0}' tooks {1}", Name, MP3StatsUtil.GetStringFromMs(elapsedMs));
+            logger.Info("Running plugin '{0}' tooks {1}", Name, ID3StatsUtil.GetStringFromMs(elapsedMs));
         }
 
         /// <summary>

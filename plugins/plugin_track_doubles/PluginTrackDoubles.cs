@@ -19,10 +19,10 @@ namespace net.derpaul.id3stats.plugin
         /// <param name="dbConnection">Valid DB connection object</param>
         /// <param name="outputPath">Path to write own statistics file</param>
         /// <param name="logger">Passed logger to write infomration</param>
-        public override void CollectStatistic(MP3Stats dbConnection, string outputPath, NLog.Logger logger)
+        public override void CollectStatistic(ID3Stats dbConnection, string outputPath, NLog.Logger logger)
         {
             var name_file = GetFilename(outputPath);
-            var tracks_double_raw = dbConnection.MP3Import.GroupBy(a => new { a.title })
+            var tracks_double_raw = dbConnection.ID3Import.GroupBy(a => new { a.title })
                 .Select(a => new { a.Key.title, Count = a.Count() })
                 .Where(a => a.Count > 1)
                 .OrderBy(a => a.title)
@@ -31,7 +31,7 @@ namespace net.derpaul.id3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
-                MP3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
+                ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var record in tracks_double_raw)
                 {
@@ -41,7 +41,7 @@ namespace net.derpaul.id3stats.plugin
                         record.Count
                     );
 
-                    var tracks_double = dbConnection.MP3Import.Where(a => a.title == record.title)
+                    var tracks_double = dbConnection.ID3Import.Where(a => a.title == record.title)
                         .OrderBy(a => a.title)
                         .ThenBy(a => a.artist)
                         .ThenBy(a => a.album)
@@ -53,7 +53,7 @@ namespace net.derpaul.id3stats.plugin
                         statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} ({2})<br>",
                             rec.artist,
                             rec.album,
-                            MP3StatsUtil.GetStringFromMs(rec.durationms)
+                            ID3StatsUtil.GetStringFromMs(rec.durationms)
                         );
                     }
                     statistic_file.WriteLine("</p>");

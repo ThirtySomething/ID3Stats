@@ -4,13 +4,13 @@
 ' Meta data of diagram
 '--------------------------------------------------
 ' Title of diagram
-title MP3STATS
+title ID3STATS
 
 ' Header (top right)
-header MP3STATS
+header ID3STATS
 
 ' Caption below diagram
-caption Database model of MP3STATS
+caption Database model of ID3STATS
 
 ' Footer centered
 footer %filename()
@@ -21,9 +21,9 @@ skinparam linetype ortho
 '--------------------------------------------------
 ' Entity definitions
 '--------------------------------------------------
-' Unique MP3 file
-entity mp3import {
-    unsigned bigint **id_mp3import**
+' Unique tagged file
+entity id3import {
+    unsigned bigint **id_id3import**
     --
     varchar(512) filename
     datetime(6) date_import
