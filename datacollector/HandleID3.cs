@@ -1,9 +1,9 @@
 ﻿using ATL;
 using Microsoft.EntityFrameworkCore;
-using net.derpaul.mp3stats.model;
+using net.derpaul.id3stats.model;
 using Newtonsoft.Json.Linq;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Extract meta data of MP3 file

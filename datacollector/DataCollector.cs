@@ -1,7 +1,7 @@
 ﻿using NLog;
 using System.Diagnostics;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Find MP3 files, import filename and meta data to database

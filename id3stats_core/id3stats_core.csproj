@@ -10,7 +10,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>net.derpaul.mp3stats</RootNamespace>
+        <RootNamespace>net.derpaul.id3stats</RootNamespace>
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 

@@ -2,7 +2,7 @@
 using NLog;
 using System.Diagnostics;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Class to call several statistics implemented in plugins

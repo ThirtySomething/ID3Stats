@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
-namespace net.derpaul.mp3stats.model
+namespace net.derpaul.id3stats.model
 {
     /// <summary>
     /// ERM model for CD statistics

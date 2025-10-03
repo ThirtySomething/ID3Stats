@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     public static class MP3StatsUtil
     {

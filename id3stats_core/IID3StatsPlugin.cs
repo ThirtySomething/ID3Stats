@@ -1,6 +1,6 @@
-﻿using net.derpaul.mp3stats.model;
+﻿using net.derpaul.id3stats.model;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Interface for all used plugins

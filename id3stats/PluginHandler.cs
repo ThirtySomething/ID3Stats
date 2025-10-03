@@ -1,6 +1,6 @@
-﻿using net.derpaul.mp3stats.model;
+﻿using net.derpaul.id3stats.model;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Class to deal with collections of plugins of type IMP3StatsPlugin

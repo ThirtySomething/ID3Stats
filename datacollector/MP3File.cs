@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Meta data of physical MP3 file

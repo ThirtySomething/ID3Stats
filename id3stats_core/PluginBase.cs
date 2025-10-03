@@ -1,7 +1,7 @@
-﻿using net.derpaul.mp3stats.model;
+﻿using net.derpaul.id3stats.model;
 using System.Diagnostics;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Abstract base class for all MP3Stats plugins

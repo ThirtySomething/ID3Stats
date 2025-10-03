@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Configuration settings of MP3Stats
@@ -37,6 +37,6 @@ namespace net.derpaul.mp3stats
         /// This is hardcoded and not configurable!
         /// </summary>
         [XmlIgnore]
-        public string PluginProductName { get; } = "net.derpaul.mp3stats.plugin";
+        public string PluginProductName { get; } = "net.derpaul.id3stats.plugin";
     }
 }

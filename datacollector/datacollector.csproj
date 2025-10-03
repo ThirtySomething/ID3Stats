@@ -11,8 +11,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputType>Exe</OutputType>
-        <RootNamespace>net.derpaul.mp3stats</RootNamespace>
-        <StartupObject>net.derpaul.mp3stats.DataCollector</StartupObject>
+        <RootNamespace>net.derpaul.id3stats</RootNamespace>
+        <StartupObject>net.derpaul.id3stats.DataCollector</StartupObject>
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 

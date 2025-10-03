@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace net.derpaul.mp3stats
+namespace net.derpaul.id3stats
 {
     /// <summary>
     /// Generic class as base for config files
