@@ -57,8 +57,24 @@ namespace net.derpaul.id3stats.model
                 .HasDatabaseName("ix_album");
 
             modelBuilder.Entity<ID3Import>()
+                .HasIndex(e => new { e.album_sort })
+                .HasDatabaseName("ix_album_sort");
+
+            modelBuilder.Entity<ID3Import>()
+                .HasIndex(e => new { e.album_artist })
+                .HasDatabaseName("ix_album_artist");
+
+            modelBuilder.Entity<ID3Import>()
+                .HasIndex(e => new { e.album_artist_sort })
+                .HasDatabaseName("ix_album_artist_sort");
+
+            modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.artist })
                 .HasDatabaseName("ix_artist");
+
+            modelBuilder.Entity<ID3Import>()
+                .HasIndex(e => new { e.artist_sort })
+                .HasDatabaseName("ix_artist_sort");
 
             modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.genre })
@@ -75,6 +91,10 @@ namespace net.derpaul.id3stats.model
             modelBuilder.Entity<ID3Import>()
                 .HasIndex(e => new { e.title })
                 .HasDatabaseName("ix_title");
+
+            modelBuilder.Entity<ID3Import>()
+                .HasIndex(e => new { e.title_sort })
+                .HasDatabaseName("ix_title_sort");
 
             // Create the model
             base.OnModelCreating(modelBuilder);

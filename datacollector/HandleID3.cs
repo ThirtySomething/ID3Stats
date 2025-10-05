@@ -63,8 +63,13 @@ namespace net.derpaul.id3stats
         private void setMetaData(ID3Import dbObject, Track metaData)
         {
             dbObject.artist = metaData.Artist;
+            dbObject.artist_sort = metaData.SortArtist;
             dbObject.album = metaData.Album;
+            dbObject.album_sort = metaData.SortAlbum;
+            dbObject.album_artist = metaData.AlbumArtist;
+            dbObject.album_artist_sort = metaData.SortAlbumArtist;
             dbObject.title = metaData.Title;
+            dbObject.title_sort = metaData.SortTitle;
             dbObject.genre = metaData.Genre;
             dbObject.durationms = metaData.DurationMs;
             dbObject.tracknumber = metaData.TrackNumber ?? 0;
@@ -75,15 +80,12 @@ namespace net.derpaul.id3stats
             dbObject.bitrate = metaData.Bitrate;
             dbObject.samplerate = metaData.SampleRate;
 
-            if (dbObject.filename.StartsWith("ac_dc"))
+            var dataTranslation = JObject.Parse(DataCollectorConfig.Instance.DataTranslation);
+            foreach (var item in dataTranslation)
             {
-                var dataTranslation = JObject.Parse(DataCollectorConfig.Instance.DataTranslation);
-                foreach (var item in dataTranslation)
+                if (dbObject.artist.Equals(item.Key))
                 {
-                    if (dbObject.artist.Equals(item.Key))
-                    {
-                        dbObject.artist = item.Value.ToString();
-                    }
+                    dbObject.artist = item.Value.ToString();
                 }
             }
         }

@@ -30,8 +30,13 @@ entity id3import {
     datetime(6) date_file_mod
     ---
     varchar(256) artist
+    varchar(256) artist_sort
     varchar(256) album
+    varchar(256) album_sort
+    varchar(256) album_artist
+    varchar(256) album_artist_sort
     varchar(256) title
+    varchar(256) title_sort
     varchar(256) genre
     double durationms
     int(11) tracknumber

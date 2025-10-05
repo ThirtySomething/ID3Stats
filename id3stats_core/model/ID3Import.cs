@@ -42,16 +42,46 @@ namespace net.derpaul.id3stats.model
         public string artist { get; set; }
 
         /// <summary>
+        /// Track artist for sorting
+        /// </summary>
+        [StringLength(256)]
+        public string artist_sort { get; set; }
+
+        /// <summary>
         /// Track album
         /// </summary>
         [StringLength(256)]
         public string album { get; set; }
 
         /// <summary>
+        /// Track album for sorting
+        /// </summary>
+        [StringLength(256)]
+        public string album_sort { get; set; }
+
+        /// <summary>
+        /// Album artist
+        /// </summary>
+        [StringLength(256)]
+        public string album_artist { get; set; }
+
+        /// <summary>
+        /// Album artist for sorting
+        /// </summary>
+        [StringLength(256)]
+        public string album_artist_sort { get; set; }
+
+        /// <summary>
         /// Track title
         /// </summary>
         [StringLength(256)]
         public string title { get; set; }
+
+        /// <summary>
+        /// Track title for sorting
+        /// </summary>
+        [StringLength(256)]
+        public string title_sort { get; set; }
 
         /// <summary>
         /// Track genre

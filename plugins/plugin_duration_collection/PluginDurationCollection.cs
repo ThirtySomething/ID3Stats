@@ -3,7 +3,7 @@
 namespace net.derpaul.id3stats.plugin
 {
     /// <summary>
-    /// Plugin to determine various duration statistics
+    /// Plugin to determine durations of the whole collection
     /// </summary>
     public class PluginDurationCollection : PluginBase
     {

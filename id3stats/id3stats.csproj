@@ -20,8 +20,10 @@
     <ItemGroup>
         <ProjectReference Include="..\id3stats_core\id3stats_core.csproj" />
         <ProjectReference Include="..\plugins\plugin_artists_albums\plugin_artists_albums.csproj" />
+        <ProjectReference Include="..\plugins\plugin_artists_common\plugin_artists_common.csproj" />
         <ProjectReference Include="..\plugins\plugin_artists_tracks\plugin_artists_tracks.csproj" />
         <ProjectReference Include="..\plugins\plugin_duration_collection\plugin_duration_collection.csproj" />
+        <ProjectReference Include="..\plugins\plugin_cd_sort\plugin_cd_sort.csproj" />
         <ProjectReference Include="..\plugins\plugin_tracks_artist\plugin_tracks_artist.csproj" />
         <ProjectReference Include="..\plugins\plugin_track_doubles\plugin_track_doubles.csproj" />
     </ItemGroup>

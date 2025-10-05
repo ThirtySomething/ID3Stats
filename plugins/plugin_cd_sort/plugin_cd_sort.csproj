@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <BaseIntermediateOutputPath>..\..\build\$(Platform)\$(Configuration)\obj</BaseIntermediateOutputPath>
+        <BaseOutputPath>..\..\bin\$(Platform)\$(Configuration)</BaseOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>net.derpaul.id3stats.plugin</RootNamespace>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\id3stats_core\id3stats_core.csproj" />
+    </ItemGroup>
+
+</Project>

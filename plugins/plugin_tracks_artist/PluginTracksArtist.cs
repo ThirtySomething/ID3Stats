@@ -3,7 +3,7 @@
 namespace net.derpaul.id3stats.plugin
 {
     /// <summary>
-    /// Plugin to determine various duration statistics
+    /// Plugin to determine total number of tracks per artist
     /// </summary>
     public class PluginTracksArtist : PluginBase
     {

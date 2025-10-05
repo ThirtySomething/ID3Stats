@@ -3,7 +3,7 @@
 namespace net.derpaul.id3stats.plugin
 {
     /// <summary>
-    /// Plugin to determine various duration statistics
+    /// Plugin to determine find tracks in various versions (different artists, different durations)
     /// </summary>
     public class PluginTrackDoubles : PluginBase
     {
