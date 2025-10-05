@@ -44,6 +44,7 @@ namespace net.derpaul.id3stats.plugin
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
                 statistic_file.WriteLine("<p>");
                 var artist_mem = "";
+                var album_count = 1;
                 foreach (var record in artists_sorted)
                 {
                     if (0 == record.artist_sort.Length)
@@ -57,7 +58,8 @@ namespace net.derpaul.id3stats.plugin
                         statistic_file.WriteLine("<b>Artist:</b> {0}<br>", record.artist_sort);
                         artist_mem = record.artist_sort;
                     }
-                    statistic_file.WriteLine("<b>Album:</b> {0}<br>", record.album);
+                    statistic_file.WriteLine("<b>Album ({0}):</b> {1}<br>", album_count, record.album);
+                    album_count++;
                 }
                 statistic_file.WriteLine("</p>");
             }
