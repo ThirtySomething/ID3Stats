@@ -33,12 +33,12 @@ namespace net.derpaul.id3stats.plugin
                     var artist_albums = dbConnection.ID3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.artist, a.Key.album }).ToList();
 
                     statistic_file.WriteLine("<p>");
+                    statistic_file.WriteLine("<b>Artist:</b> {0}<br>", artist);
                     foreach (var album in artist_albums)
                     {
                         var artists_tracks = dbConnection.ID3Import.Where(a => a.artist == artist && a.album == album.album).Count();
                         var artists_duration_total = dbConnection.ID3Import.Where(a => a.artist == artist && a.album == album.album).Sum(a => a.durationms);
-                        statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} - <b>Tracks:</b> {2} ({3})<br>",
-                            album.artist,
+                        statistic_file.WriteLine("<b>Album:</b> {0} - <b>Tracks:</b> {1} ({2})<br>",
                             album.album,
                             artists_tracks,
                             ID3StatsUtil.GetStringFromMs(artists_duration_total));

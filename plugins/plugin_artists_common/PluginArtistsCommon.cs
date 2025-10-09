@@ -22,7 +22,7 @@ namespace net.derpaul.id3stats.plugin
         public override void CollectStatistic(ID3Stats dbConnection, string outputPath, NLog.Logger logger)
         {
             var name_file = GetFilename(outputPath);
-            var artists_total = dbConnection.ID3Import.Select(a => a.artist).Distinct().OrderBy(a => a).ToList();
+            var artists_total = dbConnection.ID3Import.Select(a => new { a.album_artist, a.album_artist_sort }).Distinct().OrderBy(a => a.album_artist_sort).ToList();
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
@@ -30,18 +30,20 @@ namespace net.derpaul.id3stats.plugin
 
                 foreach (var artist in artists_total)
                 {
-                    var dur_min = dbConnection.ID3Import.Where(a => a.artist == artist).Min(a => a.durationms);
-                    var dur_avg = dbConnection.ID3Import.Where(a => a.artist == artist).Average(a => a.durationms);
-                    var dur_max = dbConnection.ID3Import.Where(a => a.artist == artist).Max(myimport => myimport.durationms);
-                    var dur_tot = dbConnection.ID3Import.Where(a => a.artist == artist).Sum(myimport => myimport.durationms);
-                    var trk_tot = dbConnection.ID3Import.Where(a => a.artist == artist).Count();
-                    var alb_tot = dbConnection.ID3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.album }).Distinct().Count();
+                    var dur_min = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).Min(a => a.durationms);
+                    var dur_avg = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).Average(a => a.durationms);
+                    var dur_max = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).Max(myimport => myimport.durationms);
+                    var dur_tot = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).Sum(myimport => myimport.durationms);
+                    var trk_tot = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).Count();
+                    var alb_tot = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.album }).Distinct().Count();
 
-                    var track_short = dbConnection.ID3Import.Where(a => a.artist == artist && a.durationms == dur_min).FirstOrDefault();
-                    var track_long = dbConnection.ID3Import.Where(a => a.artist == artist && a.durationms == dur_max).FirstOrDefault();
+                    var track_short = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist && a.durationms == dur_min).FirstOrDefault();
+                    var track_long = dbConnection.ID3Import.Where(a => a.album_artist == artist.album_artist && a.durationms == dur_max).FirstOrDefault();
+
+                    var artist_name = string.IsNullOrWhiteSpace(artist.album_artist_sort) ? artist.album_artist : artist.album_artist_sort;
 
                     statistic_file.WriteLine("<p>");
-                    statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Albums:</b> {1} - <b>Tracks:</b> {2}<br>", artist, alb_tot, trk_tot);
+                    statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Albums:</b> {1} - <b>Tracks:</b> {2}<br>", artist_name, alb_tot, trk_tot);
                     statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
                         ID3StatsUtil.GetStringFromMs(dur_min),
                         track_short.title ?? "",

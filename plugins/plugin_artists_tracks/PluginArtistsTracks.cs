@@ -34,7 +34,7 @@ namespace net.derpaul.id3stats.plugin
                     var artists_duration_total = dbConnection.ID3Import.Where(a => a.artist == artist).Sum(a => a.durationms);
 
                     statistic_file.WriteLine("<p>");
-                    statistic_file.WriteLine("<b>Artists:</b> {0} - {1} ({2})<br>",
+                    statistic_file.WriteLine("<b>Artist:</b> {0} - {1} ({2})<br>",
                         artist,
                         artists_tracks,
                         ID3StatsUtil.GetStringFromMs(artists_duration_total)
