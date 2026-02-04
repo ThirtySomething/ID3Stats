@@ -10,8 +10,8 @@ namespace net.derpaul.id3stats
         /// </summary>
         public void SetDefaults()
         {
-            // ID3Path = "m:\\";
-            ID3Path = "R:\\tagged";
+            ID3Path = "m:\\";
+            // ID3Path = "R:\\tagged";
             // ID3Pattern = "*.mp3";
             ID3Pattern = "*.flac";
             DataTranslation = "{'AC;DC':'AC/DC'}";
