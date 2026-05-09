@@ -42,7 +42,7 @@ namespace net.derpaul.id3stats.plugin
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
-                statistic_file.WriteLine("<p>");
+                ID3StatsUtil.OpenGroupData(statistic_file);
                 var artist_mem = "";
                 foreach (var record in artists_sorted)
                 {
@@ -53,14 +53,14 @@ namespace net.derpaul.id3stats.plugin
                     }
                     if (artist_mem != artist_check)
                     {
-                        statistic_file.WriteLine("</p>");
-                        statistic_file.WriteLine("<p>");
-                        statistic_file.WriteLine("<b>Artist:</b> {0}<br>", artist_check);
+                        ID3StatsUtil.CloseGroupData(statistic_file);
+                        ID3StatsUtil.OpenGroupData(statistic_file);
+                        ID3StatsUtil.WriteArtist(statistic_file, artist_check);
                         artist_mem = artist_check;
                     }
-                    statistic_file.WriteLine("<b>Album:</b> {0}<br>", record.album);
+                    ID3StatsUtil.WriteAlbum(statistic_file, record.album);
                 }
-                statistic_file.WriteLine("</p>");
+                ID3StatsUtil.CloseGroupData(statistic_file);
             }
         }
     }

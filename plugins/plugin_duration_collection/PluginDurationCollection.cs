@@ -35,24 +35,25 @@ namespace net.derpaul.id3stats.plugin
             {
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
-                statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
+                var stats_min = String.Format("{0} - {1} ({2})",
                     ID3StatsUtil.GetStringFromMs(dur_min),
                     track_short.title ?? "",
                     track_short.artist ?? ""
                 );
-                statistic_file.WriteLine("<b>Average track length:</b> {0} - {1} tracks<br>",
+                var stats_avg = String.Format("{0} - {1} tracks",
                     ID3StatsUtil.GetStringFromMs(dur_avg),
                     trk_tot
                 );
-                statistic_file.WriteLine("<b>Longest track length:</b> {0} - {1} ({2})<br>",
+                var stats_max = String.Format("{0} - {1} ({2})<br>",
                     ID3StatsUtil.GetStringFromMs(dur_max),
                     track_long.title ?? "",
                     track_long.artist ?? ""
                 );
-                statistic_file.WriteLine("<b>Playtime overall:</b> {0} - {1} tracks<br>",
+                var stats_tot = String.Format("{0} - {1} tracks",
                     ID3StatsUtil.GetStringFromMs(dur_tot),
                     trk_tot
                 );
+                ID3StatsUtil.WriteArtistStats(statistic_file, stats_min, stats_avg, stats_max, stats_tot);
             }
         }
     }

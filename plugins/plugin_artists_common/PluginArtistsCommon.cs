@@ -42,25 +42,20 @@ namespace net.derpaul.id3stats.plugin
 
                     var artist_name = string.IsNullOrWhiteSpace(artist.album_artist_sort) ? artist.album_artist : artist.album_artist_sort;
 
-                    statistic_file.WriteLine("<p>");
-                    statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Albums:</b> {1} - <b>Tracks:</b> {2}<br>", artist_name, alb_tot, trk_tot);
-                    statistic_file.WriteLine("<b>Shortest track length:</b> {0} - {1} ({2})<br>",
-                        ID3StatsUtil.GetStringFromMs(dur_min),
-                        track_short.title ?? "",
-                        track_short.album ?? ""
-                    );
-                    statistic_file.WriteLine("<b>Average track length:</b> {0}<br>",
-                        ID3StatsUtil.GetStringFromMs(dur_avg)
-                    );
-                    statistic_file.WriteLine("<b>Longest track length:</b> {0} - {1} ({2})<br>",
-                        ID3StatsUtil.GetStringFromMs(dur_max),
-                        track_long.title ?? "",
-                        track_long.album ?? ""
-                    );
-                    statistic_file.WriteLine("<b>Playtime overall:</b> {0}<br>",
-                        ID3StatsUtil.GetStringFromMs(dur_tot)
-                    );
-                    statistic_file.WriteLine("</p>");
+                    ID3StatsUtil.OpenGroupData(statistic_file);
+                    ID3StatsUtil.WriteArtist(statistic_file, artist_name);
+                    var album_data = String.Format("{0}", alb_tot);
+                    ID3StatsUtil.WriteAlbum(statistic_file, album_data);
+                    var track_data = String.Format("{0}", trk_tot);
+                    ID3StatsUtil.WriteTracks(statistic_file, track_data);
+
+                    var stats_min = String.Format("{0} - {1} ({2})", ID3StatsUtil.GetStringFromMs(dur_min), track_short.title ?? "", track_short.album ?? "");
+                    var stats_avg = String.Format("{0}", ID3StatsUtil.GetStringFromMs(dur_avg));
+                    var stats_max = String.Format("{0} - {1} ({2})", ID3StatsUtil.GetStringFromMs(dur_max), track_long.title ?? "", track_long.album ?? "");
+                    var stats_tot = String.Format("{0}", ID3StatsUtil.GetStringFromMs(dur_tot));
+                    ID3StatsUtil.WriteArtistStats(statistic_file, stats_min, stats_avg, stats_max, stats_tot);
+
+                    ID3StatsUtil.CloseGroupData(statistic_file);
                 }
             }
         }

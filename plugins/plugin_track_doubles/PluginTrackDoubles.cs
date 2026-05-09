@@ -35,11 +35,10 @@ namespace net.derpaul.id3stats.plugin
 
                 foreach (var record in tracks_double_raw)
                 {
-                    statistic_file.WriteLine("<p>");
-                    statistic_file.WriteLine("<b>Track:</b> {0} - <b>Count:</b> {1}<br>",
-                        record.title,
-                        record.Count
-                    );
+                    ID3StatsUtil.OpenGroupData(statistic_file);
+                    ID3StatsUtil.WriteTrack(statistic_file, record.title);
+                    var count_data = String.Format("{0}", record.Count);
+                    ID3StatsUtil.WriteCount(statistic_file, count_data);
 
                     var tracks_double = dbConnection.ID3Import.Where(a => a.title == record.title)
                         .OrderBy(a => a.title)
@@ -50,13 +49,11 @@ namespace net.derpaul.id3stats.plugin
 
                     foreach (var rec in tracks_double)
                     {
-                        statistic_file.WriteLine("<b>Artist:</b> {0} - <b>Album:</b> {1} ({2})<br>",
-                            rec.artist,
-                            rec.album,
-                            ID3StatsUtil.GetStringFromMs(rec.durationms)
-                        );
+                        var album_data = String.Format("{0} ({1})", rec.album, ID3StatsUtil.GetStringFromMs(rec.durationms));
+                        ID3StatsUtil.WriteArtist(statistic_file, rec.artist);
+                        ID3StatsUtil.WriteAlbum(statistic_file, album_data);
                     }
-                    statistic_file.WriteLine("</p>");
+                    ID3StatsUtil.CloseGroupData(statistic_file);
                 }
             }
         }

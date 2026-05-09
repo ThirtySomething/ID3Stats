@@ -120,7 +120,9 @@ namespace net.derpaul.id3stats
                         plugin.PreCollect(logger);
                         plugin.CollectStatistic(DBConnection, name_dir, logger);
                         plugin.PostCollect(logger);
-                        statistic_file.WriteLine("<a href='{0}.html'>{1}</a><br>", plugin.Name, plugin.Name);
+                        statistic_file.WriteLine("<div id='id3stats_type'>");
+                        statistic_file.WriteLine("<a id='id3stats_link' href='{0}.html'>{1}</a>", plugin.Name, plugin.Name);
+                        statistic_file.WriteLine("</div>");
                     }
                     catch (Exception ex)
                     {

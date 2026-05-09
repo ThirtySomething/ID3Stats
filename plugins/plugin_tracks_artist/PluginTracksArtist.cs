@@ -31,30 +31,34 @@ namespace net.derpaul.id3stats.plugin
             {
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
-                statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artists:</b> {1} ({2})<br>",
-                    trk_tot,
-                    artists_total,
-                    ID3StatsUtil.GetStringFromMs(dur_tot)
-                );
-                statistic_file.WriteLine("<p>");
+                ID3StatsUtil.OpenGroupData(statistic_file);
+                var tracks_data = String.Format("{0}", trk_tot);
+                ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
+                var artists_data = String.Format("{0} ({1})", artists_total, ID3StatsUtil.GetStringFromMs(dur_tot));
+                ID3StatsUtil.WriteArtist(statistic_file, artists_data);
+                ID3StatsUtil.CloseGroupData(statistic_file);
                 var tracks_mem = trk_tot;
+                var heading = true;
                 foreach (var record in tracks_artists)
                 {
                     if (tracks_mem != record.tracks)
                     {
-                        statistic_file.WriteLine("</p>");
-                        statistic_file.WriteLine("<p>");
+                        ID3StatsUtil.CloseGroupData(statistic_file);
+                        ID3StatsUtil.OpenGroupData(statistic_file);
                         tracks_mem = record.tracks;
+                        heading = true;
                     }
                     var artists_duration_total = dbConnection.ID3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
-
-                    statistic_file.WriteLine("<b>Tracks:</b> {0} - <b>Artist:</b> {1} ({2})<br>",
-                        record.tracks,
-                        record.artist,
-                        ID3StatsUtil.GetStringFromMs(artists_duration_total)
-                    );
+                    if (heading == true)
+                    {
+                        tracks_data = String.Format("{0}", record.tracks);
+                        ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
+                        heading = false;
+                    }
+                    artists_data = String.Format("{0} ({1})", record.artist, ID3StatsUtil.GetStringFromMs(artists_duration_total));
+                    ID3StatsUtil.WriteArtist(statistic_file, artists_data);
                 }
-                statistic_file.WriteLine("</p>");
+                ID3StatsUtil.CloseGroupData(statistic_file);
             }
         }
     }
