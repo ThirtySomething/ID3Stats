@@ -22,4 +22,8 @@
         <PackageReference Include="z440.atl.core" Version="7.10.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="id3stats.css" LogicalName="net.derpaul.id3stats.id3stats.css" />
+    </ItemGroup>
+
 </Project>

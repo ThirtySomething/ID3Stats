@@ -101,6 +101,7 @@ namespace net.derpaul.id3stats
                 Directory.CreateDirectory(name_dir);
             }
             var name_file = Path.Combine(name_dir, ID3StatsConfig.Instance.StatisticsMainFile);
+            ID3StatsUtil.WriteHtmlStylesheet(name_dir);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
                 ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);

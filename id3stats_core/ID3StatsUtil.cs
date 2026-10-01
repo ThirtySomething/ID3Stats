@@ -34,9 +34,23 @@ namespace net.derpaul.id3stats
             statistic_file.WriteLine("<html lang='de-DE' class='full'>");
             statistic_file.WriteLine("<head>");
             statistic_file.WriteLine("<meta charset='utf-8'>");
+            statistic_file.WriteLine("<link rel='stylesheet' href='id3stats.css'>");
             statistic_file.WriteLine("<title>{0}</title>", title);
             statistic_file.WriteLine("</head>");
             statistic_file.WriteLine("<body>");
+        }
+
+        /// <summary>
+        /// Write the shared stylesheet to the output directory
+        /// </summary>
+        /// <param name="outputPath">Directory for generated HTML and CSS</param>
+        public static void WriteHtmlStylesheet(string outputPath)
+        {
+            const string resourceName = "net.derpaul.id3stats.id3stats.css";
+            using Stream stylesheet = typeof(ID3StatsUtil).Assembly.GetManifestResourceStream(resourceName)
+                ?? throw new InvalidOperationException($"Embedded stylesheet resource '{resourceName}' was not found.");
+            using FileStream output = File.Create(Path.Combine(outputPath, "id3stats.css"));
+            stylesheet.CopyTo(output);
         }
 
         /// <summary>
@@ -80,6 +94,11 @@ namespace net.derpaul.id3stats
         private static void GroupOpen(StreamWriter statistic_file, string groupname)
         {
             statistic_file.WriteLine("<div id='{0}'>", groupname);
+        }
+
+        private static void GroupOpen(StreamWriter statistic_file, string groupname, string className)
+        {
+            statistic_file.WriteLine("<div id='{0}' class='{1}'>", groupname, className);
         }
 
         /// <summary>
@@ -170,6 +189,15 @@ namespace net.derpaul.id3stats
         public static void OpenGroupData(StreamWriter statistic_file)
         {
             ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group");
+        }
+
+        /// <summary>
+        /// Open a data group for the all-albums-per-artist layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void OpenAlbumArtistGroupData(StreamWriter statistic_file)
+        {
+            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_album_artist");
         }
 
         /// <summary>

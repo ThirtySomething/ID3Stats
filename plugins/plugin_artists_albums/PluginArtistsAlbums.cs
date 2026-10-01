@@ -33,7 +33,7 @@ namespace net.derpaul.id3stats.plugin
                 {
                     var artist_albums = dbConnection.ID3Import.Where(a => a.artist == artist).GroupBy(a => new { a.artist, a.album }).Select(a => new { a.Key.artist, a.Key.album }).ToList();
 
-                    ID3StatsUtil.OpenGroupData(statistic_file);
+                    ID3StatsUtil.OpenAlbumArtistGroupData(statistic_file);
                     ID3StatsUtil.WriteArtist(statistic_file, artist);
                     foreach (var album in artist_albums)
                     {
