@@ -31,6 +31,7 @@ namespace net.derpaul.id3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
+                ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var record in tracks_double_raw)
@@ -55,6 +56,8 @@ namespace net.derpaul.id3stats.plugin
                     }
                     ID3StatsUtil.CloseGroupData(statistic_file);
                 }
+
+                ID3StatsUtil.WriteHtmlDocumentEnd(statistic_file);
             }
         }
     }

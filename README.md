@@ -54,7 +54,7 @@ The diagram is made with [PlantUML][tool_puml].
 - Inspired from my other project [Weatherstation][project_weatherstation]
   - The configuration file handling
   - The plugin system
-- Reading the ID3 tags is based on [TagLibSharp][lib_taglib#]
+- Reading the ID3 tags is based on [TagLibSharp][lib_taglibsharp]
 
 ## Usage
 
@@ -139,7 +139,6 @@ All used libraries are sticked to `id3stats_core` to have no redundancy of vario
 [lib_nlog]: https://www.nuget.org/packages/NLog/
 [lib_pomelo]: https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql/
 [lib_taglibsharp]: https://github.com/mono/taglib-sharp
-[lib_taglibsharp]: https://www.nuget.org/packages/z440.atl.core/
 [licence_bsd3]: https://licenses.nuget.org/BSD-3-Clause
 [licence_mit]: https://licenses.nuget.org/MIT
 [project_weatherstation]: https://github.com/ThirtySomething/Weatherstation

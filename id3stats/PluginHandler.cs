@@ -103,6 +103,8 @@ namespace net.derpaul.id3stats
             var name_file = Path.Combine(name_dir, ID3StatsConfig.Instance.StatisticsMainFile);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
+                ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
+
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 foreach (var plugin in StatisticPlugins)
@@ -130,6 +132,8 @@ namespace net.derpaul.id3stats
                         logger.Fatal(ex);
                     }
                 }
+
+                ID3StatsUtil.WriteHtmlDocumentEnd(statistic_file);
             }
         }
     }

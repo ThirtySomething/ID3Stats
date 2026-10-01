@@ -33,6 +33,7 @@ namespace net.derpaul.id3stats.plugin
             var name_file = GetFilename(outputPath);
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
+                ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
                 var stats_min = String.Format("{0} - {1} ({2})",
@@ -54,6 +55,7 @@ namespace net.derpaul.id3stats.plugin
                     trk_tot
                 );
                 ID3StatsUtil.WriteArtistStats(statistic_file, stats_min, stats_avg, stats_max, stats_tot);
+                ID3StatsUtil.WriteHtmlDocumentEnd(statistic_file);
             }
         }
     }

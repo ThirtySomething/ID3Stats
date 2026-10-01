@@ -24,6 +24,32 @@ namespace net.derpaul.id3stats
         }
 
         /// <summary>
+        /// Write the opening structure of the statistics HTML document
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        /// <param name="title">Document title</param>
+        public static void WriteHtmlDocumentStart(StreamWriter statistic_file, string title)
+        {
+            statistic_file.WriteLine("<!DOCTYPE html>");
+            statistic_file.WriteLine("<html lang='de-DE' class='full'>");
+            statistic_file.WriteLine("<head>");
+            statistic_file.WriteLine("<meta charset='utf-8'>");
+            statistic_file.WriteLine("<title>{0}</title>", title);
+            statistic_file.WriteLine("</head>");
+            statistic_file.WriteLine("<body>");
+        }
+
+        /// <summary>
+        /// Write the closing structure of the statistics HTML document
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void WriteHtmlDocumentEnd(StreamWriter statistic_file)
+        {
+            statistic_file.WriteLine("</body>");
+            statistic_file.WriteLine("</html>");
+        }
+
+        /// <summary>
         /// Common function to write header of statistics
         /// </summary>
         /// <param name="statistic_file">File to write to</param>

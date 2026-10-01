@@ -41,6 +41,7 @@ namespace net.derpaul.id3stats.plugin
 
             using (StreamWriter statistic_file = new StreamWriter(name_file))
             {
+                ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
                 ID3StatsUtil.OpenGroupData(statistic_file);
                 var artist_mem = "";
@@ -61,6 +62,7 @@ namespace net.derpaul.id3stats.plugin
                     ID3StatsUtil.WriteAlbum(statistic_file, record.album);
                 }
                 ID3StatsUtil.CloseGroupData(statistic_file);
+                ID3StatsUtil.WriteHtmlDocumentEnd(statistic_file);
             }
         }
     }
