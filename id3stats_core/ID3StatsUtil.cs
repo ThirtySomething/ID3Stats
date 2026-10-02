@@ -228,6 +228,33 @@ namespace net.derpaul.id3stats
         }
 
         /// <summary>
+        /// Open a data group for the multiple-artist tracks layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void OpenMultipleArtistTracksGroupData(StreamWriter statistic_file)
+        {
+            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_multiple_artist_tracks");
+        }
+
+        /// <summary>
+        /// Open a version row in the multiple-artist tracks layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void OpenMultipleArtistTrackVersion(StreamWriter statistic_file)
+        {
+            statistic_file.WriteLine("<div class='id3stats_track_version'>");
+        }
+
+        /// <summary>
+        /// Close a version row in the multiple-artist tracks layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void CloseMultipleArtistTrackVersion(StreamWriter statistic_file)
+        {
+            ID3StatsUtil.GroupClose(statistic_file);
+        }
+
+        /// <summary>
         /// To close a data group
         /// </summary>
         /// <param name="statistic_file">File to write to</param>
