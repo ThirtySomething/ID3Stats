@@ -108,7 +108,7 @@ namespace net.derpaul.id3stats
 
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
-                foreach (var plugin in StatisticPlugins)
+                foreach (var plugin in StatisticPlugins.OrderBy(plugin => plugin.Name, StringComparer.CurrentCultureIgnoreCase))
                 {
                     if (!(plugin is IID3StatsPlugin))
                     {
