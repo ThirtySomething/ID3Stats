@@ -201,6 +201,15 @@ namespace net.derpaul.id3stats
         }
 
         /// <summary>
+        /// Open a data group for the all-tracks-per-artist layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void OpenArtistTracksGroupData(StreamWriter statistic_file)
+        {
+            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_artist_tracks");
+        }
+
+        /// <summary>
         /// To close a data group
         /// </summary>
         /// <param name="statistic_file">File to write to</param>
