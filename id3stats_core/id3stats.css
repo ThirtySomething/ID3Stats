@@ -275,6 +275,41 @@ body > div[id="id3stats_type"]:nth-of-type(odd) {
     background: #f7f9fb;
 }
 
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_tracks"] {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 3fr);
+    margin: -0.75rem -1rem 0.5rem;
+    padding: 0.65rem 1rem;
+    border-radius: 0.3rem 0.3rem 0 0;
+    background: #e2edf5;
+    color: #17324d;
+    font-weight: 700;
+}
+
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"] {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 3fr);
+    margin-right: -1rem;
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"] > [id="id3stats_label"] {
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"] > [id="id3stats_data"] {
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"]:nth-of-type(even) {
+    background: #e5edf3;
+}
+
+[id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"]:nth-of-type(odd) {
+    background: #f7f9fb;
+}
+
 [id="id3stats_label"] {
     display: inline-block;
     min-width: 11rem;
@@ -374,6 +409,11 @@ body > div[id^="id3stats_tme_"]:nth-of-type(odd) {
 
     [id="id3stats_group"].id3stats_multiple_artist_tracks > .id3stats_track_version > [id="id3stats_artist"],
     [id="id3stats_group"].id3stats_multiple_artist_tracks > .id3stats_track_version > [id="id3stats_album"] {
+        grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
+    }
+
+    [id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_tracks"],
+    [id="id3stats_group"].id3stats_tracks_artist > [id="id3stats_artist"] {
         grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
     }
 

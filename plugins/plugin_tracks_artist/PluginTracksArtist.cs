@@ -32,34 +32,26 @@ namespace net.derpaul.id3stats.plugin
                 ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
-                ID3StatsUtil.OpenGroupData(statistic_file);
+                ID3StatsUtil.OpenTracksArtistGroupData(statistic_file);
                 var tracks_data = String.Format("{0}", trk_tot);
                 ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
                 var artists_data = String.Format("{0} ({1})", artists_total, ID3StatsUtil.GetStringFromMs(dur_tot));
                 ID3StatsUtil.WriteArtist(statistic_file, artists_data);
                 ID3StatsUtil.CloseGroupData(statistic_file);
-                var tracks_mem = trk_tot;
-                var heading = true;
-                foreach (var record in tracks_artists)
+
+                foreach (var trackGroup in tracks_artists.GroupBy(record => record.tracks))
                 {
-                    if (tracks_mem != record.tracks)
+                    ID3StatsUtil.OpenTracksArtistGroupData(statistic_file);
+                    tracks_data = String.Format("{0}", trackGroup.Key);
+                    ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
+                    foreach (var record in trackGroup)
                     {
-                        ID3StatsUtil.CloseGroupData(statistic_file);
-                        ID3StatsUtil.OpenGroupData(statistic_file);
-                        tracks_mem = record.tracks;
-                        heading = true;
+                        var artists_duration_total = dbConnection.ID3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
+                        artists_data = String.Format("{0} ({1})", record.artist, ID3StatsUtil.GetStringFromMs(artists_duration_total));
+                        ID3StatsUtil.WriteArtist(statistic_file, artists_data);
                     }
-                    var artists_duration_total = dbConnection.ID3Import.Where(a => a.artist == record.artist).Sum(a => a.durationms);
-                    if (heading == true)
-                    {
-                        tracks_data = String.Format("{0}", record.tracks);
-                        ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
-                        heading = false;
-                    }
-                    artists_data = String.Format("{0} ({1})", record.artist, ID3StatsUtil.GetStringFromMs(artists_duration_total));
-                    ID3StatsUtil.WriteArtist(statistic_file, artists_data);
+                    ID3StatsUtil.CloseGroupData(statistic_file);
                 }
-                ID3StatsUtil.CloseGroupData(statistic_file);
                 ID3StatsUtil.WriteHtmlDocumentEnd(statistic_file);
             }
         }
