@@ -124,7 +124,7 @@ namespace net.derpaul.id3stats
         /// <param name="data">Data</param>
         private static void WriteGroupData(StreamWriter statistic_file, string groupname, string label, string data)
         {
-            ID3StatsUtil.GroupOpen(statistic_file, groupname);
+            statistic_file.WriteLine("<div id='{0}' class='id3stats_layout_row'>", groupname);
 
             ID3StatsUtil.GroupOpen(statistic_file, "id3stats_label");
             statistic_file.WriteLine("{0}:", label);
@@ -193,7 +193,7 @@ namespace net.derpaul.id3stats
         /// <param name="statistic_file">File to write to</param>
         public static void OpenGroupData(StreamWriter statistic_file)
         {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group");
+            statistic_file.WriteLine("<div id='id3stats_group' class='id3stats_layout_group'>");
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace net.derpaul.id3stats
         /// <param name="className">CSS class for the data group</param>
         public static void OpenGroupData(StreamWriter statistic_file, string className)
         {
-            statistic_file.WriteLine("<div id='id3stats_group' class='{0}'>", className);
+            statistic_file.WriteLine("<div id='id3stats_group' class='id3stats_layout_group {0}'>", className);
         }
 
         /// <summary>
