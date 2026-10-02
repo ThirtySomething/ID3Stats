@@ -174,6 +174,41 @@ body > div[id="id3stats_type"]:nth-of-type(odd) {
     background: #f7f9fb;
 }
 
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_artist"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_album"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_tracks"],
+[id="id3stats_group"].id3stats_common_artist > [id^="id3stats_tme_"] {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 3fr);
+    margin: 0;
+    padding: 0.35rem 0.5rem;
+    border: 0;
+    border-radius: 0;
+}
+
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_artist"] > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_album"] > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_tracks"] > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_common_artist > [id^="id3stats_tme_"] > [id="id3stats_label"] {
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_artist"] > [id="id3stats_data"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_album"] > [id="id3stats_data"],
+[id="id3stats_group"].id3stats_common_artist > [id="id3stats_tracks"] > [id="id3stats_data"],
+[id="id3stats_group"].id3stats_common_artist > [id^="id3stats_tme_"] > [id="id3stats_data"] {
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_common_artist > div:nth-child(odd) {
+    background: #e5edf3;
+}
+
+[id="id3stats_group"].id3stats_common_artist > div:nth-child(even) {
+    background: #f7f9fb;
+}
+
 [id="id3stats_label"] {
     display: inline-block;
     min-width: 11rem;
@@ -257,6 +292,13 @@ body > div[id^="id3stats_tme_"]:nth-of-type(odd) {
     }
 
     [id="id3stats_group"].id3stats_cd_sort {
+        grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
+    }
+
+    [id="id3stats_group"].id3stats_common_artist > [id="id3stats_artist"],
+    [id="id3stats_group"].id3stats_common_artist > [id="id3stats_album"],
+    [id="id3stats_group"].id3stats_common_artist > [id="id3stats_tracks"],
+    [id="id3stats_group"].id3stats_common_artist > [id^="id3stats_tme_"] {
         grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
     }
 

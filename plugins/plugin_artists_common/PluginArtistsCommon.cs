@@ -43,7 +43,7 @@ namespace net.derpaul.id3stats.plugin
 
                     var artist_name = string.IsNullOrWhiteSpace(artist.album_artist_sort) ? artist.album_artist : artist.album_artist_sort;
 
-                    ID3StatsUtil.OpenGroupData(statistic_file);
+                    ID3StatsUtil.OpenCommonArtistGroupData(statistic_file);
                     ID3StatsUtil.WriteArtist(statistic_file, artist_name);
                     var album_data = String.Format("{0}", alb_tot);
                     ID3StatsUtil.WriteAlbum(statistic_file, album_data);
