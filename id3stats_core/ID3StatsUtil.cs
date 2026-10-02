@@ -210,6 +210,15 @@ namespace net.derpaul.id3stats
         }
 
         /// <summary>
+        /// Open a data group for the CD sort layout
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        public static void OpenCDSortGroupData(StreamWriter statistic_file)
+        {
+            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_cd_sort");
+        }
+
+        /// <summary>
         /// To close a data group
         /// </summary>
         /// <param name="statistic_file">File to write to</param>

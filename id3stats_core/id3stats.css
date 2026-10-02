@@ -130,6 +130,39 @@ body > div[id="id3stats_type"]:nth-of-type(odd) {
     background: #f7f9fb;
 }
 
+[id="id3stats_group"].id3stats_cd_sort {
+    display: grid;
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 3fr);
+}
+
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_artist"],
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"] {
+    display: contents;
+}
+
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_artist"] > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"] > [id="id3stats_label"] {
+    grid-column: 1;
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_artist"] > [id="id3stats_data"],
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"] > [id="id3stats_data"] {
+    grid-column: 2;
+    padding: 0.35rem 0.5rem;
+}
+
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"]:nth-child(even) > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"]:nth-child(even) > [id="id3stats_data"] {
+    background: #e5edf3;
+}
+
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"]:nth-child(odd) > [id="id3stats_label"],
+[id="id3stats_group"].id3stats_cd_sort > [id="id3stats_album"]:nth-child(odd) > [id="id3stats_data"] {
+    background: #f7f9fb;
+}
+
 [id="id3stats_label"] {
     display: inline-block;
     min-width: 11rem;
@@ -178,6 +211,10 @@ body > div[id="id3stats_type"]:nth-of-type(odd) {
     }
 
     [id="id3stats_group"].id3stats_artist_tracks {
+        grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
+    }
+
+    [id="id3stats_group"].id3stats_cd_sort {
         grid-template-columns: minmax(5rem, 1fr) minmax(0, 2fr);
     }
 
