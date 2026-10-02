@@ -96,9 +96,14 @@ namespace net.derpaul.id3stats
             statistic_file.WriteLine("<div id='{0}'>", groupname);
         }
 
-        private static void GroupOpen(StreamWriter statistic_file, string groupname, string className)
+        /// <summary>
+        /// Open a generic HTML group with a CSS class
+        /// </summary>
+        /// <param name="statistic_file">File to write to</param>
+        /// <param name="className">CSS class for the group</param>
+        public static void OpenGroup(StreamWriter statistic_file, string className)
         {
-            statistic_file.WriteLine("<div id='{0}' class='{1}'>", groupname, className);
+            statistic_file.WriteLine("<div class='{0}'>", className);
         }
 
         /// <summary>
@@ -192,75 +197,13 @@ namespace net.derpaul.id3stats
         }
 
         /// <summary>
-        /// Open a data group for the all-albums-per-artist layout
+        /// Open a data group with a CSS layout class
         /// </summary>
         /// <param name="statistic_file">File to write to</param>
-        public static void OpenAlbumArtistGroupData(StreamWriter statistic_file)
+        /// <param name="className">CSS class for the data group</param>
+        public static void OpenGroupData(StreamWriter statistic_file, string className)
         {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_album_artist");
-        }
-
-        /// <summary>
-        /// Open a data group for the all-tracks-per-artist layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenArtistTracksGroupData(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_artist_tracks");
-        }
-
-        /// <summary>
-        /// Open a data group for the CD sort layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenCDSortGroupData(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_cd_sort");
-        }
-
-        /// <summary>
-        /// Open a data group for the common artist statistics layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenCommonArtistGroupData(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_common_artist");
-        }
-
-        /// <summary>
-        /// Open a data group for the multiple-artist tracks layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenMultipleArtistTracksGroupData(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_multiple_artist_tracks");
-        }
-
-        /// <summary>
-        /// Open a data group for the total-tracks-per-artist layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenTracksArtistGroupData(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupOpen(statistic_file, "id3stats_group", "id3stats_tracks_artist");
-        }
-
-        /// <summary>
-        /// Open a version row in the multiple-artist tracks layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void OpenMultipleArtistTrackVersion(StreamWriter statistic_file)
-        {
-            statistic_file.WriteLine("<div class='id3stats_track_version'>");
-        }
-
-        /// <summary>
-        /// Close a version row in the multiple-artist tracks layout
-        /// </summary>
-        /// <param name="statistic_file">File to write to</param>
-        public static void CloseMultipleArtistTrackVersion(StreamWriter statistic_file)
-        {
-            ID3StatsUtil.GroupClose(statistic_file);
+            statistic_file.WriteLine("<div id='id3stats_group' class='{0}'>", className);
         }
 
         /// <summary>

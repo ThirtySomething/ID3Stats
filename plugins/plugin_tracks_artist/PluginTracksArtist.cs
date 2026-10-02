@@ -32,7 +32,7 @@ namespace net.derpaul.id3stats.plugin
                 ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
 
-                ID3StatsUtil.OpenTracksArtistGroupData(statistic_file);
+                ID3StatsUtil.OpenGroupData(statistic_file, "id3stats_layout_tracks_artist");
                 var tracks_data = String.Format("{0}", trk_tot);
                 ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
                 var artists_data = String.Format("{0} ({1})", artists_total, ID3StatsUtil.GetStringFromMs(dur_tot));
@@ -41,7 +41,7 @@ namespace net.derpaul.id3stats.plugin
 
                 foreach (var trackGroup in tracks_artists.GroupBy(record => record.tracks))
                 {
-                    ID3StatsUtil.OpenTracksArtistGroupData(statistic_file);
+                    ID3StatsUtil.OpenGroupData(statistic_file, "id3stats_layout_tracks_artist");
                     tracks_data = String.Format("{0}", trackGroup.Key);
                     ID3StatsUtil.WriteTracks(statistic_file, tracks_data);
                     foreach (var record in trackGroup)

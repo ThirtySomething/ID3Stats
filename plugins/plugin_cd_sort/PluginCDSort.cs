@@ -43,7 +43,7 @@ namespace net.derpaul.id3stats.plugin
             {
                 ID3StatsUtil.WriteHtmlDocumentStart(statistic_file, this.Name);
                 ID3StatsUtil.WriteHeader(statistic_file, this.Name, this.GetType().Name);
-                ID3StatsUtil.OpenCDSortGroupData(statistic_file);
+                ID3StatsUtil.OpenGroupData(statistic_file, "id3stats_layout_cd_sort");
                 var artist_mem = "";
                 foreach (var record in artists_sorted)
                 {
@@ -55,7 +55,7 @@ namespace net.derpaul.id3stats.plugin
                     if (artist_mem != artist_check)
                     {
                         ID3StatsUtil.CloseGroupData(statistic_file);
-                        ID3StatsUtil.OpenCDSortGroupData(statistic_file);
+                        ID3StatsUtil.OpenGroupData(statistic_file, "id3stats_layout_cd_sort");
                         ID3StatsUtil.WriteArtist(statistic_file, artist_check);
                         artist_mem = artist_check;
                     }
